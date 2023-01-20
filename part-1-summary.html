@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Part 1 Summary | Tidy Hurricanes</title>
+  <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Part 1 Summary | Tidy Hurricanes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+  <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Part 1 Summary | Tidy Hurricanes" />
+  
+  <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="twitter:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+
+<meta name="author" content="Gaston Sanchez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="less-basic-maps.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>Tidy Hurricanes</b><br><small>Gaston Sanchez</small></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-series-of-r-tutorials"><i class="fa fa-check"></i>My Series of R Tutorials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#donation"><i class="fa fa-check"></i>Donation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="1" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html"><i class="fa fa-check"></i><b>1</b> Tables and Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#installing-tidyverse"><i class="fa fa-check"></i>Installing Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#a-bit-about-tidyverse"><i class="fa fa-check"></i>A bit about Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#note"><i class="fa fa-check"></i>Note</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tropical-storms.html"><a href="tropical-storms.html"><i class="fa fa-check"></i><b>2</b> Tropical Storms and Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tropical-storms.html"><a href="tropical-storms.html#a-little-bit-about-hurricanes"><i class="fa fa-check"></i><b>2.1</b> A little bit about Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="tropical-storms.html"><a href="tropical-storms.html#some-facts-about-hurricanes"><i class="fa fa-check"></i><b>2.1.1</b> Some Facts About Hurricanes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="storms.html"><a href="storms.html"><i class="fa fa-check"></i><b>3</b> Data Set <code>storms</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="storms.html"><a href="storms.html#atlantic-hurricane-data"><i class="fa fa-check"></i><b>3.1</b> Atlantic Hurricane Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="storms.html"><a href="storms.html#data-storms"><i class="fa fa-check"></i><b>3.1.1</b> Data <code>storms</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="storms.html"><a href="storms.html#storms-documentation"><i class="fa fa-check"></i><b>3.1.2</b> <code>storms</code> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
+<li class="chapter" data-level="3.3" data-path="storms.html"><a href="storms.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>3.3</b> Basic Inspection of <code>year</code></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="storms.html"><a href="storms.html#barplot-of-year-values"><i class="fa fa-check"></i><b>3.3.1</b> Barplot of <code>year</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="storms.html"><a href="storms.html#your-turn"><i class="fa fa-check"></i><b>3.4</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>II Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="4" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>4</b> Storms in 1975</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>4.1</b> Visualizing 1975 data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>4.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>4.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="4.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>4.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="4.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>4.1.4</b> Facets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>5</b> Storm Amy (1975)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>5.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="5.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>5.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="5.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#your-turn-1"><i class="fa fa-check"></i><b>5.3</b> Your Turn</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>6</b> Summarizing 1975 Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>6.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="6.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>6.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="6.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>6.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn-2"><i class="fa fa-check"></i><b>6.3.1</b> Your Turn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>7</b> Basic Maps</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>7.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>7.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="7.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>7.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="7.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>7.1.3</b> Mapping 1975 Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>8</b> Less Basic Maps</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>8.1</b> More mapping approaches</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>8.1.1</b> Storms from 1975 to 1980</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="part-1-summary.html"><a href="part-1-summary.html"><i class="fa fa-check"></i><b>9</b> Part 1 Summary</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="part-1-summary.html"><a href="part-1-summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>9.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="9.2" data-path="part-1-summary.html"><a href="part-1-summary.html#your-turn-3"><i class="fa fa-check"></i><b>9.2</b> Your Turn</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Hurricanes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-1-summary" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Part 1 Summary<a href="part-1-summary.html#part-1-summary" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>So far, we’ve covered several functions from <code>"dplyr"</code>, as well as some other
+functions in R:</p>
+<ul>
+<li>functions from <code>"dplyr"</code>
+<ul>
+<li><code>pull()</code> and <code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>group_by()</code></li>
+<li><code>arrange()</code> and <code>desc()</code></li>
+<li><code>count()</code>, <code>distinct()</code>, <code>summarise()</code></li>
+</ul></li>
+<li>functions in base R
+<ul>
+<li><code>unique()</code>, <code>sort()</code>, <code>mean()</code>, <code>summary()</code></li>
+</ul></li>
+</ul>
+<div id="number-of-storms-per-year" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Number of Storms per Year<a href="part-1-summary.html#number-of-storms-per-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you recall, our first ggplot involved a barchart for the values in column
+<code>year</code></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="part-1-summary.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb90-2"><a href="part-1-summary.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>We discovered that the 41-year period of recorded data from 1975 to 2015. We
+can take a further step and ask: how many storms are there in each year?</p>
+<p>To answer this question, we need to do some data manipulation with <code>"dplyr"</code>.
+Our general recommendation when working with <code>"dplyr"</code>’s functions, especially
+when you are learning about them, is to do computations step by step, deciding
+which columns you need to use, which rows to consider, which functions to call,
+and so on.</p>
+<p>Think about the columns that we need to select to find the number of unique
+storms per year. We obviously need <code>year</code>, but this column alone it’s not enough
+because for any given storm we have multiple records with the same year.
+Therefore, we also need column <code>name</code>.</p>
+<p>For illustration purposes, we are going to build the data manipulation pipeline
+step by step. As you get more comfortable with <code>"dplyr"</code> and other functions,
+you won’t have the need to disect every single command.</p>
+<p>A first step is to <code>select()</code> variables <code>year</code> and <code>name</code>:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="part-1-summary.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(storms, year, name)</span></code></pre></div>
+<pre><code>## # A tibble: 11,859 × 2
+##     year name 
+##    &lt;dbl&gt; &lt;chr&gt;
+##  1  1975 Amy  
+##  2  1975 Amy  
+##  3  1975 Amy  
+##  4  1975 Amy  
+##  5  1975 Amy  
+##  6  1975 Amy  
+##  7  1975 Amy  
+##  8  1975 Amy  
+##  9  1975 Amy  
+## 10  1975 Amy  
+## # … with 11,849 more rows</code></pre>
+<p>Next, we need to <code>group_by()</code> year. At first glance, the previous output and
+the output below seem identical. But notice the tiny difference: the output
+below has a second line of text with some relevant information:
+<code># Groups:   year [41]</code>, telling us that the values are grouped by year.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="part-1-summary.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year)</span></code></pre></div>
+<pre><code>## # A tibble: 11,859 × 2
+## # Groups:   year [46]
+##     year name 
+##    &lt;dbl&gt; &lt;chr&gt;
+##  1  1975 Amy  
+##  2  1975 Amy  
+##  3  1975 Amy  
+##  4  1975 Amy  
+##  5  1975 Amy  
+##  6  1975 Amy  
+##  7  1975 Amy  
+##  8  1975 Amy  
+##  9  1975 Amy  
+## 10  1975 Amy  
+## # … with 11,849 more rows</code></pre>
+<p>Then, we identify the <code>distinct()</code> values (combination of year-name):</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="part-1-summary.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
+<pre><code>## # A tibble: 512 × 2
+## # Groups:   year [46]
+##     year name    
+##    &lt;dbl&gt; &lt;chr&gt;   
+##  1  1975 Amy     
+##  2  1975 Caroline
+##  3  1975 Doris   
+##  4  1976 Belle   
+##  5  1976 Gloria  
+##  6  1977 Anita   
+##  7  1977 Clara   
+##  8  1977 Evelyn  
+##  9  1978 Amelia  
+## 10  1978 Bess    
+## # … with 502 more rows</code></pre>
+<p>For convenience purposes, let’s assign this table into its own object,
+which we can call <code>storms_year_name</code></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="part-1-summary.html#cb97-1" aria-hidden="true" tabindex="-1"></a>storms_year_name <span class="ot">&lt;-</span> <span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
+<p>Finally, we need to <code>count()</code> how many storms are in each year:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="part-1-summary.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms_year_name, year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+## # Groups:   year [46]
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975     3
+##  2  1976     2
+##  3  1977     3
+##  4  1978     4
+##  5  1979     7
+##  6  1980     8
+##  7  1981     5
+##  8  1982     5
+##  9  1983     4
+## 10  1984    10
+## # … with 36 more rows</code></pre>
+<p>All the previous commands can be assembled together with various embedded lines
+of code:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="part-1-summary.html#cb100-1" aria-hidden="true" tabindex="-1"></a>storms_per_year <span class="ot">&lt;-</span> <span class="fu">count</span>(</span>
+<span id="cb100-2"><a href="part-1-summary.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(</span>
+<span id="cb100-3"><a href="part-1-summary.html#cb100-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(</span>
+<span id="cb100-4"><a href="part-1-summary.html#cb100-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(storms, year, name), </span>
+<span id="cb100-5"><a href="part-1-summary.html#cb100-5" aria-hidden="true" tabindex="-1"></a>      year)</span>
+<span id="cb100-6"><a href="part-1-summary.html#cb100-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb100-7"><a href="part-1-summary.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb100-8"><a href="part-1-summary.html#cb100-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-9"><a href="part-1-summary.html#cb100-9" aria-hidden="true" tabindex="-1"></a>storms_per_year</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+## # Groups:   year [46]
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975     3
+##  2  1976     2
+##  3  1977     3
+##  4  1978     4
+##  5  1979     7
+##  6  1980     8
+##  7  1981     5
+##  8  1982     5
+##  9  1983     4
+## 10  1984    10
+## # … with 36 more rows</code></pre>
+<p>Now that we have the counts or frequencies, we can make our next barchart.
+In this case, we will use the table <code>storms_year_name</code> as the input data for
+<code>ggplot()</code>:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="part-1-summary.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms_year_name) <span class="sc">+</span> </span>
+<span id="cb102-2"><a href="part-1-summary.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>By looking at the chart, there are some fairly tall bars. Although it’s hard
+to see exactly which years have a considerably large number of storms,
+eyeballing things out it seems that around 1995, 2003, 2005, and 2010 there are
+20 or more storms. We can find the actual answer by using <code>arrange()</code>,
+specifying the counts to be shown in descending order—with <code>desc()</code>:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="part-1-summary.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(storms_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+## # Groups:   year [46]
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  2020    26
+##  2  1995    21
+##  3  2005    21
+##  4  2003    20
+##  5  2010    20
+##  6  2019    18
+##  7  2001    17
+##  8  2012    17
+##  9  2000    16
+## 10  2007    16
+## # … with 36 more rows</code></pre>
+<p>As you can tell, in the 41-year period from 1975 to 2015, there are two years,
+1995 and 2005, with a maximum number of storms equal to 21.</p>
+<hr />
+</div>
+<div id="your-turn-3" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Your Turn<a href="part-1-summary.html#your-turn-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Use <code>"dplyr"</code> functions/commands to create a table (e.g. tibble)
+<code>storm_records_per_year</code> containing three columns: 1) <code>name</code> of storm, 2) <code>year</code>
+of storm, and 3) <code>count</code> for number of recorded valued (of the corresponding
+storm).</p></li>
+<li><p>Use <code>"dplyr"</code> functions/commands to create a table (e.g. tibble)
+<code>storms_categ5</code> containing the name and year of those storms of category 5.</p></li>
+<li><p>Use <code>"dplyr"</code> functions/commands to display a table showing the <code>status</code>,
+<code>avg_pressure</code> (average pressure), and <code>avg_wind</code> (average wind speed), for
+each type of storm <code>category</code>. This table should contain four columns: 1)
+<code>category</code>, 2) <code>status</code>, 3) <code>avg_pressure</code>, and 4) <code>avg_wind</code>.</p></li>
+<li><p>Use <code>"dplyr"</code> functions/commands to create a table (e.g. tibble)
+<code>max_wind_per_storm</code> containing three columns: 1) <code>year</code> of storm, 2) <code>name</code> of
+storm, and 3) <code>max_wind</code> maximum wind speed record (for that storm).</p></li>
+<li><p>Use <code>"dplyr"</code> functions/commands to create a table (e.g. tibble)
+<code>max_wind_per_year</code> containing three columns: 1) <code>year</code> of storm, 2) <code>name</code> of
+storm, and 3) <code>wind</code> maximum wind speed record (for that year). Arrange rows by
+wind speed in decreasing order.</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="less-basic-maps.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-tidy-hurricanes.pdf", "R-tidy-hurricanes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

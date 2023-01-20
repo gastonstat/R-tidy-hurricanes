@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Inspecting Single Columns | Tidy Hurricanes</title>
+  <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Inspecting Single Columns | Tidy Hurricanes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+  <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Inspecting Single Columns | Tidy Hurricanes" />
+  
+  <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="twitter:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+
+<meta name="author" content="Gaston Sanchez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="storms.html"/>
+<link rel="next" href="storms-in-1975.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>Tidy Hurricanes</b><br><small>Gaston Sanchez</small></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-series-of-r-tutorials"><i class="fa fa-check"></i>My Series of R Tutorials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#donation"><i class="fa fa-check"></i>Donation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="1" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html"><i class="fa fa-check"></i><b>1</b> Tables and Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#installing-tidyverse"><i class="fa fa-check"></i>Installing Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#a-bit-about-tidyverse"><i class="fa fa-check"></i>A bit about Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#note"><i class="fa fa-check"></i>Note</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tropical-storms.html"><a href="tropical-storms.html"><i class="fa fa-check"></i><b>2</b> Tropical Storms and Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tropical-storms.html"><a href="tropical-storms.html#a-little-bit-about-hurricanes"><i class="fa fa-check"></i><b>2.1</b> A little bit about Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="tropical-storms.html"><a href="tropical-storms.html#tropical-cyclones"><i class="fa fa-check"></i><b>2.1.1</b> Tropical Cyclones</a></li>
+<li class="chapter" data-level="2.1.2" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-classification"><i class="fa fa-check"></i><b>2.1.2</b> Storm Classification</a></li>
+<li class="chapter" data-level="2.1.3" data-path="tropical-storms.html"><a href="tropical-storms.html#naming-storms"><i class="fa fa-check"></i><b>2.1.3</b> Naming Storms</a></li>
+<li class="chapter" data-level="2.1.4" data-path="tropical-storms.html"><a href="tropical-storms.html#atlantic-hurricane-season"><i class="fa fa-check"></i><b>2.1.4</b> Atlantic Hurricane Season</a></li>
+<li class="chapter" data-level="2.1.5" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-formation"><i class="fa fa-check"></i><b>2.1.5</b> Storm Formation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="storms.html"><a href="storms.html"><i class="fa fa-check"></i><b>3</b> Data Set <code>storms</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="storms.html"><a href="storms.html#atlantic-hurricane-data"><i class="fa fa-check"></i><b>3.1</b> Atlantic Hurricane Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="storms.html"><a href="storms.html#data-storms"><i class="fa fa-check"></i><b>3.1.1</b> Data <code>storms</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="storms.html"><a href="storms.html#storms-documentation"><i class="fa fa-check"></i><b>3.1.2</b> <code>storms</code> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html"><i class="fa fa-check"></i><b>4</b> Inspecting Single Columns</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>4.1</b> Basic Inspection of Year</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>4.1.1</b> Barplot of <code>year</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>4.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="4.3" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#your-turn"><i class="fa fa-check"></i><b>4.3</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>II Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="5" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>5</b> Storms in 1975</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>5.1</b> Visualizing 1975 data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>5.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="5.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>5.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="5.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>5.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="5.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>5.1.4</b> Facets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>6</b> Storm Amy (1975)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>6.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="6.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>6.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="6.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#your-turn-1"><i class="fa fa-check"></i><b>6.3</b> Your Turn</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>7</b> Summarizing 1975 Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>7.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="7.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>7.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="7.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>7.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn-2"><i class="fa fa-check"></i><b>7.3.1</b> Your Turn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>8</b> The Pipe Operator</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>8.1</b> Piping</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>8.1.1</b> The <code>magrittr</code> operator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>9</b> Basic Maps</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>9.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>9.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="9.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>9.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="9.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>9.1.3</b> Mapping 1975 Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>10</b> Less Basic Maps</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>10.1</b> More mapping approaches</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>10.1.1</b> Storms from 1975 to 1980</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-3"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Hurricanes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inspecting-single-columns" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Inspecting Single Columns<a href="inspecting-single-columns.html#inspecting-single-columns" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As we just saw, because <code>storms</code> is an object of class <code>"tibble"</code>, when you
+type its name R displays the first 10 rows, which belong to storm Amy in 1975:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="inspecting-single-columns.html#cb16-1" aria-hidden="true" tabindex="-1"></a>storms</span></code></pre></div>
+<pre><code>## # A tibble: 11,859 × 13
+##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
+##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
+## # … with 11,849 more rows, 2 more variables:
+## #   tropicalstorm_force_diameter &lt;int&gt;, hurricane_force_diameter &lt;int&gt;, and
+## #   abbreviated variable names ¹​category, ²​pressure</code></pre>
+<p>From this output, it is obvious that the data contains at least one storm from
+1975. But what other year values are present in the data?</p>
+<p>According to the manual documentation of <code>storms</code>:</p>
+<blockquote>
+<p><code>"The data includes the positions and attributes of storms from 1975-2020"</code></p>
+</blockquote>
+<p>In a more or less arbitrary way, let’s begin inspecting <code>storms</code> by focusing
+on column <code>year</code>.</p>
+<div id="basic-inspection-of-year" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Basic Inspection of Year<a href="inspecting-single-columns.html#basic-inspection-of-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s formalize our first exploratory question:</p>
+<blockquote>
+<p><strong>What years have the data been collected for?</strong></p>
+</blockquote>
+<p>To answer this question, we need to work with column <code>year</code>.
+There are several ways in R to manipulate a column from a tabular object. Using
+<code>"dplyr"</code>, there are two basic kinds of functions to extract variables:
+<code>pull()</code> and <code>select()</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="images/dplyr-extract-column.png" alt="Extracting a column with dplyr functions &quot;pull&quot; and &quot;select&quot;" width="65%" />
+<p class="caption">
+Figure 4.1: Extracting a column with dplyr functions “pull” and “select”
+</p>
+</div>
+<p>Let’s do a sanity check of years. We can use the function <code>pull()</code> that <em>pulls</em>
+or extracts an entire column. Because there are thousands of values in
+<code>year</code>, let’s also use <code>unique()</code> to find out the set of year values in the
+data. First we pull the year, and then we identify unique occurrences:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="inspecting-single-columns.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, year))</span></code></pre></div>
+<pre><code>##  [1] 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989
+## [16] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
+## [31] 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019
+## [46] 2020</code></pre>
+<p>Based on this output, we can see that <code>storms</code> has records during a 45-year
+period since 1975 to 2020.</p>
+<p>The same can be accomplished with <code>unique()</code> and <code>select()</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="inspecting-single-columns.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">select</span>(storms, year))</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 1
+##     year
+##    &lt;dbl&gt;
+##  1  1975
+##  2  1976
+##  3  1977
+##  4  1978
+##  5  1979
+##  6  1980
+##  7  1981
+##  8  1982
+##  9  1983
+## 10  1984
+## # … with 36 more rows</code></pre>
+<p>Can you notice the difference between <code>pull()</code> and <code>select()</code>? The difference
+is minor but important. Conceptually speaking, both functions return the same
+values. However, the format of their output is not the same. Observe that
+<code>select()</code> returns output in a tibble format. In contrast, the output of
+<code>pull()</code> is not in a tabular format but rather in a vector (i.e. contiguous
+set of values).</p>
+<p>Interestingly, there is a third option that can be used to find the unique
+or <em>distinct</em> year values: using the function <code>distinct()</code></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="inspecting-single-columns.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(storms, year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 1
+##     year
+##    &lt;dbl&gt;
+##  1  1975
+##  2  1976
+##  3  1977
+##  4  1978
+##  5  1979
+##  6  1980
+##  7  1981
+##  8  1982
+##  9  1983
+## 10  1984
+## # … with 36 more rows</code></pre>
+<p>Again, notice the tabular output returned by <code>distinct()</code>.</p>
+<div id="barplot-of-year-values" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Barplot of <code>year</code> values<a href="inspecting-single-columns.html#barplot-of-year-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s keep using the values in column <code>year</code> to obtain our first visualization
+with <code>"ggplot2"</code> functions. You could certainly begin a visual exploration of
+other variables, but we think <code>year</code> is a good place to start because it’s a
+numeric variable, measured on a discrete scale, and this is a good candidate
+to use barcharts (the most popular type of graphic).</p>
+<p><code>"ggplot2"</code> comes with a large number of functions to create almost any
+type of chart. Luckily for us, it already comes with predefined
+functions to graph barcharts. The syntax may seem a bit scary for beginners,
+but you will see that it follows a logical structure. Here’s the code to make
+a barplot of values in <code>year</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="inspecting-single-columns.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barchart of year values</span></span>
+<span id="cb24-2"><a href="inspecting-single-columns.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb24-3"><a href="inspecting-single-columns.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-barchart-year-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>How does the previous command work?</p>
+<ul>
+<li><p>First, we always call the <code>ggplot()</code> function, typically indicating the name
+of the table to be used with the <code>data</code> argument.</p></li>
+<li><p>Then, we add more components, or <strong>layers</strong>, using the plus <code>+</code> operator.</p></li>
+<li><p>In this case we are adding just one layer: a <code>geom_bar()</code> component which is
+the geometric object for bars.</p></li>
+<li><p>To tell <code>ggplot()</code> that <code>year</code> is the column in <code>data = storms</code> to be used for
+the x-axis, we <strong>map</strong> <code>x = year</code> inside the <code>aes()</code> function which stands for
+<em>aesthetic</em> mapping.</p></li>
+</ul>
+<p>We should clarify that the meaning of “aesthetic” as used by <code>"ggplot2"</code> does
+not mean beautiful or pretty, instead it conserves its etymological
+meaning of <em>perception</em>. Simply put, <code>aes()</code> is the function that you use to
+tell <code>ggplot()</code> which variables of a <code>data</code> object will be mapped as visual
+attributes of graphical elements.</p>
+</div>
+</div>
+<div id="basic-inspection-of-month" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Basic inspection of <code>month</code><a href="inspecting-single-columns.html#basic-inspection-of-month" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have explored column <code>year</code>, we can move to the column <code>month</code>
+and perform similar type of analysis. Using the same commands, all we have to
+do is change the name of the variable to <code>month</code> to see whether there are
+storms in all months:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="inspecting-single-columns.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, month))</span></code></pre></div>
+<pre><code>##  [1]  6  7  8  9 10 11 12  5  4  1</code></pre>
+<p>In this case, it would be better if we <code>sort()</code> them:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="inspecting-single-columns.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">pull</span>(storms, month)))</span></code></pre></div>
+<pre><code>##  [1]  1  4  5  6  7  8  9 10 11 12</code></pre>
+<p>Observe that not all months have recorded storms, this is the case for
+February (2) and March (3). Is this something to be concerned about? How is it
+possible that there are no recorded data for February and March? For the
+inexperience analyst, asking this type of questions is fundamental. As a data
+scientist, you will be working with data sets for which you are not necessarily
+an expert in that particular field of application. Since you will also be
+interacting with some type of experts, you should ask them as many questions
+as possible to clarify your understanding of the data and its context.</p>
+<p>The answer for not having storms in February and March is because these months
+have to do with the end of Winter and beginning of Spring in the North Atlantic,
+which is a period of time where tropical systems don’t get formed. In fact,
+Spring months such as April and May also don’t tend to be typical months for
+hurricanes. So a further thing to explore could involve computing the number of
+storms in April and May.</p>
+<hr />
+</div>
+<div id="your-turn" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Your Turn<a href="inspecting-single-columns.html#your-turn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Use <code>pull()</code>, <code>select()</code>, and <code>unique()</code> to inspect the values in column
+<code>day</code></p></li>
+<li><p>Try to use <code>sort()</code> in order to arrange the unique values of <code>day</code></p></li>
+<li><p>Does the unique day values make sense? Are there days for which there
+seem to be no recorded storm data?</p></li>
+<li><p>Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
+<code>month</code>.</p></li>
+<li><p>Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
+<code>day</code>.</p></li>
+<li><p>Look at the cheatsheet for ggplot and locate the information for <code>geom_bar()</code>.
+Find out how to specify: border <code>color</code>, <code>fill</code> color. Also, see what happens
+when you specify <code>alpha = 0.5</code>.</p></li>
+<li><p>Look at the cheatsheet for ggplot and locate the information for background
+<em>Themes</em>, e.g. <code>theme_bw()</code>. Find out how to add theme <code>theme_classic()</code> to the
+previous barchart.</p></li>
+<li><p>Look at the cheatsheet for ggplot and locate the information for <em>Labels</em>.
+Find out how to add a title with <code>ggtitle()</code> as well as with <code>labs()</code> to one
+of your previous barcharts.</p></li>
+</ul>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="storms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="storms-in-1975.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-tidy-hurricanes.pdf", "R-tidy-hurricanes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

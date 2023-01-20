@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Tropical Storms and Hurricanes | Tidy Hurricanes</title>
+  <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+  <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  
+  <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="twitter:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+
+<meta name="author" content="Gaston Sanchez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tables-and-tidyverse.html"/>
+<link rel="next" href="storms.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>Tidy Hurricanes</b><br><small>Gaston Sanchez</small></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-series-of-r-tutorials"><i class="fa fa-check"></i>My Series of R Tutorials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#donation"><i class="fa fa-check"></i>Donation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="1" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html"><i class="fa fa-check"></i><b>1</b> Tables and Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#installing-tidyverse"><i class="fa fa-check"></i>Installing Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#a-bit-about-tidyverse"><i class="fa fa-check"></i>A bit about Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#note"><i class="fa fa-check"></i>Note</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tropical-storms.html"><a href="tropical-storms.html"><i class="fa fa-check"></i><b>2</b> Tropical Storms and Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tropical-storms.html"><a href="tropical-storms.html#a-little-bit-about-hurricanes"><i class="fa fa-check"></i><b>2.1</b> A little bit about Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="tropical-storms.html"><a href="tropical-storms.html#tropical-cyclones"><i class="fa fa-check"></i><b>2.1.1</b> Tropical Cyclones</a></li>
+<li class="chapter" data-level="2.1.2" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-classification"><i class="fa fa-check"></i><b>2.1.2</b> Storm Classification</a></li>
+<li class="chapter" data-level="2.1.3" data-path="tropical-storms.html"><a href="tropical-storms.html#naming-storms"><i class="fa fa-check"></i><b>2.1.3</b> Naming Storms</a></li>
+<li class="chapter" data-level="2.1.4" data-path="tropical-storms.html"><a href="tropical-storms.html#atlantic-hurricane-season"><i class="fa fa-check"></i><b>2.1.4</b> Atlantic Hurricane Season</a></li>
+<li class="chapter" data-level="2.1.5" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-formation"><i class="fa fa-check"></i><b>2.1.5</b> Storm Formation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="storms.html"><a href="storms.html"><i class="fa fa-check"></i><b>3</b> Data Set <code>storms</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="storms.html"><a href="storms.html#atlantic-hurricane-data"><i class="fa fa-check"></i><b>3.1</b> Atlantic Hurricane Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="storms.html"><a href="storms.html#data-storms"><i class="fa fa-check"></i><b>3.1.1</b> Data <code>storms</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="storms.html"><a href="storms.html#storms-documentation"><i class="fa fa-check"></i><b>3.1.2</b> <code>storms</code> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html"><i class="fa fa-check"></i><b>4</b> Inspecting Single Columns</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>4.1</b> Basic Inspection of Year</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>4.1.1</b> Barplot of <code>year</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>4.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="4.3" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#your-turn"><i class="fa fa-check"></i><b>4.3</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>II Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="5" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>5</b> Storms in 1975</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>5.1</b> Visualizing 1975 data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>5.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="5.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>5.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="5.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>5.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="5.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>5.1.4</b> Facets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>6</b> Storm Amy (1975)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>6.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="6.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>6.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="6.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#your-turn-1"><i class="fa fa-check"></i><b>6.3</b> Your Turn</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>7</b> Summarizing 1975 Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>7.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="7.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>7.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="7.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>7.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn-2"><i class="fa fa-check"></i><b>7.3.1</b> Your Turn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>8</b> The Pipe Operator</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>8.1</b> Piping</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>8.1.1</b> The <code>magrittr</code> operator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>9</b> Basic Maps</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>9.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>9.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="9.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>9.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="9.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>9.1.3</b> Mapping 1975 Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>10</b> Less Basic Maps</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>10.1</b> More mapping approaches</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>10.1.1</b> Storms from 1975 to 1980</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-3"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Hurricanes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tropical-storms" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Tropical Storms and Hurricanes<a href="tropical-storms.html#tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="images/sandy-hurricane.jpg" alt="NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)" width="80%" />
+<p class="caption">
+Figure 2.1: NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)
+</p>
+</div>
+<blockquote>
+<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the
+deadliest and most destructive, as well as the strongest, hurricane of the
+2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in
+damage, it was the second-costliest hurricane on record in the United States
+until surpassed by Hurricanes Harvey and Maria in 2017.</p>
+</blockquote>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
+<div id="a-little-bit-about-hurricanes" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> A little bit about Hurricanes<a href="tropical-storms.html#a-little-bit-about-hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I don’t remember very well when was the first time I got curious about
+Hurricanes. I did not grew up in hurricane country or anywhere near regions
+prone to be hit by this kind of storms. However, I do remember learning about
+clouds, meteorology, and how storms form in mountain ranges when I was in my
+early 20s taking my first steps into the mountaineering world. Experiencing the
+force and dangers of several storms in the mountains and volcanoes of my
+homeland, sparked in me a general interest to know more about this type of
+weather phenomena.</p>
+<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em>
+which in turn comes from the Taino word <em>hurakán</em>, that was used
+by the indigenous people of the Caribbean and Central America to designate the
+“god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane
+is informally used to denote low-pressure systems with organized thunderstorm
+activity that form over tropical or subtropical waters. Among weather experts,
+though, the term hurricane is reserved for a specific class of tropical
+systems: those that reach wind speeds of at least 74 mph, and are exclusively
+formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
+<p>Despite my longtime interest in storms and hurricanes, my level of expertise
+in these subjects is fairly limited. Because of this, I prefer to give you a
+curated list of some facts about hurricanes that I’ve collected from the
+following sources:</p>
+<ul>
+<li><p>National Oceanic and Atmospheric Administration (NOAA):
+<a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
+<li><p>SciJinks: It’s all about weather!
+<a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
+<li><p>NASA Space Place: How Do Hurricanes Form?
+<a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
+</ul>
+<div id="tropical-cyclones" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Tropical Cyclones<a href="tropical-storms.html#tropical-cyclones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
+<li><p>They form near the equator over warm ocean waters.</p></li>
+<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
+<li><p>A tropical cyclone is a rotating low-pressure weather system that produces
+strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
+<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and
+rip currents.</p></li>
+<li><p>People call these storms by other names, such as typhoons or cyclones,
+depending on where they occur.</p></li>
+<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific
+Ocean are called “hurricanes.”</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="images/tropical-cyclones-map.png" alt="Nomenclature of tropical cyclones around the world." width="65%" />
+<p class="caption">
+Figure 2.2: Nomenclature of tropical cyclones around the world.
+</p>
+</div>
+</div>
+<div id="storm-classification" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Storm Classification<a href="tropical-storms.html#storm-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
+<ul>
+<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
+<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
+<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
+</ul></li>
+<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained
+winds have reached 74 mph.</p></li>
+<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson
+Hurricane Wind Scale.</p></li>
+<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a
+hurricane’s sustained wind speed:</p>
+<ul>
+<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
+<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
+<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
+<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
+<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
+</ul></li>
+<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
+<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob
+Simpson to help explain damage that buildings will sustain under different wind
+speeds.</p></li>
+<li><p>Note that the Saffir-Simpson scale does not include hazards from rain,
+flooding, or storm surge.</p></li>
+</ul>
+</div>
+<div id="naming-storms" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Naming Storms<a href="tropical-storms.html#naming-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is
+given a name.</p></li>
+<li><p>The names are chosen by an international committee of the World Meteorological
+Organization (WMO).</p></li>
+<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
+<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
+<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
+<li><p>The names proceed in alphabetical order, omitting the “difficult” letters
+Q, U, X, Y, and Z.</p></li>
+<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
+<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic
+basin in a season, or more than 24 named tropical cyclones in the eastern North
+Pacific basin, any additional storms will take names from an alternate list of
+names approved by the WMO for each basin.</p></li>
+</ul>
+</div>
+<div id="atlantic-hurricane-season" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season<a href="tropical-storms.html#atlantic-hurricane-season" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>The official Atlantic hurricane season runs from June through November, but
+occasionally storms form outside those months.</p></li>
+<li><p>September is the most active month (where most of the hurricanes occur),
+followed by August, and October (based on 1851 to 2015 data).</p></li>
+<li><p>A typical year has 12 named storms, including six hurricanes of which three
+become major hurricanes (category 3, 4, and 5).</p></li>
+<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
+</ul>
+</div>
+<div id="storm-formation" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Storm Formation<a href="tropical-storms.html#storm-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here is a nice diagram, available at <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a>, that
+beautifully describes and illustrates the formation of hurricanes.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/hurricanes_poster_large.jpg" alt="How do hurricanes form? (source: SciJinks)" width="85%" />
+<p class="caption">
+Figure 2.3: How do hurricanes form? (source: SciJinks)
+</p>
+</div>
+<p>If you want to know more about the formation of hurricanes, you can also
+watch the following video by NOAA SciJinks:</p>
+<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tables-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="storms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-tidy-hurricanes.pdf", "R-tidy-hurricanes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

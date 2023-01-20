@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Data Set storms | Tidy Hurricanes</title>
+  <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Data Set storms | Tidy Hurricanes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+  <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Data Set storms | Tidy Hurricanes" />
+  
+  <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="twitter:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+
+<meta name="author" content="Gaston Sanchez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tropical-storms.html"/>
+<link rel="next" href="inspecting-single-columns.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>Tidy Hurricanes</b><br><small>Gaston Sanchez</small></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-series-of-r-tutorials"><i class="fa fa-check"></i>My Series of R Tutorials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#donation"><i class="fa fa-check"></i>Donation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="1" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html"><i class="fa fa-check"></i><b>1</b> Tables and Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#installing-tidyverse"><i class="fa fa-check"></i>Installing Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#a-bit-about-tidyverse"><i class="fa fa-check"></i>A bit about Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#note"><i class="fa fa-check"></i>Note</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tropical-storms.html"><a href="tropical-storms.html"><i class="fa fa-check"></i><b>2</b> Tropical Storms and Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tropical-storms.html"><a href="tropical-storms.html#a-little-bit-about-hurricanes"><i class="fa fa-check"></i><b>2.1</b> A little bit about Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="tropical-storms.html"><a href="tropical-storms.html#tropical-cyclones"><i class="fa fa-check"></i><b>2.1.1</b> Tropical Cyclones</a></li>
+<li class="chapter" data-level="2.1.2" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-classification"><i class="fa fa-check"></i><b>2.1.2</b> Storm Classification</a></li>
+<li class="chapter" data-level="2.1.3" data-path="tropical-storms.html"><a href="tropical-storms.html#naming-storms"><i class="fa fa-check"></i><b>2.1.3</b> Naming Storms</a></li>
+<li class="chapter" data-level="2.1.4" data-path="tropical-storms.html"><a href="tropical-storms.html#atlantic-hurricane-season"><i class="fa fa-check"></i><b>2.1.4</b> Atlantic Hurricane Season</a></li>
+<li class="chapter" data-level="2.1.5" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-formation"><i class="fa fa-check"></i><b>2.1.5</b> Storm Formation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="storms.html"><a href="storms.html"><i class="fa fa-check"></i><b>3</b> Data Set <code>storms</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="storms.html"><a href="storms.html#atlantic-hurricane-data"><i class="fa fa-check"></i><b>3.1</b> Atlantic Hurricane Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="storms.html"><a href="storms.html#data-storms"><i class="fa fa-check"></i><b>3.1.1</b> Data <code>storms</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="storms.html"><a href="storms.html#storms-documentation"><i class="fa fa-check"></i><b>3.1.2</b> <code>storms</code> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html"><i class="fa fa-check"></i><b>4</b> Inspecting Single Columns</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>4.1</b> Basic Inspection of Year</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>4.1.1</b> Barplot of <code>year</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>4.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="4.3" data-path="inspecting-single-columns.html"><a href="inspecting-single-columns.html#your-turn"><i class="fa fa-check"></i><b>4.3</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>II Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="5" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>5</b> Storms in 1975</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>5.1</b> Visualizing 1975 data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>5.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="5.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>5.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="5.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>5.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="5.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>5.1.4</b> Facets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>6</b> Storm Amy (1975)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>6.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="6.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>6.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="6.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#your-turn-1"><i class="fa fa-check"></i><b>6.3</b> Your Turn</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>7</b> Summarizing 1975 Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>7.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="7.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>7.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="7.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>7.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn-2"><i class="fa fa-check"></i><b>7.3.1</b> Your Turn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>8</b> The Pipe Operator</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>8.1</b> Piping</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>8.1.1</b> The <code>magrittr</code> operator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>9</b> Basic Maps</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>9.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>9.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="9.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>9.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="9.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>9.1.3</b> Mapping 1975 Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>10</b> Less Basic Maps</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>10.1</b> More mapping approaches</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>10.1.1</b> Storms from 1975 to 1980</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-3"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Hurricanes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="storms" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Data Set <code>storms</code><a href="storms.html#storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In order to have a gentle introduction, we are going to use the data set
+<code>storms</code> that comes in one of the most popular tidyverse packages: <code>"dplyr"</code>.
+This package contains a large number of functions that allow us to manipulate
+tables in a substantially consistent and user-friendly way. We will also start
+with some of the graphing functions from the package <code>"ggplot2"</code> to produce
+simple visualizations.</p>
+<div id="atlantic-hurricane-data" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Atlantic Hurricane Data<a href="storms.html#atlantic-hurricane-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The aforementioned data set <code>storms</code> is a curated table from the so-called
+<strong>Hurricane Databases (HURDAT)</strong>, which is a collection of databases managed by
+the National Hurricane Center (NHC).</p>
+<ul>
+<li><p>HURDAT involves two databases: one for storms occurring in the
+<strong>Atlantic Ocean</strong>, and another one for storms occurring in the
+<strong>Eastern Pacific Ocean</strong>.</p></li>
+<li><p>HURDAT contains records from year 1851 till present.</p></li>
+<li><p>Keep in mind that in the past (before 1970s?), tropical depressions, that did
+not develop into tropical storms or hurricanes were not included within the
+database.</p></li>
+</ul>
+<p><em>An interesting note from Wikipedia</em>: around 1963, NASA’s Apollo space program requested data, on the climatological impacts of tropical cyclones on launches of space vehicles at the Kennedy Space Center. The basic data was taken from the National Weather Records North Atlantic Tropical to include data from 1886–1968. As a result of this work, a requirement for a computerized tropical cyclone database at the National Hurricane Center (NHC) was realized.</p>
+<p><a href="https://en.wikipedia.org/wiki/HURDAT" class="uri">https://en.wikipedia.org/wiki/HURDAT</a></p>
+<div id="data-storms" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Data <code>storms</code><a href="storms.html#data-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The package <code>"dplyr"</code> contains a dataset called <code>storms</code> which is a subset of
+the <em>NOAA Atlantic hurricane database best track data</em>.
+This database is one of several data sets available in the National Hurricane
+Center (NHC) Data Archive, which is part of the National Oceanic and Atmospheric
+Administration (NOAA). In case you are curious about the specifications and
+format of this type of data, you can visit the following link:</p>
+<p><a href="http://www.nhc.noaa.gov/data/#hurdat" class="uri">http://www.nhc.noaa.gov/data/#hurdat</a></p>
+<p>The data <code>storms</code> includes the positions and attributes of tropical systems
+in the North Atlantic. If you are using a version of <code>"dplyr"</code> greater than or
+equal to <code>1.0.10</code>, the storms are from the period 1975 to 2020, measured every
+six hours during the lifetime of a storm.</p>
+<p>Assuming that you’ve loaded <code>"tidyverse"</code> (or <code>"dplyr"</code>) in R, when you type
+the name of the data object, you would get something like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="storms.html#cb3-1" aria-hidden="true" tabindex="-1"></a>storms</span></code></pre></div>
+<pre><code>## # A tibble: 11,859 × 13
+##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
+##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
+## # … with 11,849 more rows, 2 more variables:
+## #   tropicalstorm_force_diameter &lt;int&gt;, hurricane_force_diameter &lt;int&gt;, and
+## #   abbreviated variable names ¹​category, ²​pressure</code></pre>
+<p>Let’s describe what’s going on in the above output.</p>
+<ul>
+<li><p>As you can tell, <code>storms</code> is a <strong>tibble</strong> object, which is one of the data
+objects in R that handles data in tabular format.</p></li>
+<li><p>tibbles are not a native R object; instead they are a modern version of data
+frames, and their related functions come from the homonym package <code>"tibble"</code>.</p></li>
+</ul>
+<p>The way tibbles are <em>printed</em> or displayed is very interesting.</p>
+<ul>
+<li><p>the number of rows that are displayed is limited to 10;</p></li>
+<li><p>depending on the width of the printing space, you will only see a few columns
+shown to fit such width,</p></li>
+<li><p>underneath the name of each column there is a three letter abbreviation
+inside angle brackets,</p></li>
+<li><p>this abbreviation indicates the <em>data type</em> used by R to store the values:</p>
+<ul>
+<li><code>&lt;chr&gt;</code> stands for <em>character</em> data</li>
+<li><code>&lt;dbl&gt;</code> means <em>double</em> (i.e. real numbers or numbers with decimal digits)</li>
+<li><code>&lt;int&gt;</code> means <em>integer</em> (numbers with no decimal digits)</li>
+<li><code>&lt;ord&gt;</code> indicates an <em>ordinal</em> <code>factor</code> which is how R handles categorical
+data</li>
+<li><code>&lt;log&gt;</code> indicates <em>logical</em> or boolean values (e.g. true and false)</li>
+</ul></li>
+<li><p>notice that the last three lines indicate the number of additional rows
+as well as the number of additional columns and their names.</p></li>
+</ul>
+</div>
+<div id="storms-documentation" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> <code>storms</code> Documentation<a href="storms.html#storms-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can find a more technical description of <code>storms</code> by taking a peek at its
+manual (or help) documentation. All you need to do is run this command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="storms.html#cb5-1" aria-hidden="true" tabindex="-1"></a>?storms</span></code></pre></div>
+<p>Here’s a full description of all the columns:</p>
+<ul>
+<li><p><code>name</code>: Storm name</p></li>
+<li><p><code>year</code>, <code>month</code>, and <code>day</code>: Date of report</p></li>
+<li><p><code>hour</code>: Hour of report (in UTC)</p></li>
+<li><p><code>lat</code>: Latitude</p></li>
+<li><p><code>long</code>: Longitude</p></li>
+<li><p><code>status</code>: Storm classification (Tropical Depression, Tropical Storm, or
+Hurricane)</p></li>
+<li><p><code>category</code>: Saffir-Simpson storm category (estimated from wind speed.
+-1 = Tropical Depression, 0 = Tropical Storm)</p></li>
+<li><p><code>wind</code>: storm’s maximum sustained wind speed (in knots)</p></li>
+<li><p><code>pressure</code>: Air pressure at the storm’s center (in millibars)</p></li>
+<li><p><code>ts_diameter</code>: Diameter of the area experiencing tropical storm strength
+winds (34 knots or above)</p></li>
+<li><p><code>hu_diameter</code>: Diameter of the area experiencing hurricane strength winds
+(64 knots or above)</p></li>
+</ul>
+<p>You can take a look at the manual (or <em>help</em>) documentation to confirm the
+description of the variables in data <code>storms</code>.</p>
+<div id="some-remarks" class="section level4 unnumbered hasAnchor">
+<h4>Some Remarks<a href="storms.html#some-remarks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>The data table <code>storms</code> is already in R; later you will learn how to import
+tables in R</p></li>
+<li><p>The table is already <em>clean</em>, there’s no need to fix weird values, or transform
+from one data type to another.</p></li>
+<li><p>Not only the table is clean, but it is also <strong>tidy</strong> which is the technical
+term to indicate that:</p>
+<ul>
+<li>every column is a variable.</li>
+<li>every row is an observation.</li>
+<li>every cell is a single value.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="general-inspection" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> General Inspection<a href="storms.html#general-inspection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When dealing with a data table, especially for the first time, I like to do
+a quick inspection of the <em>general structure</em> of the data, meaning the number
+of rows and columns, the name and data-type of each column, and some times
+also to quickly inspect a few rows either at the top or at the bottom of the
+table. To do all these things there is a handful of functions:</p>
+<ul>
+<li><p><code>str()</code>: to get a summary of the table’s structure</p></li>
+<li><p><code>dim()</code>: to get the dimensions (number of rows and columns)</p></li>
+<li><p><code>nrow()</code>: to get just the number of rows</p></li>
+<li><p><code>ncol()</code>: to get just the number of columns</p></li>
+<li><p><code>names()</code>: to get the column names; there’s also <code>colnames()</code></p></li>
+<li><p><code>head()</code>: to look at a few first rows</p></li>
+<li><p><code>tail()</code>: to look at a few last rows</p></li>
+</ul>
+<p>For instance, to get a general summary of the table’s structure, we can use
+<code>str()</code> and its argument <code>vec.len = 1</code> to simplify the amount of output:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="storms.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(storms, <span class="at">vec.len =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## tibble [11,859 × 13] (S3: tbl_df/tbl/data.frame)
+##  $ name                        : chr [1:11859] &quot;Amy&quot; ...
+##  $ year                        : num [1:11859] 1975 ...
+##  $ month                       : num [1:11859] 6 6 ...
+##  $ day                         : int [1:11859] 27 27 ...
+##  $ hour                        : num [1:11859] 0 6 ...
+##  $ lat                         : num [1:11859] 27.5 28.5 ...
+##  $ long                        : num [1:11859] -79 -79 ...
+##  $ status                      : chr [1:11859] &quot;tropical depression&quot; ...
+##  $ category                    : Ord.factor w/ 7 levels &quot;-1&quot;&lt;&quot;0&quot;&lt;&quot;1&quot;&lt;&quot;2&quot;&lt;..: 1 1 ...
+##  $ wind                        : int [1:11859] 25 25 ...
+##  $ pressure                    : int [1:11859] 1013 1013 ...
+##  $ tropicalstorm_force_diameter: int [1:11859] NA NA ...
+##  $ hurricane_force_diameter    : int [1:11859] NA NA ...</code></pre>
+<p>Likewise, to explore the dimensions, that is the number of rows and columns,
+you can invoke <code>dim()</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="storms.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(storms)</span></code></pre></div>
+<pre><code>## [1] 11859    13</code></pre>
+<p>Alternatively, you can also call <code>nrow()</code> or <code>ncol()</code> if you prefer to
+get just the number of rows or just the number of columns:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="storms.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(storms)</span></code></pre></div>
+<pre><code>## [1] 11859</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="storms.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(storms)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<p>Often, I like to use <code>head()</code> and/or <code>tail()</code> to see the first and/or the last
+rows of a table. In this way I can get an idea of what the data looks like
+without having to print all the entries.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="storms.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(storms)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 13
+##   name   year month   day  hour   lat  long status categ…¹  wind press…² tropi…³
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+## 1 Iota   2020    11    17     6  13.7 -83.8 hurri… 3         110     935     310
+## 2 Iota   2020    11    17    12  13.7 -84.7 hurri… 1          75     965     270
+## 3 Iota   2020    11    17    18  13.7 -85.7 tropi… 0          55     988     210
+## 4 Iota   2020    11    18     0  13.8 -86.7 tropi… 0          40    1000     140
+## 5 Iota   2020    11    18     6  13.8 -87.8 tropi… 0          35    1005     140
+## 6 Iota   2020    11    18    12  13.7 -89   tropi… -1         25    1006       0
+## # … with 1 more variable: hurricane_force_diameter &lt;int&gt;, and abbreviated
+## #   variable names ¹​category, ²​pressure, ³​tropicalstorm_force_diameter</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tropical-storms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inspecting-single-columns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-tidy-hurricanes.pdf", "R-tidy-hurricanes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
