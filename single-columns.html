@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Tropical Storms and Hurricanes | Tidy Hurricanes</title>
+  <title>4 Inspecting Single Columns | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta property="og:title" content="4 Inspecting Single Columns | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta name="twitter:title" content="4 Inspecting Single Columns | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tables-and-tidyverse.html"/>
-<link rel="next" href="storms.html"/>
+<link rel="prev" href="storms.html"/>
+<link rel="next" href="storms-in-1975.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -265,162 +265,198 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tropical-storms" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Tropical Storms and Hurricanes<a href="tropical-storms.html#tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="images/sandy-hurricane.jpg" alt="NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)" width="80%" />
-<p class="caption">
-Figure 2.1: NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)
-</p>
-</div>
+<div id="single-columns" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Inspecting Single Columns<a href="single-columns.html#single-columns" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As we just saw, because <code>storms</code> is an object of class <code>"tibble"</code>, when you
+type its name R displays the first 10 rows, which belong to storm Amy in 1975:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="single-columns.html#cb16-1" aria-hidden="true" tabindex="-1"></a>storms</span></code></pre></div>
+<pre><code>## # A tibble: 11,859 × 13
+##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
+##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
+## # … with 11,849 more rows, 2 more variables:
+## #   tropicalstorm_force_diameter &lt;int&gt;, hurricane_force_diameter &lt;int&gt;, and
+## #   abbreviated variable names ¹​category, ²​pressure</code></pre>
+<p>From this output, it is obvious that the data contains at least one storm from
+1975. But what other year values are present in the data?</p>
+<p>According to the manual documentation of <code>storms</code> (<code>"dplyr"</code> version 1.0.10):</p>
 <blockquote>
-<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the
-deadliest and most destructive, as well as the strongest, hurricane of the
-2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in
-damage, it was the second-costliest hurricane on record in the United States
-until surpassed by Hurricanes Harvey and Maria in 2017.</p>
+<p><code>"The data includes the positions and attributes of storms from 1975-2020"</code></p>
 </blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
-<div id="a-little-bit-about-hurricanes" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> A little bit about Hurricanes<a href="tropical-storms.html#a-little-bit-about-hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I don’t remember very well when was the first time I got curious about
-Hurricanes. I did not grew up in hurricane country or anywhere near regions
-prone to be hit by this kind of storms. However, I do remember learning about
-clouds, meteorology, and how storms form over mountain ranges. I learned this
-when I was in my early 20s taking my first steps into the mountaineering world.
-Experiencing the force and dangers of several storms in the mountains and
-volcanoes of my homeland, sparked in me a general interest to know more about
-this type of weather phenomena.</p>
-<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em>
-which in turn comes from the Taino word <em>hurakán</em>, that was used
-by the indigenous people of the Caribbean and Central America to designate the
-“god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane
-is informally used to denote low-pressure systems with organized thunderstorm
-activity that form over tropical or subtropical waters. Among weather experts,
-though, the term hurricane is reserved for a specific class of tropical
-systems: those that reach wind speeds of at least 74 mph, and are exclusively
-formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
-<p>Despite my longtime interest in storms and hurricanes, my level of expertise
-in these subjects is fairly limited. Because of this, I prefer to give you a
-curated list of some facts about hurricanes that I’ve collected from the
-following sources:</p>
-<ul>
-<li><p>National Oceanic and Atmospheric Administration (NOAA):
-<a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
-<li><p>SciJinks: It’s all about weather!
-<a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
-<li><p>NASA Space Place: How Do Hurricanes Form?
-<a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
-</ul>
-<div id="tropical-cyclones" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Tropical Cyclones<a href="tropical-storms.html#tropical-cyclones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
-<li><p>They form near the equator over warm ocean waters.</p></li>
-<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
-<li><p>A tropical cyclone is a rotating low-pressure weather system that produces
-strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
-<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and
-rip currents.</p></li>
-<li><p>People call these storms by other names, such as typhoons or cyclones,
-depending on where they occur.</p></li>
-<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific
-Ocean are called “hurricanes.”</p></li>
-</ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/tropical-cyclones-map.png" alt="Nomenclature of tropical cyclones around the world." width="65%" />
+<p>In a more or less arbitrary way, let’s begin inspecting <code>storms</code> by focusing
+on column <code>year</code>.</p>
+<div id="basic-inspection-of-year" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Basic Inspection of Year<a href="single-columns.html#basic-inspection-of-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s formalize our first exploratory question:</p>
+<blockquote>
+<p><strong>What years have the data been collected for?</strong></p>
+</blockquote>
+<p>To answer this question, we need to work with column <code>year</code>.
+There are several ways in R to manipulate a column from a tabular object. Using
+<code>"dplyr"</code>, there are two basic kinds of functions to extract variables:
+<code>pull()</code> and <code>select()</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="images/dplyr-extract-column.png" alt="Extracting a column with dplyr functions &quot;pull&quot; and &quot;select&quot;" width="65%" />
 <p class="caption">
-Figure 2.2: Nomenclature of tropical cyclones around the world.
+Figure 4.1: Extracting a column with dplyr functions “pull” and “select”
 </p>
 </div>
-</div>
-<div id="storm-classification" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Storm Classification<a href="tropical-storms.html#storm-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s do a sanity check of years. We can use the function <code>pull()</code> that <em>pulls</em>
+or extracts an entire column. Because there are thousands of values in
+<code>year</code>, let’s also use <code>unique()</code> to find out the set of year values in the
+data. First we pull the year, and then we identify unique occurrences:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="single-columns.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, year))</span></code></pre></div>
+<pre><code>##  [1] 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989
+## [16] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
+## [31] 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019
+## [46] 2020</code></pre>
+<p>Based on this output, we can see that <code>storms</code> has records during a 45-year
+period since 1975 to 2020.</p>
+<p>The same can be accomplished with <code>unique()</code> and <code>select()</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="single-columns.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">select</span>(storms, year))</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 1
+##     year
+##    &lt;dbl&gt;
+##  1  1975
+##  2  1976
+##  3  1977
+##  4  1978
+##  5  1979
+##  6  1980
+##  7  1981
+##  8  1982
+##  9  1983
+## 10  1984
+## # … with 36 more rows</code></pre>
+<p>Can you notice the difference between <code>pull()</code> and <code>select()</code>? The difference
+is minor but important. Conceptually speaking, both functions return the same
+values. However, the format of their output is not the same. Observe that
+<code>select()</code> returns output in a tibble format. In contrast, the output of
+<code>pull()</code> is not in a tabular format but rather in a vector (i.e. contiguous
+set of values).</p>
+<p>Interestingly, there is a third option that can be used to find the unique
+or <em>distinct</em> year values: using the function <code>distinct()</code></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="single-columns.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(storms, year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 1
+##     year
+##    &lt;dbl&gt;
+##  1  1975
+##  2  1976
+##  3  1977
+##  4  1978
+##  5  1979
+##  6  1980
+##  7  1981
+##  8  1982
+##  9  1983
+## 10  1984
+## # … with 36 more rows</code></pre>
+<p>Again, notice the tabular output returned by <code>distinct()</code>.</p>
+<div id="barplot-of-year-values" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Barplot of <code>year</code> values<a href="single-columns.html#barplot-of-year-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s keep using the values in column <code>year</code> to obtain our first visualization
+with <code>"ggplot2"</code> functions. You could certainly begin a visual exploration of
+other variables, but we think <code>year</code> is a good place to start because it’s a
+numeric variable, measured on a discrete scale, and this is a good candidate
+to use barcharts (the most popular type of graphic).</p>
+<p><code>"ggplot2"</code> comes with a large number of functions to create almost any
+type of chart. Luckily for us, it already comes with predefined
+functions to graph barcharts. The syntax may seem a bit scary for beginners,
+but you will see that it follows a logical structure. Here’s the code to make
+a barplot of values in <code>year</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="single-columns.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barchart of year values</span></span>
+<span id="cb24-2"><a href="single-columns.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb24-3"><a href="single-columns.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-barchart-year-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>How does the previous command work?</p>
 <ul>
-<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
-<ul>
-<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
-<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
-<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
-</ul></li>
-<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained
-winds have reached 74 mph.</p></li>
-<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson
-Hurricane Wind Scale.</p></li>
-<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a
-hurricane’s sustained wind speed:</p>
-<ul>
-<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
-<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
-<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
-<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
-<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
-</ul></li>
-<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
-<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob
-Simpson to help explain damage that buildings will sustain under different wind
-speeds.</p></li>
-<li><p>Note that the Saffir-Simpson scale does not include hazards from rain,
-flooding, or storm surge.</p></li>
+<li><p>First, we always call the <code>ggplot()</code> function, typically indicating the name
+of the table to be used with the <code>data</code> argument.</p></li>
+<li><p>Then, we add more components, or <strong>layers</strong>, using the plus <code>+</code> operator.</p></li>
+<li><p>In this case we are adding just one layer: a <code>geom_bar()</code> component which is
+the geometric object for bars.</p></li>
+<li><p>To tell <code>ggplot()</code> that <code>year</code> is the column in <code>data = storms</code> to be used for
+the x-axis, we <strong>map</strong> <code>x = year</code> inside the <code>aes()</code> function which stands for
+<em>aesthetic</em> mapping.</p></li>
 </ul>
+<p>We should clarify that the meaning of “aesthetic” as used by <code>"ggplot2"</code> does
+not mean beautiful or pretty, instead it conserves its etymological
+meaning of <em>perception</em>. Simply put, <code>aes()</code> is the function that you use to
+tell <code>ggplot()</code> which variables of a <code>data</code> object will be mapped as visual
+attributes of graphical elements.</p>
 </div>
-<div id="naming-storms" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Naming Storms<a href="tropical-storms.html#naming-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="basic-inspection-of-month" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Basic inspection of <code>month</code><a href="single-columns.html#basic-inspection-of-month" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have explored column <code>year</code>, we can move to the column <code>month</code>
+and perform similar type of analysis. Using the same commands, all we have to
+do is change the name of the variable to <code>month</code> to see whether there are
+storms in all months:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="single-columns.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, month))</span></code></pre></div>
+<pre><code>##  [1]  6  7  8  9 10 11 12  5  4  1</code></pre>
+<p>In this case, it would be better if we <code>sort()</code> them:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="single-columns.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">pull</span>(storms, month)))</span></code></pre></div>
+<pre><code>##  [1]  1  4  5  6  7  8  9 10 11 12</code></pre>
+<p>Observe that not all months have recorded storms, this is the case for
+February (2) and March (3). Is this something to be concerned about? How is it
+possible that there are no recorded data for February and March? For the
+inexperience analyst, asking this type of questions is fundamental. As a data
+scientist, you will be working with data sets for which you are not necessarily
+an expert in that particular field of application. Since you will also be
+interacting with some type of experts, you should ask them as many questions
+as possible to clarify your understanding of the data and its context.</p>
+<p>The answer for not having storms in February and March is because these months
+have to do with the end of Winter and beginning of Spring in the North Atlantic,
+which is a period of time where tropical systems don’t get formed. In fact,
+Spring months such as April and May also don’t tend to be typical months for
+hurricanes. So a further thing to explore could involve computing the number of
+storms in April and May.</p>
+<hr />
+</div>
+<div id="your-turn" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Your Turn<a href="single-columns.html#your-turn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is
-given a name.</p></li>
-<li><p>The names are chosen by an international committee of the World Meteorological
-Organization (WMO).</p></li>
-<li><p>The list of names is available at: <a href="https://www.nhc.noaa.gov/aboutnames.shtml" class="uri">https://www.nhc.noaa.gov/aboutnames.shtml</a></p></li>
-<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
-<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
-<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
-<li><p>The names proceed in alphabetical order, omitting the “difficult” letters
-Q, U, X, Y, and Z.</p></li>
-<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
-<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic
-basin in a season, or more than 24 named tropical cyclones in the eastern North
-Pacific basin, any additional storms will take names from an alternate list of
-names approved by the WMO for each basin.</p></li>
+<li><p>Use <code>pull()</code>, <code>select()</code>, and <code>unique()</code> to inspect the values in column
+<code>day</code></p></li>
+<li><p>Try to use <code>sort()</code> in order to arrange the unique values of <code>day</code></p></li>
+<li><p>Does the unique day values make sense? Are there days for which there
+seem to be no recorded storm data?</p></li>
+<li><p>Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
+<code>month</code>.</p></li>
+<li><p>Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
+<code>day</code>.</p></li>
+<li><p>Look at the cheatsheet for ggplot and locate the information for <code>geom_bar()</code>.
+Find out how to specify: border <code>color</code>, <code>fill</code> color. Also, see what happens
+when you specify <code>alpha = 0.5</code>.</p></li>
+<li><p>Look at the cheatsheet for ggplot and locate the information for background
+<em>Themes</em>, e.g. <code>theme_bw()</code>. Find out how to add theme <code>theme_classic()</code> to the
+previous barchart.</p></li>
+<li><p>Look at the cheatsheet for ggplot and locate the information for <em>Labels</em>.
+Find out how to add a title with <code>ggtitle()</code> as well as with <code>labs()</code> to one
+of your previous barcharts.</p></li>
 </ul>
-</div>
-<div id="atlantic-hurricane-season" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season<a href="tropical-storms.html#atlantic-hurricane-season" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>The official Atlantic hurricane season runs from June through November, but
-occasionally storms form outside those months.</p></li>
-<li><p>September is the most active month (where most of the hurricanes occur),
-followed by August, and October (based on 1851 to 2015 data).</p></li>
-<li><p>A typical year has 12 named storms, including six hurricanes of which three
-become major hurricanes (category 3, 4, and 5).</p></li>
-<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
-</ul>
-</div>
-<div id="storm-formation" class="section level3 hasAnchor" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Storm Formation<a href="tropical-storms.html#storm-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To close this chapter, take a look at the following diagram that beautifully
-describes and illustrates the formation of hurricanes.</p>
-<p>Source: <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="images/hurricanes_poster_large.jpg" alt="How do hurricanes form? (source: SciJinks)" width="85%" />
-<p class="caption">
-Figure 2.3: How do hurricanes form? (source: SciJinks)
-</p>
-</div>
-<p>If you want to know more about the formation of hurricanes, you can also
-watch the following video by NOAA SciJinks:</p>
-<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
 
 </div>
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="tables-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="storms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="storms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="storms-in-1975.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

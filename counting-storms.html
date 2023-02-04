@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Tropical Storms and Hurricanes | Tidy Hurricanes</title>
+  <title>12 Counting Storms | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta property="og:title" content="12 Counting Storms | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta name="twitter:title" content="12 Counting Storms | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tables-and-tidyverse.html"/>
-<link rel="next" href="storms.html"/>
+<link rel="prev" href="summary.html"/>
+<link rel="next" href="visualizing-number-of-systems.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -265,153 +265,188 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tropical-storms" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Tropical Storms and Hurricanes<a href="tropical-storms.html#tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="images/sandy-hurricane.jpg" alt="NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)" width="80%" />
-<p class="caption">
-Figure 2.1: NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)
-</p>
-</div>
+<div id="counting-storms" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Counting Storms<a href="counting-storms.html#counting-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In chapter 4 we quickly explored the values in column <code>year</code>, discovering the
+45-year period of recorded data from 1975 to 2020. We can take a further step
+and ask:</p>
 <blockquote>
-<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the
-deadliest and most destructive, as well as the strongest, hurricane of the
-2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in
-damage, it was the second-costliest hurricane on record in the United States
-until surpassed by Hurricanes Harvey and Maria in 2017.</p>
+<p>How many storms are there in each year?</p>
 </blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
-<div id="a-little-bit-about-hurricanes" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> A little bit about Hurricanes<a href="tropical-storms.html#a-little-bit-about-hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I don’t remember very well when was the first time I got curious about
-Hurricanes. I did not grew up in hurricane country or anywhere near regions
-prone to be hit by this kind of storms. However, I do remember learning about
-clouds, meteorology, and how storms form over mountain ranges. I learned this
-when I was in my early 20s taking my first steps into the mountaineering world.
-Experiencing the force and dangers of several storms in the mountains and
-volcanoes of my homeland, sparked in me a general interest to know more about
-this type of weather phenomena.</p>
-<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em>
-which in turn comes from the Taino word <em>hurakán</em>, that was used
-by the indigenous people of the Caribbean and Central America to designate the
-“god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane
-is informally used to denote low-pressure systems with organized thunderstorm
-activity that form over tropical or subtropical waters. Among weather experts,
-though, the term hurricane is reserved for a specific class of tropical
-systems: those that reach wind speeds of at least 74 mph, and are exclusively
-formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
-<p>Despite my longtime interest in storms and hurricanes, my level of expertise
-in these subjects is fairly limited. Because of this, I prefer to give you a
-curated list of some facts about hurricanes that I’ve collected from the
-following sources:</p>
-<ul>
-<li><p>National Oceanic and Atmospheric Administration (NOAA):
-<a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
-<li><p>SciJinks: It’s all about weather!
-<a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
-<li><p>NASA Space Place: How Do Hurricanes Form?
-<a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
-</ul>
-<div id="tropical-cyclones" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Tropical Cyclones<a href="tropical-storms.html#tropical-cyclones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
-<li><p>They form near the equator over warm ocean waters.</p></li>
-<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
-<li><p>A tropical cyclone is a rotating low-pressure weather system that produces
-strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
-<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and
-rip currents.</p></li>
-<li><p>People call these storms by other names, such as typhoons or cyclones,
-depending on where they occur.</p></li>
-<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific
-Ocean are called “hurricanes.”</p></li>
-</ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/tropical-cyclones-map.png" alt="Nomenclature of tropical cyclones around the world." width="65%" />
-<p class="caption">
-Figure 2.2: Nomenclature of tropical cyclones around the world.
-</p>
+<p>To answer this question, we need to do some data manipulation. My general
+recommendation when working with <code>"dplyr"</code>’s functions, especially
+when you are learning about them, is to do computations step by step, deciding
+which columns you need to use, which rows to consider, which functions to call,
+and so on.</p>
+<div id="attempt-number-1" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 1<a href="counting-storms.html#attempt-number-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To find the number of storms per year, think about the columns that you need to
+select. Also think about the operations that seem to be required to get such
+count. You obviously need to select <code>year</code>; and you need to <code>count()</code>. With
+this initial setting, you could assemble the following pipeline of commands:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="counting-storms.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first attempt</span></span>
+<span id="cb124-2"><a href="counting-storms.html#cb124-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb124-3"><a href="counting-storms.html#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb124-4"><a href="counting-storms.html#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##       n
+##   &lt;int&gt;
+## 1 11859</code></pre>
+<p>Okay. This count is not what we are looking for. But before trying other
+ideas, spend some time reflecting on what the preceding command is doing.</p>
 </div>
+<div id="attempt-number-2" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 2<a href="counting-storms.html#attempt-number-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Perhaps we could add a <code>gropu_by(year)</code> operation before invoking <code>count()</code>:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="counting-storms.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second attempt</span></span>
+<span id="cb126-2"><a href="counting-storms.html#cb126-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb126-3"><a href="counting-storms.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb126-4"><a href="counting-storms.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb126-5"><a href="counting-storms.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+## # Groups:   year [46]
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975    86
+##  2  1976    52
+##  3  1977    53
+##  4  1978    54
+##  5  1979   301
+##  6  1980   161
+##  7  1981   164
+##  8  1982   105
+##  9  1983    79
+## 10  1984   236
+## # … with 36 more rows</code></pre>
+<p>This output looks more interesting. The returned output is a table with two
+columns: <code>year</code> and <code>n</code>. But after careful inspection, you should notice
+something awkward. While the first column makes complete sense, the second
+column <code>n</code> does not seem to be very helpful. Are there really 86 tropical
+systems in 1975? Are there 52 systems in 1976? And so on, and so forth?
+Of course not; 1975 did not have 86 systems. The numeric values under column
+<code>n</code> simply refer to the number of entries (i.e. rows) associated to each year.</p>
+<p>You may not know this, but the previous table of counts can be obtained using a
+more compact command without the need to use <code>select()</code> and <code>group_by()</code>:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="counting-storms.html#cb128-1" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975    86
+##  2  1976    52
+##  3  1977    53
+##  4  1978    54
+##  5  1979   301
+##  6  1980   161
+##  7  1981   164
+##  8  1982   105
+##  9  1983    79
+## 10  1984   236
+## # … with 36 more rows</code></pre>
 </div>
-<div id="storm-classification" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Storm Classification<a href="tropical-storms.html#storm-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
-<ul>
-<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
-<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
-<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
-</ul></li>
-<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained
-winds have reached 74 mph.</p></li>
-<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson
-Hurricane Wind Scale.</p></li>
-<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a
-hurricane’s sustained wind speed:</p>
-<ul>
-<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
-<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
-<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
-<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
-<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
-</ul></li>
-<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
-<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob
-Simpson to help explain damage that buildings will sustain under different wind
-speeds.</p></li>
-<li><p>Note that the Saffir-Simpson scale does not include hazards from rain,
-flooding, or storm surge.</p></li>
-</ul>
+<div id="attempt-number-3" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 3<a href="counting-storms.html#attempt-number-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>What if instead of counting <code>year</code> we count based on column <code>name</code>? For example:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="counting-storms.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
+<span id="cb130-2"><a href="counting-storms.html#cb130-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(name)</span></code></pre></div>
+<pre><code>## # A tibble: 214 × 2
+##    name         n
+##    &lt;chr&gt;    &lt;int&gt;
+##  1 AL011993     8
+##  2 AL012000     4
+##  3 AL021992     5
+##  4 AL021994     6
+##  5 AL021999     4
+##  6 AL022000    12
+##  7 AL022001     5
+##  8 AL022003     4
+##  9 AL022006     5
+## 10 AL031987    32
+## # … with 204 more rows</code></pre>
+<p>Mmm. Again, not the count that we are looking for. On a side note, observe the
+values displayed in the first rows of the returned table: e.g. <code>AL011993</code>,
+<code>AL012000</code>. These alphanumeric names correspond to names of tropical depressions
+that never reached <em>tropical storm</em> status. In other words, those system were
+not strong enough to be given a name, e.g. <code>Amy</code>, <code>Caroline</code>, <code>Doris</code>, etc.</p>
 </div>
-<div id="naming-storms" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Naming Storms<a href="tropical-storms.html#naming-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is
-given a name.</p></li>
-<li><p>The names are chosen by an international committee of the World Meteorological
-Organization (WMO).</p></li>
-<li><p>The list of names is available at: <a href="https://www.nhc.noaa.gov/aboutnames.shtml" class="uri">https://www.nhc.noaa.gov/aboutnames.shtml</a></p></li>
-<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
-<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
-<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
-<li><p>The names proceed in alphabetical order, omitting the “difficult” letters
-Q, U, X, Y, and Z.</p></li>
-<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
-<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic
-basin in a season, or more than 24 named tropical cyclones in the eastern North
-Pacific basin, any additional storms will take names from an alternate list of
-names approved by the WMO for each basin.</p></li>
-</ul>
+<div id="attempt-number-4" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 4<a href="counting-storms.html#attempt-number-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>So far we’ve tried—unsuccessfully—counting based on column <code>year</code> alone,
+and also on column <code>name</code> alone. None of these columns, in and of itself, is
+enough because for any given storm or any given year we have multiple entries
+with duplicated values.</p>
+<p>Again, the following suggestion may not seem obvious, but you can also try
+counting by taking into account both <code>year</code> and <code>name</code></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="counting-storms.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
+<span id="cb132-2"><a href="counting-storms.html#cb132-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name)</span></code></pre></div>
+<pre><code>## # A tibble: 512 × 3
+##     year name         n
+##    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+##  1  1975 Amy         30
+##  2  1975 Caroline    33
+##  3  1975 Doris       23
+##  4  1976 Belle       18
+##  5  1976 Gloria      34
+##  6  1977 Anita       20
+##  7  1977 Clara       24
+##  8  1977 Evelyn       9
+##  9  1978 Amelia       6
+## 10  1978 Bess        13
+## # … with 502 more rows</code></pre>
+<p>Compared to the previous attempts, this output looks more promising. Finally,
+we can see that there were three (named) storms in 1975, two in 1976, three
+more in 1977, etc. However, we still don’t have those specific counts: 3, 2, 3,
+etc. But at least we are making some progress in what it seems to be the right
+direction.</p>
 </div>
-<div id="atlantic-hurricane-season" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season<a href="tropical-storms.html#atlantic-hurricane-season" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>The official Atlantic hurricane season runs from June through November, but
-occasionally storms form outside those months.</p></li>
-<li><p>September is the most active month (where most of the hurricanes occur),
-followed by August, and October (based on 1851 to 2015 data).</p></li>
-<li><p>A typical year has 12 named storms, including six hurricanes of which three
-become major hurricanes (category 3, 4, and 5).</p></li>
-<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
-</ul>
-</div>
-<div id="storm-formation" class="section level3 hasAnchor" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Storm Formation<a href="tropical-storms.html#storm-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To close this chapter, take a look at the following diagram that beautifully
-describes and illustrates the formation of hurricanes.</p>
-<p>Source: <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="images/hurricanes_poster_large.jpg" alt="How do hurricanes form? (source: SciJinks)" width="85%" />
-<p class="caption">
-Figure 2.3: How do hurricanes form? (source: SciJinks)
-</p>
-</div>
-<p>If you want to know more about the formation of hurricanes, you can also
-watch the following video by NOAA SciJinks:</p>
-<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
+<div id="attempt-number-5" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 5<a href="counting-storms.html#attempt-number-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Why not taking the preceding command, and adding an extra <code>count()</code> but only
+considering <code>year</code>?</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="counting-storms.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
+<span id="cb134-2"><a href="counting-storms.html#cb134-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975     3
+##  2  1976     2
+##  3  1977     3
+##  4  1978     4
+##  5  1979     7
+##  6  1980     8
+##  7  1981     5
+##  8  1982     5
+##  9  1983     4
+## 10  1984    10
+## # … with 36 more rows</code></pre>
+<p>Voila! Now we are talking. This table contains precisely the counts that
+we are looking for: number of systems in each year.</p>
+<p>For convenience purposes, let’s assign this table into its own object,
+which we can call <code>system_counts_per_year</code>, or some other meaningful name
+that you might prefer to use:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="counting-storms.html#cb136-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb136-2"><a href="counting-storms.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
+<span id="cb136-3"><a href="counting-storms.html#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb136-4"><a href="counting-storms.html#cb136-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-5"><a href="counting-storms.html#cb136-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975     3
+##  2  1976     2
+##  3  1977     3
+##  4  1978     4
+##  5  1979     7
+##  6  1980     8
+##  7  1981     5
+##  8  1982     5
+##  9  1983     4
+## 10  1984    10
+## # … with 36 more rows</code></pre>
+<p>Now that we have the counts or frequencies, it would be nice to visualize them
+with a barchart, like the following one:</p>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>Let’s discuss how to obtain this kind of graphic in the next chapter.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -419,8 +454,8 @@ watch the following video by NOAA SciJinks:</p>
           </div>
         </div>
       </div>
-<a href="tables-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="storms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-number-of-systems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

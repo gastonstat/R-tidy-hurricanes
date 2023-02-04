@@ -18,7 +18,7 @@ atlantic-hurricane-data
 data-storms
 storms-documentation
 general-inspection
-inspecting-single-columns
+single-columns
 basic-inspection-of-year
 barplot-of-year-values
 basic-inspection-of-month
@@ -52,3 +52,9 @@ storms-from-1975-to-1980
 summary
 number-of-storms-per-year
 your-turn-3
+counting-storms
+visualizing-number-of-systems
+barcharts
+barchart-with-geom_bar
+barchart-with-geom_col
+customizing-a-barchart
