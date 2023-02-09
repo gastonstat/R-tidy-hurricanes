@@ -58,3 +58,5 @@ barcharts
 barchart-with-geom_bar
 barchart-with-geom_col
 customizing-a-barchart
+counting-tropical-systems
+global-versus-local-aesthetic-mappings

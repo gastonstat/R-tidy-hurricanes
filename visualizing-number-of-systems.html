@@ -32,7 +32,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="counting-storms.html"/>
+<link rel="prev" href="counting-tropical-systems.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -235,14 +235,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-3"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
 </ul></li>
 <li class="part"><span><b>III Analyzing Storms 1975-2020</b></span></li>
-<li class="chapter" data-level="12" data-path="counting-storms.html"><a href="counting-storms.html"><i class="fa fa-check"></i><b>12</b> Counting Storms</a></li>
+<li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
 <li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>13.1</b> Barcharts</a>
 <ul>
 <li class="chapter" data-level="13.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>13.1.1</b> Barchart with <code>geom_bar()</code></a></li>
 <li class="chapter" data-level="13.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>13.1.2</b> Barchart with <code>geom_col()</code></a></li>
-<li class="chapter" data-level="13.1.3" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>13.1.3</b> Customizing a Barchart</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>13.2</b> Customizing a Barchart</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Global versus Local Aesthetic Mappings</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -269,11 +272,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">13</span> Visualizing Number of Systems<a href="visualizing-number-of-systems.html#visualizing-number-of-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>We ended the preceding chapter with the following command that allows us to
 get the number of tropical systems in each year from 1975 to 2020:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="visualizing-number-of-systems.html#cb138-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
-<span id="cb138-2"><a href="visualizing-number-of-systems.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
-<span id="cb138-3"><a href="visualizing-number-of-systems.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb138-4"><a href="visualizing-number-of-systems.html#cb138-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-5"><a href="visualizing-number-of-systems.html#cb138-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualizing-number-of-systems.html#cb1-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="visualizing-number-of-systems.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="visualizing-number-of-systems.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb1-4"><a href="visualizing-number-of-systems.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="visualizing-number-of-systems.html#cb1-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
 <pre><code>## # A tibble: 46 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -293,22 +296,25 @@ visualization of the above frequencies.</p>
 <div id="barcharts" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Barcharts<a href="visualizing-number-of-systems.html#barcharts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In chapter 4, we created a basic barchart of all <code>year</code> values. To be more
-precise, we obtained a barchart based on all the entries for each given year.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="visualizing-number-of-systems.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barchart of year values</span></span>
-<span id="cb140-2"><a href="visualizing-number-of-systems.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
-<span id="cb140-3"><a href="visualizing-number-of-systems.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+precise, we obtained a barchart based on all the entries for each given year
+by invoking the command shown below:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="visualizing-number-of-systems.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from chapter 4: barchart of year values</span></span>
+<span id="cb3-2"><a href="visualizing-number-of-systems.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="visualizing-number-of-systems.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>As you can tell, the <em>geometric object</em> (geom) function that is used in this
 case is <code>geom_bar()</code>. This function, by default, does its own computation—via
 <code>stat_count()</code>—to get the counts or frequencies.</p>
 <div id="barchart-with-geom_bar" class="section level3 hasAnchor" number="13.1.1">
 <h3><span class="header-section-number">13.1.1</span> Barchart with <code>geom_bar()</code><a href="visualizing-number-of-systems.html#barchart-with-geom_bar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>It feels very tempting and natural to use the same commands in order to
-create a bar-plot for the number of tropical systems. After all, this is exactly
-the type of chart we want to produce. So why not using <code>geom_bar()</code>?</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="visualizing-number-of-systems.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span> </span>
-<span id="cb141-2"><a href="visualizing-number-of-systems.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p>It feels very tempting and natural to use the same <code>"ggplot2"</code> functions of
+the preceding command in order to create a bar-plot for the number of tropical
+systems in each year. After all, this is exactly the type of chart we want to
+produce. So why not using <code>geom_bar()</code>? Let’s try this out.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualizing-number-of-systems.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># doesn&#39;t work as expected</span></span>
+<span id="cb4-2"><a href="visualizing-number-of-systems.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="visualizing-number-of-systems.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Ooops!</p>
 <p>What is going on with this graphic? Why do all bars have the same height? And
 why the y-axis has a count scale from 0 to 1? This doesn’t make any sense.</p>
@@ -318,9 +324,10 @@ by default <code>geom_bar()</code> does its own tally of <code>year</code> value
 column <code>n</code>, we need to tell <code>geom_bar()</code> to not count anything. This is done
 by adding a <code>y</code> argument to the aesthetic mapping function <code>aes()</code>, and also
 by setting the argument <code>stat = "identity"</code></p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="visualizing-number-of-systems.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span> </span>
-<span id="cb142-2"><a href="visualizing-number-of-systems.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-number-of-systems.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works</span></span>
+<span id="cb5-2"><a href="visualizing-number-of-systems.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="visualizing-number-of-systems.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="barchart-with-geom_col" class="section level3 hasAnchor" number="13.1.2">
 <h3><span class="header-section-number">13.1.2</span> Barchart with <code>geom_col()</code><a href="visualizing-number-of-systems.html#barchart-with-geom_col" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -328,15 +335,16 @@ by setting the argument <code>stat = "identity"</code></p>
 Interestingly, in this case we can also get a barchart with the <code>geom_col()</code>
 function. This is a sibling function of <code>geom_bar(stat = "identity")</code>, designed
 to be used for tables of frequencies, like <code>system_counts_per_year</code>:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="visualizing-number-of-systems.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
-<span id="cb143-2"><a href="visualizing-number-of-systems.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="visualizing-number-of-systems.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another way to get a barchart, given a table of frequencies</span></span>
+<span id="cb6-2"><a href="visualizing-number-of-systems.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="visualizing-number-of-systems.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Looking at the chart, there are some fairly tall bars. Although it’s hard
 to see exactly which years have a considerably large number of tropical systems,
 eyeballing things out it seems that around 1995, 2005, and 2020 there are
 20 or more storms. We can find the actual answer by using <code>arrange()</code>,
 specifying the counts to be shown in descending order—with <code>desc()</code>:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="visualizing-number-of-systems.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(system_counts_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-number-of-systems.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(system_counts_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 46 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -354,91 +362,102 @@ specifying the counts to be shown in descending order—with <code>desc()</code>
 <p>As you can tell, in the 45-year period from 1975 to 2020, the top three years
 by number of systems correspond to 2020, 1995 and 2005.</p>
 </div>
-<div id="customizing-a-barchart" class="section level3 hasAnchor" number="13.1.3">
-<h3><span class="header-section-number">13.1.3</span> Customizing a Barchart<a href="visualizing-number-of-systems.html#customizing-a-barchart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For illustration purpose, let’s further customize the bar plot by adding a
+</div>
+<div id="customizing-a-barchart" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Customizing a Barchart<a href="visualizing-number-of-systems.html#customizing-a-barchart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For illustration purposes, let’s further customize the bar plot by adding a
 title, a more descriptive y-axis label, a simple background theme, and things
-like that.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="visualizing-number-of-systems.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
-<span id="cb146-2"><a href="visualizing-number-of-systems.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb146-3"><a href="visualizing-number-of-systems.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
-<span id="cb146-4"><a href="visualizing-number-of-systems.html#cb146-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
-<span id="cb146-5"><a href="visualizing-number-of-systems.html#cb146-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb146-6"><a href="visualizing-number-of-systems.html#cb146-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
-<p>An equivalent way to get this plot can be obtained if we moved the mapping
-<code>aes()</code> inside <code>ggplot()</code></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="visualizing-number-of-systems.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb147-2"><a href="visualizing-number-of-systems.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb147-3"><a href="visualizing-number-of-systems.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
-<span id="cb147-4"><a href="visualizing-number-of-systems.html#cb147-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
-<span id="cb147-5"><a href="visualizing-number-of-systems.html#cb147-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb147-6"><a href="visualizing-number-of-systems.html#cb147-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+like that. For instance, the function <code>labs()</code> can be used to customize a
+<code>title</code>, a <code>subtitle</code>, as well as axis labels. Likewise, the <code>theme_minimal()</code>
+function provides a simplified background theme that, in my opinion, gives a
+neat look to the graphic.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualizing-number-of-systems.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="visualizing-number-of-systems.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="visualizing-number-of-systems.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
+<span id="cb9-4"><a href="visualizing-number-of-systems.html#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
+<span id="cb9-5"><a href="visualizing-number-of-systems.html#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="visualizing-number-of-systems.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="global-versus-local-aesthetic-mappings" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> Global versus Local Aesthetic Mappings<a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An equivalent way to get the above plot can be obtained if we move the mapping
+<code>aes()</code> inside <code>ggplot()</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizing-number-of-systems.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="visualizing-number-of-systems.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="visualizing-number-of-systems.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
+<span id="cb10-4"><a href="visualizing-number-of-systems.html#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
+<span id="cb10-5"><a href="visualizing-number-of-systems.html#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="visualizing-number-of-systems.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p>Relocating the mapping command <code>aes()</code> may seem a bit whimsical. What difference
-it makes if we place <code>aes()</code> inside <code>ggplot()</code> versus <code>geom_col()</code>?
-Any mapping done at the level of <code>ggplot()</code> is considered to be a <em>global</em>
-mapping in the sense that this cascades down to any additional layer, such
-as <code>geom_col()</code>.</p>
+it makes if we place <code>aes()</code> inside <code>ggplot()</code> versus if we place it inside
+<code>geom_col()</code>? It turns out that there is an important difference. Any mapping
+done at the level of <code>ggplot()</code> is considered to be a <em>global</em> mapping in the
+sense that this cascades down to any additional layer, such as <code>geom_col()</code>.
+In contrast, any mapping done at the level of a <code>geom_...()</code> function or any
+other layer function acts as a <em>local</em> mapping, only affecting that particular
+type of geometric object.</p>
 <p>To further illustrate the effect of <code>aes()</code>, let’s add a smoother to highlight
 the increasing trend that the number of storms have experienced in the
-visualized period of time. To do this, we use <code>stat_smooth()</code> with arguments
-<code>method = "loess"</code> and <code>se = FALSE</code></p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="visualizing-number-of-systems.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb148-2"><a href="visualizing-number-of-systems.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-3"><a href="visualizing-number-of-systems.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb148-4"><a href="visualizing-number-of-systems.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
-<span id="cb148-5"><a href="visualizing-number-of-systems.html#cb148-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
-<span id="cb148-6"><a href="visualizing-number-of-systems.html#cb148-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb148-7"><a href="visualizing-number-of-systems.html#cb148-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+visualized period of time. To do this, we add a new layer using <code>stat_smooth()</code>
+with arguments <code>method = "loess"</code> and <code>se = FALSE</code></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizing-number-of-systems.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="visualizing-number-of-systems.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="visualizing-number-of-systems.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="visualizing-number-of-systems.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
+<span id="cb11-5"><a href="visualizing-number-of-systems.html#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
+<span id="cb11-6"><a href="visualizing-number-of-systems.html#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="visualizing-number-of-systems.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>The argument <code>method = "loess"</code> uses a non-linear smoother; in turn,
 <code>se = FALSE</code> prevents the <em>standard error</em> ribbon from being plotted.
 Observe also that the <code>fill</code> color of the bars has been changed to a less
 darker gray in order to better distinguish the blue smoother.</p>
-<p>Contrast the above command with the following one in which the aesthetic
-mapping is done at the <code>geom_col()</code> level:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="visualizing-number-of-systems.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># error</span></span>
-<span id="cb149-2"><a href="visualizing-number-of-systems.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
-<span id="cb149-3"><a href="visualizing-number-of-systems.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb149-4"><a href="visualizing-number-of-systems.html#cb149-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb149-5"><a href="visualizing-number-of-systems.html#cb149-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
-<span id="cb149-6"><a href="visualizing-number-of-systems.html#cb149-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
-<span id="cb149-7"><a href="visualizing-number-of-systems.html#cb149-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb149-8"><a href="visualizing-number-of-systems.html#cb149-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p>Compare the above command with the following one in which the aesthetic
+mapping <code>aes(x = year, y = n)</code> is done at the <code>geom_col()</code> level:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="visualizing-number-of-systems.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># error</span></span>
+<span id="cb12-2"><a href="visualizing-number-of-systems.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="visualizing-number-of-systems.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="visualizing-number-of-systems.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="visualizing-number-of-systems.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
+<span id="cb12-6"><a href="visualizing-number-of-systems.html#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
+<span id="cb12-7"><a href="visualizing-number-of-systems.html#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="visualizing-number-of-systems.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Error in `check_required_aesthetics()`:
 ## ! stat_smooth requires the following missing aesthetics: x and y</code></pre>
 <p>Oh no! Houston, we have a problem.</p>
 <p>Every time you get an error message, do the following two things:</p>
 <ol style="list-style-type: decimal">
-<li><p>first, don’t panic,</p></li>
-<li><p>second, read the error message.</p></li>
+<li><p>First, don’t panic,</p></li>
+<li><p>Second, read the error message.</p></li>
 </ol>
 <p>As you can tell, the error indicates that <code>stat_smooth()</code> requires missing
 aesthetics: x and y.</p>
 <p>You may argue that those statistics, x and y, are already specified in <code>aes()</code>,
 inside <code>geom_col()</code>. And you are correct. But this is precisely the issue.
 Those aesthetics only work for <code>geom_col()</code>, not for <code>stat_smooth()</code>. One
-option to fix this problem is by adding the mapping to <code>stat_smooth()</code></p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="visualizing-number-of-systems.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fixing the error</span></span>
-<span id="cb152-2"><a href="visualizing-number-of-systems.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
-<span id="cb152-3"><a href="visualizing-number-of-systems.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb152-4"><a href="visualizing-number-of-systems.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb152-5"><a href="visualizing-number-of-systems.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
-<span id="cb152-6"><a href="visualizing-number-of-systems.html#cb152-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
-<span id="cb152-7"><a href="visualizing-number-of-systems.html#cb152-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb152-8"><a href="visualizing-number-of-systems.html#cb152-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p>While this works, we’ve introduced unnecessary duplication to our code. A better
-option is to simply use one call to <code>aes()</code> at the top <code>ggplot()</code> level. In
-this form the mapping propagates to both <code>geom_col()</code> and <code>stat_smooth()</code></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="visualizing-number-of-systems.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fixing the error</span></span>
-<span id="cb153-2"><a href="visualizing-number-of-systems.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb153-3"><a href="visualizing-number-of-systems.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb153-4"><a href="visualizing-number-of-systems.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb153-5"><a href="visualizing-number-of-systems.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
-<span id="cb153-6"><a href="visualizing-number-of-systems.html#cb153-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
-<span id="cb153-7"><a href="visualizing-number-of-systems.html#cb153-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb153-8"><a href="visualizing-number-of-systems.html#cb153-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+option to fix this problem is by including the same mapping into <code>stat_smooth()</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="visualizing-number-of-systems.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fixing the error</span></span>
+<span id="cb15-2"><a href="visualizing-number-of-systems.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="visualizing-number-of-systems.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="visualizing-number-of-systems.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n), <span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="visualizing-number-of-systems.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
+<span id="cb15-6"><a href="visualizing-number-of-systems.html#cb15-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
+<span id="cb15-7"><a href="visualizing-number-of-systems.html#cb15-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="visualizing-number-of-systems.html#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p>While this fixes the problem, we’ve introduced unnecessary duplication into our
+code. Why? Because the mapping command <code>aes(x = year, y = n)</code> appears in two
+different places. A better option is to simply use one call to <code>aes()</code> at the
+top <code>ggplot()</code>level. In this form the mapping propagates to both <code>geom_col()</code>
+and <code>stat_smooth()</code></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="visualizing-number-of-systems.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># getting rid of the duplicated piece of code</span></span>
+<span id="cb16-2"><a href="visualizing-number-of-systems.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> system_counts_per_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="visualizing-number-of-systems.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="visualizing-number-of-systems.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="visualizing-number-of-systems.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of tropical systems per year&quot;</span>,</span>
+<span id="cb16-6"><a href="visualizing-number-of-systems.html#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;(1975-2020)&quot;</span>,</span>
+<span id="cb16-7"><a href="visualizing-number-of-systems.html#cb16-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="visualizing-number-of-systems.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 
 </div>
 </div>
@@ -448,7 +467,7 @@ this form the mapping propagates to both <code>geom_col()</code> and <code>stat_
           </div>
         </div>
       </div>
-<a href="counting-storms.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="counting-tropical-systems.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Tidy Hurricanes</title>
+  <title>12 Counting Tropical Systems | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Tidy Hurricanes" />
+  <meta property="og:title" content="12 Counting Tropical Systems | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Tidy Hurricanes" />
+  <meta name="twitter:title" content="12 Counting Tropical Systems | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="summary.html"/>
+<link rel="next" href="visualizing-number-of-systems.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -268,19 +268,199 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="counting-tropical-systems" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Counting Tropical Systems<a href="counting-tropical-systems.html#counting-tropical-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In chapter 4 we quickly explored the values in column <code>year</code>, discovering the
+45-year period of recorded data from 1975 to 2020. We can take a further step
+and ask:</p>
+<blockquote>
+<p>How many storms are there in each year?</p>
+</blockquote>
+<p>To answer this question, we need to do some data manipulation. My general
+recommendation when working with <code>"dplyr"</code>’s functions, especially
+when you are learning about them, is to do computations step by step, deciding
+which columns you need to use, which rows to consider, which functions to call,
+and so on.</p>
+<div id="attempt-number-1" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 1<a href="counting-tropical-systems.html#attempt-number-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To find the number of storms per year, think about the columns that you need to
+select. Also think about the operations that seem to be required to get such
+count. You obviously need to select <code>year</code>; and you need to <code>count()</code>. With
+this initial setting, you could assemble the following pipeline of commands:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="counting-tropical-systems.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first attempt</span></span>
+<span id="cb1-2"><a href="counting-tropical-systems.html#cb1-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="counting-tropical-systems.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="counting-tropical-systems.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##       n
+##   &lt;int&gt;
+## 1 11859</code></pre>
+<p>Okay. This count is not what we are looking for. But before trying other
+ideas, spend some time reflecting on what the preceding command is doing.</p>
+</div>
+<div id="attempt-number-2" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 2<a href="counting-tropical-systems.html#attempt-number-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Perhaps we could add a <code>group_by(year)</code> operation before invoking <code>count()</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="counting-tropical-systems.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second attempt</span></span>
+<span id="cb3-2"><a href="counting-tropical-systems.html#cb3-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="counting-tropical-systems.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="counting-tropical-systems.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="counting-tropical-systems.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+## # Groups:   year [46]
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975    86
+##  2  1976    52
+##  3  1977    53
+##  4  1978    54
+##  5  1979   301
+##  6  1980   161
+##  7  1981   164
+##  8  1982   105
+##  9  1983    79
+## 10  1984   236
+## # … with 36 more rows</code></pre>
+<p>This output looks more interesting. The returned output is a table with two
+columns: <code>year</code> and <code>n</code>. But after careful inspection, you should notice
+something awkward. While the first column makes complete sense, the second
+column <code>n</code> does not seem to be very helpful. Are there really 86 tropical
+systems in 1975? Are there 52 systems in 1976? And so on, and so forth?
+Of course not; 1975 did not have 86 systems. The numeric values under column
+<code>n</code> simply refer to the number of entries (i.e. rows) associated to each year.</p>
+<p>You may not know this, but the previous table of counts can be obtained using a
+more compact command without the need to use <code>select()</code> and <code>group_by()</code>; you
+can just simply invoke <code>count(year)</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="counting-tropical-systems.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same output of preceding command, only using count()</span></span>
+<span id="cb5-2"><a href="counting-tropical-systems.html#cb5-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975    86
+##  2  1976    52
+##  3  1977    53
+##  4  1978    54
+##  5  1979   301
+##  6  1980   161
+##  7  1981   164
+##  8  1982   105
+##  9  1983    79
+## 10  1984   236
+## # … with 36 more rows</code></pre>
+</div>
+<div id="attempt-number-3" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 3<a href="counting-tropical-systems.html#attempt-number-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>What if instead of counting <code>year</code> we count based on column <code>name</code>? For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="counting-tropical-systems.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
+<span id="cb7-2"><a href="counting-tropical-systems.html#cb7-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(name)</span></code></pre></div>
+<pre><code>## # A tibble: 214 × 2
+##    name         n
+##    &lt;chr&gt;    &lt;int&gt;
+##  1 AL011993     8
+##  2 AL012000     4
+##  3 AL021992     5
+##  4 AL021994     6
+##  5 AL021999     4
+##  6 AL022000    12
+##  7 AL022001     5
+##  8 AL022003     4
+##  9 AL022006     5
+## 10 AL031987    32
+## # … with 204 more rows</code></pre>
+<p>Mmm. Again, not the count that we are looking for. On a side note, observe the
+values displayed in the first rows of the returned table: e.g. <code>AL011993</code>,
+<code>AL012000</code>. These alphanumeric names correspond to names of tropical depressions
+that never reached <em>tropical storm</em> status. In other words, those system were
+not strong enough to be given a name, e.g. <code>Amy</code>, <code>Caroline</code>, <code>Doris</code>, etc.</p>
+</div>
+<div id="attempt-number-4" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 4<a href="counting-tropical-systems.html#attempt-number-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>So far we’ve tried—unsuccessfully—counting based on column <code>year</code> alone,
+and also on column <code>name</code> alone. None of these columns, in and of itself, is
+enough because for any given storm or any given year we have multiple entries
+with duplicated values.</p>
+<p>Again, the following suggestion may not seem obvious, but you can also try
+counting by taking into account both <code>year</code> and <code>name</code></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="counting-tropical-systems.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
+<span id="cb9-2"><a href="counting-tropical-systems.html#cb9-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name)</span></code></pre></div>
+<pre><code>## # A tibble: 512 × 3
+##     year name         n
+##    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+##  1  1975 Amy         30
+##  2  1975 Caroline    33
+##  3  1975 Doris       23
+##  4  1976 Belle       18
+##  5  1976 Gloria      34
+##  6  1977 Anita       20
+##  7  1977 Clara       24
+##  8  1977 Evelyn       9
+##  9  1978 Amelia       6
+## 10  1978 Bess        13
+## # … with 502 more rows</code></pre>
+<p>Compared to the previous attempts, this output looks more promising. Finally,
+we can see that there were three (named) storms in 1975, two in 1976, three
+more in 1977, etc. However, we still don’t have those specific counts: 3, 2, 3,
+etc. But at least we are making some progress in what it seems to be the right
+direction.</p>
+</div>
+<div id="attempt-number-5" class="section level4 unnumbered hasAnchor">
+<h4>Attempt Number 5<a href="counting-tropical-systems.html#attempt-number-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Why not taking the preceding command, and adding an extra <code>count()</code> but only
+considering <code>year</code>?</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="counting-tropical-systems.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
+<span id="cb11-2"><a href="counting-tropical-systems.html#cb11-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975     3
+##  2  1976     2
+##  3  1977     3
+##  4  1978     4
+##  5  1979     7
+##  6  1980     8
+##  7  1981     5
+##  8  1982     5
+##  9  1983     4
+## 10  1984    10
+## # … with 36 more rows</code></pre>
+<p>Voila! Now we are talking. This table contains precisely the counts that
+we are looking for: number of systems in each year.</p>
+<p>For convenience purposes, let’s assign this table into its own object,
+which we can call <code>system_counts_per_year</code>, or some other meaningful name
+that you might prefer to use:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="counting-tropical-systems.html#cb13-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="counting-tropical-systems.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="counting-tropical-systems.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb13-4"><a href="counting-tropical-systems.html#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="counting-tropical-systems.html#cb13-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 2
+##     year     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1975     3
+##  2  1976     2
+##  3  1977     3
+##  4  1978     4
+##  5  1979     7
+##  6  1980     8
+##  7  1981     5
+##  8  1982     5
+##  9  1983     4
+## 10  1984    10
+## # … with 36 more rows</code></pre>
+<p>Now that we have the counts or frequencies, it would be nice to visualize them
+with a barchart, like the following one:</p>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Let’s discuss how to obtain this kind of graphic in the next chapter.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-number-of-systems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
