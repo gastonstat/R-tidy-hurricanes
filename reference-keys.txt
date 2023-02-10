@@ -60,3 +60,10 @@ barchart-with-geom_col
 customizing-a-barchart
 counting-tropical-systems
 global-versus-local-aesthetic-mappings
+counting-more-systems
+counting-tropical-storms
+counting-tropical-depressions
+counting-tropical-storms-1
+section
+counting-kinds-of-storms
+counting-all-types-of-systems
