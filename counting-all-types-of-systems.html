@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Tropical Storms and Hurricanes | Tidy Hurricanes</title>
+  <title>15 Counting All Types of Systems | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta property="og:title" content="15 Counting All Types of Systems | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta name="twitter:title" content="15 Counting All Types of Systems | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tables-and-tidyverse.html"/>
-<link rel="next" href="storms.html"/>
+<link rel="prev" href="counting-more-systems.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -281,153 +281,128 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tropical-storms" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Tropical Storms and Hurricanes<a href="tropical-storms.html#tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="images/sandy-hurricane.jpg" alt="NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)" width="80%" />
-<p class="caption">
-Figure 2.1: NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)
-</p>
-</div>
-<blockquote>
-<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the
-deadliest and most destructive, as well as the strongest, hurricane of the
-2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in
-damage, it was the second-costliest hurricane on record in the United States
-until surpassed by Hurricanes Harvey and Maria in 2017.</p>
-</blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
-<div id="a-little-bit-about-hurricanes" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> A little bit about Hurricanes<a href="tropical-storms.html#a-little-bit-about-hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I don’t remember very well when was the first time I got curious about
-Hurricanes. I did not grew up in hurricane country or anywhere near regions
-prone to be hit by this kind of storms. However, I do remember learning about
-clouds, meteorology, and how storms form over mountain ranges. I learned this
-when I was in my early 20s taking my first steps into the mountaineering world.
-Experiencing the force and dangers of several storms in the mountains and
-volcanoes of my homeland, sparked in me a general interest to know more about
-this type of weather phenomena.</p>
-<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em>
-which in turn comes from the Taino word <em>hurakán</em>, that was used
-by the indigenous people of the Caribbean and Central America to designate the
-“god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane
-is informally used to denote low-pressure systems with organized thunderstorm
-activity that form over tropical or subtropical waters. Among weather experts,
-though, the term hurricane is reserved for a specific class of tropical
-systems: those that reach wind speeds of at least 74 mph, and are exclusively
-formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
-<p>Despite my longtime interest in storms and hurricanes, my level of expertise
-in these subjects is fairly limited. Because of this, I prefer to give you a
-curated list of some facts about hurricanes that I’ve collected from the
-following sources:</p>
-<ul>
-<li><p>National Oceanic and Atmospheric Administration (NOAA):
-<a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
-<li><p>SciJinks: It’s all about weather!
-<a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
-<li><p>NASA Space Place: How Do Hurricanes Form?
-<a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
-</ul>
-<div id="tropical-cyclones" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Tropical Cyclones<a href="tropical-storms.html#tropical-cyclones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
-<li><p>They form near the equator over warm ocean waters.</p></li>
-<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
-<li><p>A tropical cyclone is a rotating low-pressure weather system that produces
-strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
-<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and
-rip currents.</p></li>
-<li><p>People call these storms by other names, such as typhoons or cyclones,
-depending on where they occur.</p></li>
-<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific
-Ocean are called “hurricanes.”</p></li>
-</ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/tropical-cyclones-map.png" alt="Nomenclature of tropical cyclones around the world." width="65%" />
-<p class="caption">
-Figure 2.2: Nomenclature of tropical cyclones around the world.
-</p>
-</div>
-</div>
-<div id="storm-classification" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Storm Classification<a href="tropical-storms.html#storm-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
-<ul>
-<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
-<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
-<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
-</ul></li>
-<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained
-winds have reached 74 mph.</p></li>
-<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson
-Hurricane Wind Scale.</p></li>
-<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a
-hurricane’s sustained wind speed:</p>
-<ul>
-<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
-<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
-<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
-<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
-<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
-</ul></li>
-<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
-<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob
-Simpson to help explain damage that buildings will sustain under different wind
-speeds.</p></li>
-<li><p>Note that the Saffir-Simpson scale does not include hazards from rain,
-flooding, or storm surge.</p></li>
-</ul>
-</div>
-<div id="naming-storms" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Naming Storms<a href="tropical-storms.html#naming-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is
-given a name.</p></li>
-<li><p>The names are chosen by an international committee of the World Meteorological
-Organization (WMO).</p></li>
-<li><p>The list of names is available at: <a href="https://www.nhc.noaa.gov/aboutnames.shtml" class="uri">https://www.nhc.noaa.gov/aboutnames.shtml</a></p></li>
-<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
-<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
-<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
-<li><p>The names proceed in alphabetical order, omitting the “difficult” letters
-Q, U, X, Y, and Z.</p></li>
-<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
-<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic
-basin in a season, or more than 24 named tropical cyclones in the eastern North
-Pacific basin, any additional storms will take names from an alternate list of
-names approved by the WMO for each basin.</p></li>
-</ul>
-</div>
-<div id="atlantic-hurricane-season" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season<a href="tropical-storms.html#atlantic-hurricane-season" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>The official Atlantic hurricane season runs from June through November, but
-occasionally storms form outside those months.</p></li>
-<li><p>September is the most active month (where most of the hurricanes occur),
-followed by August, and October (based on 1851 to 2015 data).</p></li>
-<li><p>A typical year has 12 named storms, including six hurricanes of which three
-become major hurricanes (category 3, 4, and 5).</p></li>
-<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
-</ul>
-</div>
-<div id="storm-formation" class="section level3 hasAnchor" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Storm Formation<a href="tropical-storms.html#storm-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To close this chapter, take a look at the following diagram that beautifully
-describes and illustrates the formation of hurricanes.</p>
-<p>Source: <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="images/hurricanes_poster_large.jpg" alt="How do hurricanes form? (source: SciJinks)" width="85%" />
-<p class="caption">
-Figure 2.3: How do hurricanes form? (source: SciJinks)
-</p>
-</div>
-<p>If you want to know more about the formation of hurricanes, you can also
-watch the following video by NOAA SciJinks:</p>
-<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
+<div id="counting-all-types-of-systems" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">15</span> Counting All Types of Systems<a href="counting-all-types-of-systems.html#counting-all-types-of-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>So far we’ve found a satisfying way to count the number of tropical depressions
+as well as the number of tropical storms. We could adapt the recent commands
+to get a table with counts of hurricanes of category 1, another table for
+hurricanes of category 2, and so on and so for.</p>
+<p>Interestingly, we can also identify the maximum category for each type of
+system, all at once. All we have to do is remove the <code>filter()</code> command,
+as follows:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="counting-all-types-of-systems.html#cb172-1" aria-hidden="true" tabindex="-1"></a>system_status <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
+<span id="cb172-2"><a href="counting-all-types-of-systems.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb172-3"><a href="counting-all-types-of-systems.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb172-4"><a href="counting-all-types-of-systems.html#cb172-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_max =</span> <span class="fu">max</span>(wind),</span>
+<span id="cb172-5"><a href="counting-all-types-of-systems.html#cb172-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">categ_max =</span> <span class="fu">max</span>(category), </span>
+<span id="cb172-6"><a href="counting-all-types-of-systems.html#cb172-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb172-7"><a href="counting-all-types-of-systems.html#cb172-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-8"><a href="counting-all-types-of-systems.html#cb172-8" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(system_status, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 4
+##     year name     wind_max categ_max
+##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;ord&gt;    
+##  1  1975 Amy            60 0        
+##  2  1975 Caroline      100 3        
+##  3  1975 Doris          95 2        
+##  4  1976 Belle         105 3        
+##  5  1976 Gloria         90 2        
+##  6  1977 Anita         150 5        
+##  7  1977 Clara          65 1        
+##  8  1977 Evelyn         70 1        
+##  9  1978 Amelia         45 0        
+## 10  1978 Bess           45 0</code></pre>
+<div id="handling-various-conditions" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Handling Various Conditions<a href="counting-all-types-of-systems.html#handling-various-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can take a further step and add a column that displays the category status
+in text form. That is, for <code>categ_max == -1</code> have an associated value of
+<code>"depression"</code>; for <code>categ_max == 0</code> have an associated value of <code>"storm"</code>;
+for <code>categ_max == 1</code> have an associated value of <code>"hurr1"</code>, etc.</p>
+<p>How can you accomplish this? One nice option is with the <code>case_when()</code> function.
+Let’s take a look at the command that gets the job done, and then we discuss it.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="counting-all-types-of-systems.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adding a wind category status in text format</span></span>
+<span id="cb174-2"><a href="counting-all-types-of-systems.html#cb174-2" aria-hidden="true" tabindex="-1"></a>system_status <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
+<span id="cb174-3"><a href="counting-all-types-of-systems.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb174-4"><a href="counting-all-types-of-systems.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb174-5"><a href="counting-all-types-of-systems.html#cb174-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_max =</span> <span class="fu">max</span>(wind),</span>
+<span id="cb174-6"><a href="counting-all-types-of-systems.html#cb174-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_scale =</span> <span class="fu">max</span>(category), </span>
+<span id="cb174-7"><a href="counting-all-types-of-systems.html#cb174-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb174-8"><a href="counting-all-types-of-systems.html#cb174-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wind_categ =</span> <span class="fu">case_when</span>(</span>
+<span id="cb174-9"><a href="counting-all-types-of-systems.html#cb174-9" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;hurr5&quot;</span>,</span>
+<span id="cb174-10"><a href="counting-all-types-of-systems.html#cb174-10" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;hurr4&quot;</span>,</span>
+<span id="cb174-11"><a href="counting-all-types-of-systems.html#cb174-11" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;hurr3&quot;</span>,</span>
+<span id="cb174-12"><a href="counting-all-types-of-systems.html#cb174-12" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;hurr2&quot;</span>,</span>
+<span id="cb174-13"><a href="counting-all-types-of-systems.html#cb174-13" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;hurr1&quot;</span>,</span>
+<span id="cb174-14"><a href="counting-all-types-of-systems.html#cb174-14" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">&quot;storm&quot;</span>,</span>
+<span id="cb174-15"><a href="counting-all-types-of-systems.html#cb174-15" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;depression&quot;</span>,</span>
+<span id="cb174-16"><a href="counting-all-types-of-systems.html#cb174-16" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb174-17"><a href="counting-all-types-of-systems.html#cb174-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-18"><a href="counting-all-types-of-systems.html#cb174-18" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(system_status, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 5
+##     year name     wind_max wind_scale wind_categ
+##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;ord&gt;      &lt;chr&gt;     
+##  1  1975 Amy            60 0          storm     
+##  2  1975 Caroline      100 3          hurr3     
+##  3  1975 Doris          95 2          hurr2     
+##  4  1976 Belle         105 3          hurr3     
+##  5  1976 Gloria         90 2          hurr2     
+##  6  1977 Anita         150 5          hurr5     
+##  7  1977 Clara          65 1          hurr1     
+##  8  1977 Evelyn         70 1          hurr1     
+##  9  1978 Amelia         45 0          storm     
+## 10  1978 Bess           45 0          storm</code></pre>
+<p>To describe how <code>case_when()</code> works, let’s pay attention to the part of the
+code that involves this command:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="counting-all-types-of-systems.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">case_when</span>(</span>
+<span id="cb176-2"><a href="counting-all-types-of-systems.html#cb176-2" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;hurr5&quot;</span>,</span>
+<span id="cb176-3"><a href="counting-all-types-of-systems.html#cb176-3" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;hurr4&quot;</span>,</span>
+<span id="cb176-4"><a href="counting-all-types-of-systems.html#cb176-4" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;hurr3&quot;</span>,</span>
+<span id="cb176-5"><a href="counting-all-types-of-systems.html#cb176-5" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;hurr2&quot;</span>,</span>
+<span id="cb176-6"><a href="counting-all-types-of-systems.html#cb176-6" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;hurr1&quot;</span>,</span>
+<span id="cb176-7"><a href="counting-all-types-of-systems.html#cb176-7" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">&quot;storm&quot;</span>,</span>
+<span id="cb176-8"><a href="counting-all-types-of-systems.html#cb176-8" aria-hidden="true" tabindex="-1"></a>    wind_scale <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;depression&quot;</span>,</span>
+<span id="cb176-9"><a href="counting-all-types-of-systems.html#cb176-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>As you can tell, the input to <code>case_when()</code> consists of multiple conditions
+based on the variable <code>wind_scale</code>. The first condition is:</p>
+<pre><code>wind_scale == 5 ~ &quot;hurr5&quot;</code></pre>
+<p>This means that the value <code>"hurr5"</code> will be associated to all the <code>wind_scale</code>
+values equal to 5. Basically, this indicates a hurricane of category 5.</p>
+<p>The next condition is:</p>
+<pre><code>wind_scale == 4 ~ &quot;hurr4&quot;</code></pre>
+<p>which means that <code>"hurr4"</code> will be associated to all the <code>wind_scale</code>
+values equal to 4 related to hurricanes of category 4. And so on, and so forth.</p>
+<p>Observe also the use of the tilde <code>~</code> to indicate the output for each text value.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="counting-all-types-of-systems.html#cb179-1" aria-hidden="true" tabindex="-1"></a>system_status <span class="sc">%&gt;%</span></span>
+<span id="cb179-2"><a href="counting-all-types-of-systems.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, wind_scale) <span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="counting-all-types-of-systems.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb179-4"><a href="counting-all-types-of-systems.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> wind_scale)) <span class="sc">+</span></span>
+<span id="cb179-5"><a href="counting-all-types-of-systems.html#cb179-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of Storms per Year, and Category&quot;</span>,</span>
+<span id="cb179-6"><a href="counting-all-types-of-systems.html#cb179-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb179-7"><a href="counting-all-types-of-systems.html#cb179-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>This barchart allows us to see how different storm categories are distributed
+over time. As we know from the graphics obtained in chapter 13, the number
+of systems shows an increasing trend. Despite the eye catching color palette,
+and the clear increasing pattern, it is hard to tell whether all the storm
+categories exhibit the growing trend.</p>
+<p>An alternative visual display is to use facets so that we separate
+each category in its own frame (see below).</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="counting-all-types-of-systems.html#cb180-1" aria-hidden="true" tabindex="-1"></a>system_status <span class="sc">%&gt;%</span></span>
+<span id="cb180-2"><a href="counting-all-types-of-systems.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, wind_scale) <span class="sc">%&gt;%</span></span>
+<span id="cb180-3"><a href="counting-all-types-of-systems.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb180-4"><a href="counting-all-types-of-systems.html#cb180-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> wind_scale)) <span class="sc">+</span></span>
+<span id="cb180-5"><a href="counting-all-types-of-systems.html#cb180-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> wind_scale) <span class="sc">+</span></span>
+<span id="cb180-6"><a href="counting-all-types-of-systems.html#cb180-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of Storms Over Time, and Category&quot;</span>,</span>
+<span id="cb180-7"><a href="counting-all-types-of-systems.html#cb180-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Tropical storms have increased in the last 4 decades&quot;</span>,</span>
+<span id="cb180-8"><a href="counting-all-types-of-systems.html#cb180-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb180-9"><a href="counting-all-types-of-systems.html#cb180-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb180-10"><a href="counting-all-types-of-systems.html#cb180-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>In this plot we can easily see that the main type of systems that have been
+constantly increasing every decade are tropical storms (category 0). This
+pattern was not so evident in the preceding graphic that does not have facets.
+If you look at hurricanes of category 3, their number seems to remain stable
+between 0 and 2 almost every year.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -435,8 +410,8 @@ watch the following video by NOAA SciJinks:</p>
           </div>
         </div>
       </div>
-<a href="tables-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="storms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="counting-more-systems.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
