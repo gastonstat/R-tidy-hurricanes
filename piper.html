@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="summarizing-1975-data.html"/>
 <link rel="next" href="basic-maps.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -307,12 +307,17 @@ results in their own data objects:</p>
 <span id="cb85-7"><a href="piper.html#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pres =</span> <span class="fu">mean</span>(pressure, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb85-8"><a href="piper.html#cb85-8" aria-hidden="true" tabindex="-1"></a>dat5 <span class="ot">=</span> <span class="fu">arrange</span>(dat4, avg_wind)</span>
 <span id="cb85-9"><a href="piper.html#cb85-9" aria-hidden="true" tabindex="-1"></a>dat5</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pres
 ##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Caroline     38.9    1002.
-## 2 Amy          46.5     995.
-## 3 Doris        73.7     983.</code></pre>
+## 1 Hallie       34.6    1005.
+## 2 Caroline     38.9    1002.
+## 3 Blanche      45       999.
+## 4 Eloise       45       999.
+## 5 Amy          46.5     995.
+## 6 Gladys       66.3     986.
+## 7 Doris        67.1     988.
+## 8 Faye         68.4     988.</code></pre>
 <p>Another option, if you don’t want to name the intermediate results, requires
 wrapping the function calls inside each other:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="piper.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside-out style (hard to read)</span></span>
@@ -343,12 +348,17 @@ operations that you can read left-to-right, top-to-bottom:</p>
 <span id="cb88-7"><a href="piper.html#cb88-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb88-8"><a href="piper.html#cb88-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pres =</span> <span class="fu">mean</span>(pressure, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb88-9"><a href="piper.html#cb88-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(avg_wind)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pres
 ##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Caroline     38.9    1002.
-## 2 Amy          46.5     995.
-## 3 Doris        73.7     983.</code></pre>
+## 1 Hallie       34.6    1005.
+## 2 Caroline     38.9    1002.
+## 3 Blanche      45       999.
+## 4 Eloise       45       999.
+## 5 Amy          46.5     995.
+## 6 Gladys       66.3     986.
+## 7 Doris        67.1     988.
+## 8 Faye         68.4     988.</code></pre>
 
 </div>
 </div>

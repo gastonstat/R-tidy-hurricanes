@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="counting-tropical-systems.html"/>
 <link rel="next" href="counting-more-systems.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -290,20 +290,20 @@ get the number of tropical systems in each year from 1975 to 2020:</p>
 <span id="cb138-3"><a href="visualizing-number-of-systems.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
 <span id="cb138-4"><a href="visualizing-number-of-systems.html#cb138-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb138-5"><a href="visualizing-number-of-systems.html#cb138-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
+<pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     3
-##  2  1976     2
-##  3  1977     3
-##  4  1978     4
-##  5  1979     7
-##  6  1980     8
-##  7  1981     5
+##  1  1975     8
+##  2  1976     7
+##  3  1977     6
+##  4  1978    11
+##  5  1979     8
+##  6  1980    11
+##  7  1981    11
 ##  8  1982     5
 ##  9  1983     4
-## 10  1984    10
-## # … with 36 more rows</code></pre>
+## 10  1984    12
+## # ℹ 37 more rows</code></pre>
 <p>Let’s now talk about how to use <code>"ggplot2"</code> functions to obtain a data
 visualization of the above frequencies.</p>
 <div id="barcharts" class="section level2 hasAnchor" number="13.1">
@@ -358,20 +358,20 @@ eyeballing things out it seems that around 1995, 2005, and 2020 there are
 20 or more storms. We can find the actual answer by using <code>arrange()</code>,
 specifying the counts to be shown in descending order—with <code>desc()</code>:</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="visualizing-number-of-systems.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(system_counts_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
+<pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  2020    26
-##  2  1995    21
-##  3  2005    21
-##  4  2003    20
-##  5  2010    20
-##  6  2019    18
-##  7  2001    17
-##  8  2012    17
-##  9  2000    16
-## 10  2007    16
-## # … with 36 more rows</code></pre>
+##  1  2020    30
+##  2  2005    29
+##  3  1995    21
+##  4  2003    21
+##  5  2010    21
+##  6  2011    20
+##  7  2021    20
+##  8  2012    19
+##  9  2000    18
+## 10  2017    18
+## # ℹ 37 more rows</code></pre>
 <p>As you can tell, in the 45-year period from 1975 to 2020, the top three years
 by number of systems correspond to 2020, 1995 and 2005.</p>
 </div>

@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="single-columns.html"/>
 <link rel="next" href="storm-amy-1975.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -297,69 +297,80 @@ Figure 5.1: Extracting certain rows with dplyr function “filter”
 equal to 1975:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="storms-in-1975.html#cb29-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
 <span id="cb29-2"><a href="storms-in-1975.html#cb29-2" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
-<pre><code>## # A tibble: 86 × 13
-##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
-##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
-##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
-##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
-##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
-##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
-##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
-##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
-##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
-##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
-##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
-## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
-## # … with 76 more rows, 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
-## #   hurricane_force_diameter &lt;int&gt;, and abbreviated variable names ¹​category,
-## #   ²​pressure</code></pre>
+<pre><code>## # A tibble: 238 × 13
+##    name   year month   day  hour   lat  long status      category  wind pressure
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+##  8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+## # ℹ 228 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 <p>Once we have the set of storms that occurred in 1975, one possible question
 to ask is what <code>unique()</code> storms happened in that year:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="storms-in-1975.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms75, name))</span></code></pre></div>
-<pre><code>## [1] &quot;Amy&quot;      &quot;Caroline&quot; &quot;Doris&quot;</code></pre>
+<pre><code>## [1] &quot;Amy&quot;      &quot;Blanche&quot;  &quot;Caroline&quot; &quot;Doris&quot;    &quot;Eloise&quot;   &quot;Faye&quot;     &quot;Gladys&quot;  
+## [8] &quot;Hallie&quot;</code></pre>
 <p>From the returned output, there are only three unique storms recorded in 1975.</p>
 <p>Recall that a similar result can be obtained with <code>distinct()</code>, the difference
 being the way in which the output is returned, in this case under the format of
 a tibble:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="storms-in-1975.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(storms75, name)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 1
+<pre><code>## # A tibble: 8 × 1
 ##   name    
 ##   &lt;chr&gt;   
 ## 1 Amy     
-## 2 Caroline
-## 3 Doris</code></pre>
+## 2 Blanche 
+## 3 Caroline
+## 4 Doris   
+## 5 Eloise  
+## 6 Faye    
+## 7 Gladys  
+## 8 Hallie</code></pre>
 <p>Now that we know there are three storms for 1975, it would be nice to count
 the number of rows or entries for each of them. <code>"dplyr"</code> allows us to do this
 with <code>count()</code>, passing the name of the table, and then the name of the column
 for which we want to get the counts or frequencies:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="storms-in-1975.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms75, name)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 2
+<pre><code>## # A tibble: 8 × 2
 ##   name         n
 ##   &lt;chr&gt;    &lt;int&gt;
-## 1 Amy         30
-## 2 Caroline    33
-## 3 Doris       23</code></pre>
+## 1 Amy         31
+## 2 Blanche     20
+## 3 Caroline    33
+## 4 Doris       29
+## 5 Eloise      46
+## 6 Faye        19
+## 7 Gladys      46
+## 8 Hallie      14</code></pre>
 <div id="visualizing-1975-data" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Visualizing 1975 data<a href="storms-in-1975.html#visualizing-1975-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s play a bit with those storms from 1975. More specifically, let’s visually
 explore the values of columns <code>wind</code> and <code>pressure</code>.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="storms-in-1975.html#cb37-1" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
-<pre><code>## # A tibble: 86 × 13
-##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
-##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
-##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
-##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
-##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
-##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
-##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
-##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
-##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
-##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
-##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
-## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
-## # … with 76 more rows, 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
-## #   hurricane_force_diameter &lt;int&gt;, and abbreviated variable names ¹​category,
-## #   ²​pressure</code></pre>
+<pre><code>## # A tibble: 238 × 13
+##    name   year month   day  hour   lat  long status      category  wind pressure
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+##  8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+## # ℹ 228 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 <p>What type of visual display can we use to graph <code>wind</code> speed? The answer to
 this question is based by determining which type of variable <code>wind</code> is.
 You would agree with us in saying that <code>wind</code> is a quantitative variable. So
@@ -400,13 +411,14 @@ sense? How do we interpret each figure?</p>
 useful, or meaningful. Why? Think what exactly it is that we are plotting.
 In 1975, there are three storms:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="storms-in-1975.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms75, name))</span></code></pre></div>
-<pre><code>## [1] &quot;Amy&quot;      &quot;Caroline&quot; &quot;Doris&quot;</code></pre>
+<pre><code>## [1] &quot;Amy&quot;      &quot;Blanche&quot;  &quot;Caroline&quot; &quot;Doris&quot;    &quot;Eloise&quot;   &quot;Faye&quot;     &quot;Gladys&quot;  
+## [8] &quot;Hallie&quot;</code></pre>
 <p>But the histograms are not differentiating between any of those three storms.
 Rather, the visualization is just giving us a general view of the <code>wind</code> values,
 from the low 20’s to the high 90’s, or to be more precise:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="storms-in-1975.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">pull</span>(storms75, wind))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   20.00   25.00   52.50   50.87   65.00  100.00</code></pre>
+##   20.00   30.00   50.00   52.42   65.00  120.00</code></pre>
 <p>However, we don’t really know if all three storms have the same minimum <code>wind</code>
 speed, or the same maximum <code>wind</code> speed. The good news is that we can tell
 <code>ggplot()</code> to take into account each different storm name. But now let’s use

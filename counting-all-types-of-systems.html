@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="counting-more-systems.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -300,17 +300,17 @@ as follows:</p>
 <span id="cb172-8"><a href="counting-all-types-of-systems.html#cb172-8" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(system_status, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 4
 ##     year name     wind_max categ_max
-##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;ord&gt;    
-##  1  1975 Amy            60 0        
-##  2  1975 Caroline      100 3        
-##  3  1975 Doris          95 2        
-##  4  1976 Belle         105 3        
-##  5  1976 Gloria         90 2        
-##  6  1977 Anita         150 5        
-##  7  1977 Clara          65 1        
-##  8  1977 Evelyn         70 1        
-##  9  1978 Amelia         45 0        
-## 10  1978 Bess           45 0</code></pre>
+##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt;     &lt;dbl&gt;
+##  1  1975 Amy            60        NA
+##  2  1975 Blanche        75        NA
+##  3  1975 Caroline      100        NA
+##  4  1975 Doris          95        NA
+##  5  1975 Eloise        110        NA
+##  6  1975 Faye           90        NA
+##  7  1975 Gladys        120        NA
+##  8  1975 Hallie         45        NA
+##  9  1976 Belle         105        NA
+## 10  1976 Candice        80        NA</code></pre>
 <div id="handling-various-conditions" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Handling Various Conditions<a href="counting-all-types-of-systems.html#handling-various-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can take a further step and add a column that displays the category status
@@ -339,17 +339,17 @@ Let’s take a look at the command that gets the job done, and then we discuss i
 <span id="cb174-18"><a href="counting-all-types-of-systems.html#cb174-18" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(system_status, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 5
 ##     year name     wind_max wind_scale wind_categ
-##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;ord&gt;      &lt;chr&gt;     
-##  1  1975 Amy            60 0          storm     
-##  2  1975 Caroline      100 3          hurr3     
-##  3  1975 Doris          95 2          hurr2     
-##  4  1976 Belle         105 3          hurr3     
-##  5  1976 Gloria         90 2          hurr2     
-##  6  1977 Anita         150 5          hurr5     
-##  7  1977 Clara          65 1          hurr1     
-##  8  1977 Evelyn         70 1          hurr1     
-##  9  1978 Amelia         45 0          storm     
-## 10  1978 Bess           45 0          storm</code></pre>
+##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;     
+##  1  1975 Amy            60         NA &lt;NA&gt;      
+##  2  1975 Blanche        75         NA &lt;NA&gt;      
+##  3  1975 Caroline      100         NA &lt;NA&gt;      
+##  4  1975 Doris          95         NA &lt;NA&gt;      
+##  5  1975 Eloise        110         NA &lt;NA&gt;      
+##  6  1975 Faye           90         NA &lt;NA&gt;      
+##  7  1975 Gladys        120         NA &lt;NA&gt;      
+##  8  1975 Hallie         45         NA &lt;NA&gt;      
+##  9  1976 Belle         105         NA &lt;NA&gt;      
+## 10  1976 Candice        80         NA &lt;NA&gt;</code></pre>
 <p>To describe how <code>case_when()</code> works, let’s pay attention to the part of the
 code that involves this command:</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="counting-all-types-of-systems.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">case_when</span>(</span>

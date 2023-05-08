@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="storm-amy-1975.html"/>
 <link rel="next" href="piper.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -287,22 +287,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 those rows with <code>year</code> equal to 1975:</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="summarizing-1975-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
 <span id="cb61-2"><a href="summarizing-1975-data.html#cb61-2" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
-<pre><code>## # A tibble: 86 × 13
-##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
-##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
-##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
-##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
-##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
-##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
-##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
-##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
-##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
-##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
-##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
-## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
-## # … with 76 more rows, 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
-## #   hurricane_force_diameter &lt;int&gt;, and abbreviated variable names ¹​category,
-## #   ²​pressure</code></pre>
+<pre><code>## # A tibble: 238 × 13
+##    name   year month   day  hour   lat  long status      category  wind pressure
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+##  8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+## # ℹ 228 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 <div id="group-by-operations" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Group-by Operations<a href="summarizing-1975-data.html#group-by-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Another common task when exploring data has to do with computations applied
@@ -324,12 +324,17 @@ of <code>wind</code> and <code>pressure</code>, like this:</p>
 <span id="cb63-3"><a href="summarizing-1975-data.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
 <span id="cb63-4"><a href="summarizing-1975-data.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
 <span id="cb63-5"><a href="summarizing-1975-data.html#cb63-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 Amy          46.5         995.
-## 2 Caroline     38.9        1002.
-## 3 Doris        73.7         983.</code></pre>
+## 2 Blanche      45           999.
+## 3 Caroline     38.9        1002.
+## 4 Doris        67.1         988.
+## 5 Eloise       45           999.
+## 6 Faye         68.4         988.
+## 7 Gladys       66.3         986.
+## 8 Hallie       34.6        1005.</code></pre>
 <p>Sometimes, you’ll find convenient to assign the output into its own table:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="summarizing-1975-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
 <span id="cb65-2"><a href="summarizing-1975-data.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
@@ -338,12 +343,17 @@ of <code>wind</code> and <code>pressure</code>, like this:</p>
 <span id="cb65-5"><a href="summarizing-1975-data.html#cb65-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb65-6"><a href="summarizing-1975-data.html#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-7"><a href="summarizing-1975-data.html#cb65-7" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 Amy          46.5         995.
-## 2 Caroline     38.9        1002.
-## 3 Doris        73.7         983.</code></pre>
+## 2 Blanche      45           999.
+## 3 Caroline     38.9        1002.
+## 4 Doris        67.1         988.
+## 5 Eloise       45           999.
+## 6 Faye         68.4         988.
+## 7 Gladys       66.3         986.
+## 8 Hallie       34.6        1005.</code></pre>
 </div>
 <div id="arrange-operations" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Arrange operations<a href="summarizing-1975-data.html#arrange-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -364,31 +374,46 @@ Figure 7.2: Arranging rows
 <p>Say you want to arrange the contents of the average summary table, by taking
 into account the column <code>avg_wind</code>:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="summarizing-1975-data.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_wind)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Caroline     38.9        1002.
-## 2 Amy          46.5         995.
-## 3 Doris        73.7         983.</code></pre>
+## 1 Hallie       34.6        1005.
+## 2 Caroline     38.9        1002.
+## 3 Blanche      45           999.
+## 4 Eloise       45           999.
+## 5 Amy          46.5         995.
+## 6 Gladys       66.3         986.
+## 7 Doris        67.1         988.
+## 8 Faye         68.4         988.</code></pre>
 <p>Likewise, you can also arrange the averages by <code>avg_pressure</code>:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="summarizing-1975-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_pressure)</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Doris        73.7         983.
-## 2 Amy          46.5         995.
-## 3 Caroline     38.9        1002.</code></pre>
+## 1 Gladys       66.3         986.
+## 2 Faye         68.4         988.
+## 3 Doris        67.1         988.
+## 4 Amy          46.5         995.
+## 5 Eloise       45           999.
+## 6 Blanche      45           999.
+## 7 Caroline     38.9        1002.
+## 8 Hallie       34.6        1005.</code></pre>
 <p>The default behavior of <code>arrange()</code> is to organize rows in increasing order.
 But what if you want to organize rows in decreasing order? No problem, just
 use the auxiliary function <code>desc()</code> to indicate that rows should be arranged
 decreasingly:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="summarizing-1975-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, <span class="fu">desc</span>(avg_wind))</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 3
+<pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Doris        73.7         983.
-## 2 Amy          46.5         995.
-## 3 Caroline     38.9        1002.</code></pre>
+## 1 Faye         68.4         988.
+## 2 Doris        67.1         988.
+## 3 Gladys       66.3         986.
+## 4 Amy          46.5         995.
+## 5 Blanche      45           999.
+## 6 Eloise       45           999.
+## 7 Caroline     38.9        1002.
+## 8 Hallie       34.6        1005.</code></pre>
 </div>
 <div id="further-inspection-of-1975-storm-amy" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Further inspection of 1975 storm Amy<a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -397,22 +422,22 @@ simplicity, we are going to create a table <code>amy75</code> containing the val
 this storm:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="summarizing-1975-data.html#cb73-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
 <span id="cb73-2"><a href="summarizing-1975-data.html#cb73-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
-<pre><code>## # A tibble: 30 × 13
-##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
-##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
-##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
-##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
-##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
-##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
-##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
-##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
-##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
-##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
-##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
-## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
-## # … with 20 more rows, 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
-## #   hurricane_force_diameter &lt;int&gt;, and abbreviated variable names ¹​category,
-## #   ²​pressure</code></pre>
+<pre><code>## # A tibble: 31 × 13
+##    name   year month   day  hour   lat  long status      category  wind pressure
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+##  8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+## # ℹ 21 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 <p>Here’s a couple of questions that we could investigate:</p>
 <ul>
 <li><p>which are the <code>status</code> categories for Amy?</p></li>
@@ -421,11 +446,12 @@ this storm:</p>
 </ul>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="summarizing-1975-data.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which are the `status` categories for Amy?</span></span>
 <span id="cb75-2"><a href="summarizing-1975-data.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, status)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 1
+<pre><code>## # A tibble: 3 × 1
 ##   status             
-##   &lt;chr&gt;              
+##   &lt;fct&gt;              
 ## 1 tropical depression
-## 2 tropical storm</code></pre>
+## 2 tropical storm     
+## 3 extratropical</code></pre>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="summarizing-1975-data.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># during which months was Amy active?</span></span>
 <span id="cb77-2"><a href="summarizing-1975-data.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, month)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 1
@@ -443,9 +469,9 @@ this storm:</p>
 <span id="cb81-2"><a href="summarizing-1975-data.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, wind))</span></code></pre></div>
 <pre><code>##       wind      
 ##  Min.   :25.00  
-##  1st Qu.:31.25  
+##  1st Qu.:32.50  
 ##  Median :50.00  
-##  Mean   :46.50  
+##  Mean   :46.45  
 ##  3rd Qu.:60.00  
 ##  Max.   :60.00</code></pre>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="summarizing-1975-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for pressure</span></span>
@@ -455,7 +481,7 @@ this storm:</p>
 ##  1st Qu.: 986.0  
 ##  Median : 987.0  
 ##  Mean   : 995.1  
-##  3rd Qu.:1005.5  
+##  3rd Qu.:1005.0  
 ##  Max.   :1013.0</code></pre>
 <hr />
 <div id="your-turn-2" class="section level3 hasAnchor" number="7.3.1">

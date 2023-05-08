@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="tropical-storms.html"/>
 <link rel="next" href="single-columns.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -321,22 +321,22 @@ six hours during the lifetime of a storm.</p>
 <p>Assuming that you’ve loaded <code>"tidyverse"</code> (or <code>"dplyr"</code>) in R, when you type
 the name of the data object, you would get something like this:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="storms.html#cb3-1" aria-hidden="true" tabindex="-1"></a>storms</span></code></pre></div>
-<pre><code>## # A tibble: 11,859 × 13
-##    name   year month   day  hour   lat  long status        categ…¹  wind press…²
-##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;
-##  1 Amy    1975     6    27     0  27.5 -79   tropical dep… -1         25    1013
-##  2 Amy    1975     6    27     6  28.5 -79   tropical dep… -1         25    1013
-##  3 Amy    1975     6    27    12  29.5 -79   tropical dep… -1         25    1013
-##  4 Amy    1975     6    27    18  30.5 -79   tropical dep… -1         25    1013
-##  5 Amy    1975     6    28     0  31.5 -78.8 tropical dep… -1         25    1012
-##  6 Amy    1975     6    28     6  32.4 -78.7 tropical dep… -1         25    1012
-##  7 Amy    1975     6    28    12  33.3 -78   tropical dep… -1         25    1011
-##  8 Amy    1975     6    28    18  34   -77   tropical dep… -1         30    1006
-##  9 Amy    1975     6    29     0  34.4 -75.8 tropical sto… 0          35    1004
-## 10 Amy    1975     6    29     6  34   -74.8 tropical sto… 0          40    1002
-## # … with 11,849 more rows, 2 more variables:
-## #   tropicalstorm_force_diameter &lt;int&gt;, hurricane_force_diameter &lt;int&gt;, and
-## #   abbreviated variable names ¹​category, ²​pressure</code></pre>
+<pre><code>## # A tibble: 19,066 × 13
+##    name   year month   day  hour   lat  long status      category  wind pressure
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+##  8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+## # ℹ 19,056 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 <p>Let’s describe what’s going on in the above output.</p>
 <ul>
 <li><p>As you can tell, <code>storms</code> is a <strong>tibble</strong> object, which is one of the data
@@ -426,28 +426,28 @@ table. To do all these things there is a handful of functions:</p>
 <p>For instance, to get a general summary of the table’s structure, we can use
 <code>str()</code> and its argument <code>vec.len = 1</code> to simplify the amount of output:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="storms.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(storms, <span class="at">vec.len =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## tibble [11,859 × 13] (S3: tbl_df/tbl/data.frame)
-##  $ name                        : chr [1:11859] &quot;Amy&quot; ...
-##  $ year                        : num [1:11859] 1975 ...
-##  $ month                       : num [1:11859] 6 6 ...
-##  $ day                         : int [1:11859] 27 27 ...
-##  $ hour                        : num [1:11859] 0 6 ...
-##  $ lat                         : num [1:11859] 27.5 28.5 ...
-##  $ long                        : num [1:11859] -79 -79 ...
-##  $ status                      : chr [1:11859] &quot;tropical depression&quot; ...
-##  $ category                    : Ord.factor w/ 7 levels &quot;-1&quot;&lt;&quot;0&quot;&lt;&quot;1&quot;&lt;&quot;2&quot;&lt;..: 1 1 ...
-##  $ wind                        : int [1:11859] 25 25 ...
-##  $ pressure                    : int [1:11859] 1013 1013 ...
-##  $ tropicalstorm_force_diameter: int [1:11859] NA NA ...
-##  $ hurricane_force_diameter    : int [1:11859] NA NA ...</code></pre>
+<pre><code>## tibble [19,066 × 13] (S3: tbl_df/tbl/data.frame)
+##  $ name                        : chr [1:19066] &quot;Amy&quot; ...
+##  $ year                        : num [1:19066] 1975 ...
+##  $ month                       : num [1:19066] 6 6 ...
+##  $ day                         : int [1:19066] 27 27 ...
+##  $ hour                        : num [1:19066] 0 6 ...
+##  $ lat                         : num [1:19066] 27.5 28.5 ...
+##  $ long                        : num [1:19066] -79 -79 ...
+##  $ status                      : Factor w/ 9 levels &quot;disturbance&quot;,..: 7 7 ...
+##  $ category                    : num [1:19066] NA NA ...
+##  $ wind                        : int [1:19066] 25 25 ...
+##  $ pressure                    : int [1:19066] 1013 1013 ...
+##  $ tropicalstorm_force_diameter: int [1:19066] NA NA ...
+##  $ hurricane_force_diameter    : int [1:19066] NA NA ...</code></pre>
 <p>Likewise, to explore the dimensions, that is the number of rows and columns,
 you can invoke <code>dim()</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="storms.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(storms)</span></code></pre></div>
-<pre><code>## [1] 11859    13</code></pre>
+<pre><code>## [1] 19066    13</code></pre>
 <p>Alternatively, you can also call <code>nrow()</code> or <code>ncol()</code> if you prefer to
 get just the number of rows or just the number of columns:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="storms.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(storms)</span></code></pre></div>
-<pre><code>## [1] 11859</code></pre>
+<pre><code>## [1] 19066</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="storms.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(storms)</span></code></pre></div>
 <pre><code>## [1] 13</code></pre>
 <p>Often, I like to use <code>head()</code> and/or <code>tail()</code> to see the first and/or the last
@@ -455,16 +455,16 @@ rows of a table. In this way I can get an idea of what the data looks like
 without having to print all the entries.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="storms.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(storms)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 13
-##   name   year month   day  hour   lat  long status categ…¹  wind press…² tropi…³
-##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;ord&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
-## 1 Iota   2020    11    17     6  13.7 -83.8 hurri… 3         110     935     310
-## 2 Iota   2020    11    17    12  13.7 -84.7 hurri… 1          75     965     270
-## 3 Iota   2020    11    17    18  13.7 -85.7 tropi… 0          55     988     210
-## 4 Iota   2020    11    18     0  13.8 -86.7 tropi… 0          40    1000     140
-## 5 Iota   2020    11    18     6  13.8 -87.8 tropi… 0          35    1005     140
-## 6 Iota   2020    11    18    12  13.7 -89   tropi… -1         25    1006       0
-## # … with 1 more variable: hurricane_force_diameter &lt;int&gt;, and abbreviated
-## #   variable names ¹​category, ²​pressure, ³​tropicalstorm_force_diameter</code></pre>
+##   name   year month   day  hour   lat  long status       category  wind pressure
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+## 1 Wanda  2021    11     6    18  37.1 -38   tropical st…       NA    35     1002
+## 2 Wanda  2021    11     7     0  37.4 -37.4 tropical st…       NA    35     1003
+## 3 Wanda  2021    11     7     6  38.1 -36.4 tropical st…       NA    35     1004
+## 4 Wanda  2021    11     7    12  39.2 -34.9 other low          NA    35     1006
+## 5 Wanda  2021    11     7    18  40.9 -32.8 other low          NA    40     1006
+## 6 Wanda  2021    11     8     0  43.2 -29.7 other low          NA    40     1006
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 
 </div>
 </div>

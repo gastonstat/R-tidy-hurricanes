@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="summary.html"/>
 <link rel="next" href="visualizing-number-of-systems.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -307,7 +307,7 @@ this initial setting, you could assemble the following pipeline of commands:</p>
 <pre><code>## # A tibble: 1 × 1
 ##       n
 ##   &lt;int&gt;
-## 1 11859</code></pre>
+## 1 19066</code></pre>
 <p>Okay. This count is not what we are looking for. But before trying other
 ideas, spend some time reflecting on what the preceding command is doing.</p>
 </div>
@@ -319,21 +319,21 @@ ideas, spend some time reflecting on what the preceding command is doing.</p>
 <span id="cb126-3"><a href="counting-tropical-systems.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
 <span id="cb126-4"><a href="counting-tropical-systems.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
 <span id="cb126-5"><a href="counting-tropical-systems.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
-## # Groups:   year [46]
+<pre><code>## # A tibble: 47 × 2
+## # Groups:   year [47]
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975    86
-##  2  1976    52
-##  3  1977    53
-##  4  1978    54
-##  5  1979   301
-##  6  1980   161
-##  7  1981   164
-##  8  1982   105
-##  9  1983    79
-## 10  1984   236
-## # … with 36 more rows</code></pre>
+##  1  1975   238
+##  2  1976   126
+##  3  1977    92
+##  4  1978   152
+##  5  1979   324
+##  6  1980   335
+##  7  1981   311
+##  8  1982   111
+##  9  1983    88
+## 10  1984   342
+## # ℹ 37 more rows</code></pre>
 <p>This result looks more interesting. The returned output is a table with two
 columns: <code>year</code> and <code>n</code>. But after careful inspection, you should notice
 something awkward. While the first column makes complete sense, the second
@@ -346,30 +346,30 @@ more compact command without the need to use <code>select()</code> and <code>gro
 can just simply invoke <code>count(year)</code>:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="counting-tropical-systems.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same output of preceding command, only using count()</span></span>
 <span id="cb128-2"><a href="counting-tropical-systems.html#cb128-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
+<pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975    86
-##  2  1976    52
-##  3  1977    53
-##  4  1978    54
-##  5  1979   301
-##  6  1980   161
-##  7  1981   164
-##  8  1982   105
-##  9  1983    79
-## 10  1984   236
-## # … with 36 more rows</code></pre>
+##  1  1975   238
+##  2  1976   126
+##  3  1977    92
+##  4  1978   152
+##  5  1979   324
+##  6  1980   335
+##  7  1981   311
+##  8  1982   111
+##  9  1983    88
+## 10  1984   342
+## # ℹ 37 more rows</code></pre>
 </div>
 <div id="attempt-number-3" class="section level4 unnumbered hasAnchor">
 <h4>Attempt Number 3<a href="counting-tropical-systems.html#attempt-number-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>What if instead of counting <code>year</code> we count based on column <code>name</code>? For example:</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="counting-tropical-systems.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
 <span id="cb130-2"><a href="counting-tropical-systems.html#cb130-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(name)</span></code></pre></div>
-<pre><code>## # A tibble: 214 × 2
+<pre><code>## # A tibble: 258 × 2
 ##    name         n
 ##    &lt;chr&gt;    &lt;int&gt;
-##  1 AL011993     8
+##  1 AL011993    11
 ##  2 AL012000     4
 ##  3 AL021992     5
 ##  4 AL021994     6
@@ -377,9 +377,9 @@ can just simply invoke <code>count(year)</code>:</p>
 ##  6 AL022000    12
 ##  7 AL022001     5
 ##  8 AL022003     4
-##  9 AL022006     5
+##  9 AL022006    13
 ## 10 AL031987    32
-## # … with 204 more rows</code></pre>
+## # ℹ 248 more rows</code></pre>
 <p>Mmm. Again, not the count that we are looking for. On a side note, observe the
 values displayed in the first rows of the returned table: e.g. <code>AL011993</code>,
 <code>AL012000</code>. These alphanumeric names correspond to names of tropical depressions
@@ -396,20 +396,20 @@ with duplicated values.</p>
 counting by taking into account both <code>year</code> and <code>name</code></p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="counting-tropical-systems.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
 <span id="cb132-2"><a href="counting-tropical-systems.html#cb132-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name)</span></code></pre></div>
-<pre><code>## # A tibble: 512 × 3
+<pre><code>## # A tibble: 639 × 3
 ##     year name         n
 ##    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
-##  1  1975 Amy         30
-##  2  1975 Caroline    33
-##  3  1975 Doris       23
-##  4  1976 Belle       18
-##  5  1976 Gloria      34
-##  6  1977 Anita       20
-##  7  1977 Clara       24
-##  8  1977 Evelyn       9
-##  9  1978 Amelia       6
-## 10  1978 Bess        13
-## # … with 502 more rows</code></pre>
+##  1  1975 Amy         31
+##  2  1975 Blanche     20
+##  3  1975 Caroline    33
+##  4  1975 Doris       29
+##  5  1975 Eloise      46
+##  6  1975 Faye        19
+##  7  1975 Gladys      46
+##  8  1975 Hallie      14
+##  9  1976 Belle       18
+## 10  1976 Candice     11
+## # ℹ 629 more rows</code></pre>
 <p>Compared to the previous attempts, this output looks more promising. Finally,
 we can see that there were three (named) storms in 1975, two in 1976, three
 more in 1977, etc. However, we still don’t have those specific counts: 3, 2, 3,
@@ -422,20 +422,20 @@ direction.</p>
 considering <code>year</code>?</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="counting-tropical-systems.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
 <span id="cb134-2"><a href="counting-tropical-systems.html#cb134-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
+<pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     3
-##  2  1976     2
-##  3  1977     3
-##  4  1978     4
-##  5  1979     7
-##  6  1980     8
-##  7  1981     5
+##  1  1975     8
+##  2  1976     7
+##  3  1977     6
+##  4  1978    11
+##  5  1979     8
+##  6  1980    11
+##  7  1981    11
 ##  8  1982     5
 ##  9  1983     4
-## 10  1984    10
-## # … with 36 more rows</code></pre>
+## 10  1984    12
+## # ℹ 37 more rows</code></pre>
 <p>Voila! Now we are talking. This table contains precisely the counts that
 we are looking for: number of systems in each year.</p>
 <p>For convenience purposes, let’s assign this table into its own object,
@@ -446,20 +446,20 @@ that you might prefer to use:</p>
 <span id="cb136-3"><a href="counting-tropical-systems.html#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
 <span id="cb136-4"><a href="counting-tropical-systems.html#cb136-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-5"><a href="counting-tropical-systems.html#cb136-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
+<pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     3
-##  2  1976     2
-##  3  1977     3
-##  4  1978     4
-##  5  1979     7
-##  6  1980     8
-##  7  1981     5
+##  1  1975     8
+##  2  1976     7
+##  3  1977     6
+##  4  1978    11
+##  5  1979     8
+##  6  1980    11
+##  7  1981    11
 ##  8  1982     5
 ##  9  1983     4
-## 10  1984    10
-## # … with 36 more rows</code></pre>
+## 10  1984    12
+## # ℹ 37 more rows</code></pre>
 <p>Now that we have the counts or frequencies, it would be nice to visualize them
 with a barchart, like the following one:</p>
 <p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>

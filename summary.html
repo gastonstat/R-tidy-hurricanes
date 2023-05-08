@@ -31,7 +31,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="less-basic-maps.html"/>
 <link rel="next" href="counting-tropical-systems.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -322,7 +322,7 @@ step by step. As you get more comfortable with <code>"dplyr"</code> and other fu
 you won’t have the need to disect every single command.</p>
 <p>A first step is to <code>select()</code> variables <code>year</code> and <code>name</code>:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="summary.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(storms, year, name)</span></code></pre></div>
-<pre><code>## # A tibble: 11,859 × 2
+<pre><code>## # A tibble: 19,066 × 2
 ##     year name 
 ##    &lt;dbl&gt; &lt;chr&gt;
 ##  1  1975 Amy  
@@ -335,14 +335,14 @@ you won’t have the need to disect every single command.</p>
 ##  8  1975 Amy  
 ##  9  1975 Amy  
 ## 10  1975 Amy  
-## # … with 11,849 more rows</code></pre>
+## # ℹ 19,056 more rows</code></pre>
 <p>Next, we need to <code>group_by()</code> year. At first glance, the previous output and
 the output below seem identical. But notice the tiny difference: the output
 below has a second line of text with some relevant information:
 <code># Groups:   year [41]</code>, telling us that the values are grouped by year.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="summary.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year)</span></code></pre></div>
-<pre><code>## # A tibble: 11,859 × 2
-## # Groups:   year [46]
+<pre><code>## # A tibble: 19,066 × 2
+## # Groups:   year [47]
 ##     year name 
 ##    &lt;dbl&gt; &lt;chr&gt;
 ##  1  1975 Amy  
@@ -355,44 +355,44 @@ below has a second line of text with some relevant information:
 ##  8  1975 Amy  
 ##  9  1975 Amy  
 ## 10  1975 Amy  
-## # … with 11,849 more rows</code></pre>
+## # ℹ 19,056 more rows</code></pre>
 <p>Then, we identify the <code>distinct()</code> values (combination of year-name):</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="summary.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
-<pre><code>## # A tibble: 512 × 2
-## # Groups:   year [46]
+<pre><code>## # A tibble: 639 × 2
+## # Groups:   year [47]
 ##     year name    
 ##    &lt;dbl&gt; &lt;chr&gt;   
 ##  1  1975 Amy     
-##  2  1975 Caroline
-##  3  1975 Doris   
-##  4  1976 Belle   
-##  5  1976 Gloria  
-##  6  1977 Anita   
-##  7  1977 Clara   
-##  8  1977 Evelyn  
-##  9  1978 Amelia  
-## 10  1978 Bess    
-## # … with 502 more rows</code></pre>
+##  2  1975 Blanche 
+##  3  1975 Caroline
+##  4  1975 Doris   
+##  5  1975 Eloise  
+##  6  1975 Faye    
+##  7  1975 Gladys  
+##  8  1975 Hallie  
+##  9  1976 Belle   
+## 10  1976 Dottie  
+## # ℹ 629 more rows</code></pre>
 <p>For convenience purposes, let’s assign this table into its own object,
 which we can call <code>storms_year_name</code></p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="summary.html#cb116-1" aria-hidden="true" tabindex="-1"></a>storms_year_name <span class="ot">&lt;-</span> <span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
 <p>Finally, we need to <code>count()</code> how many storms are in each year:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="summary.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms_year_name, year)</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
-## # Groups:   year [46]
+<pre><code>## # A tibble: 47 × 2
+## # Groups:   year [47]
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     3
-##  2  1976     2
-##  3  1977     3
-##  4  1978     4
-##  5  1979     7
-##  6  1980     8
-##  7  1981     5
+##  1  1975     8
+##  2  1976     7
+##  3  1977     6
+##  4  1978    11
+##  5  1979     8
+##  6  1980    11
+##  7  1981    11
 ##  8  1982     5
 ##  9  1983     4
-## 10  1984    10
-## # … with 36 more rows</code></pre>
+## 10  1984    12
+## # ℹ 37 more rows</code></pre>
 <p>All the previous commands can be assembled together with various embedded lines
 of code:</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="summary.html#cb119-1" aria-hidden="true" tabindex="-1"></a>storms_per_year <span class="ot">&lt;-</span> <span class="fu">count</span>(</span>
@@ -404,21 +404,21 @@ of code:</p>
 <span id="cb119-7"><a href="summary.html#cb119-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb119-8"><a href="summary.html#cb119-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb119-9"><a href="summary.html#cb119-9" aria-hidden="true" tabindex="-1"></a>storms_per_year</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
-## # Groups:   year [46]
+<pre><code>## # A tibble: 47 × 2
+## # Groups:   year [47]
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     3
-##  2  1976     2
-##  3  1977     3
-##  4  1978     4
-##  5  1979     7
-##  6  1980     8
-##  7  1981     5
+##  1  1975     8
+##  2  1976     7
+##  3  1977     6
+##  4  1978    11
+##  5  1979     8
+##  6  1980    11
+##  7  1981    11
 ##  8  1982     5
 ##  9  1983     4
-## 10  1984    10
-## # … with 36 more rows</code></pre>
+## 10  1984    12
+## # ℹ 37 more rows</code></pre>
 <p>Now that we have the counts or frequencies, we can make our next barchart.
 In this case, we will use the table <code>storms_year_name</code> as the input data for
 <code>ggplot()</code>:</p>
@@ -431,21 +431,21 @@ eyeballing things out it seems that around 1995, 2003, 2005, and 2010 there are
 20 or more storms. We can find the actual answer by using <code>arrange()</code>,
 specifying the counts to be shown in descending order—with <code>desc()</code>:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="summary.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(storms_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
-<pre><code>## # A tibble: 46 × 2
-## # Groups:   year [46]
+<pre><code>## # A tibble: 47 × 2
+## # Groups:   year [47]
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
-##  1  2020    26
-##  2  1995    21
-##  3  2005    21
-##  4  2003    20
-##  5  2010    20
-##  6  2019    18
-##  7  2001    17
-##  8  2012    17
-##  9  2000    16
-## 10  2007    16
-## # … with 36 more rows</code></pre>
+##  1  2020    30
+##  2  2005    29
+##  3  1995    21
+##  4  2003    21
+##  5  2010    21
+##  6  2011    20
+##  7  2021    20
+##  8  2012    19
+##  9  2000    18
+## 10  2017    18
+## # ℹ 37 more rows</code></pre>
 <p>As you can tell, in the 41-year period from 1975 to 2015, there are two years,
 1995 and 2005, with a maximum number of storms equal to 21.</p>
 <hr />
