@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Tropical Storms and Hurricanes | Tidy Hurricanes</title>
+  <title>5 Data Manipulation with "dplyr" | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta property="og:title" content="5 Data Manipulation with "dplyr" | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta name="twitter:title" content="5 Data Manipulation with "dplyr" | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="tables-and-tidyverse.html"/>
-<link rel="next" href="storms.html"/>
+<link rel="prev" href="graphics-with-ggplot2.html"/>
+<link rel="next" href="piper.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -308,151 +308,206 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tropical-storms" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Tropical Storms and Hurricanes<a href="tropical-storms.html#tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="images/sandy-hurricane.jpg" alt="NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)" width="80%" />
-<p class="caption">
-Figure 2.1: NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)
-</p>
-</div>
-<blockquote>
-<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the
-deadliest and most destructive, as well as the strongest, hurricane of the
-2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in
-damage, it was the second-costliest hurricane on record in the United States
-until surpassed by Hurricanes Harvey and Maria in 2017.</p>
-</blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
-<div id="a-little-bit-about-hurricanes" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> A little bit about Hurricanes<a href="tropical-storms.html#a-little-bit-about-hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I don’t remember very well when was the first time I got interested in
-Hurricanes. I did not grow up in hurricane country or anywhere near regions
-prone to be hit by this kind of storms. However, I do remember learning about
-clouds, meteorology, and how storms form over mountain ranges. I learned this
-when I was in my early 20s taking my first steps into the mountaineering world.
-Experiencing the force and dangers of several storms in the mountains and
-volcanoes of my homeland, sparked in me a general interest to know more about
-this type of weather phenomena.</p>
-<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em>
-which in turn comes from the Taino word <em>hurakán</em>, that was used
-by the indigenous people of the Caribbean and Central America to designate the
-“god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane
-is informally used to denote low-pressure systems with organized thunderstorm
-activity that form over tropical or subtropical waters. Among weather experts,
-though, the term hurricane is reserved for a specific class of tropical
-systems: those that reach wind speeds of at least 74 mph, and are exclusively
-formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
-<p>Despite my longtime interest in storms and hurricanes, my level of expertise
-in these subjects is fairly limited. Because of this, I prefer to give you a
-curated list of some facts about hurricanes that I’ve collected from the
-following sources:</p>
+<div id="data-manipulation-with-dplyr" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Data Manipulation with <code>"dplyr"</code><a href="data-manipulation-with-dplyr.html#data-manipulation-with-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the preceding chapter, we introduced some of the key ideas behind the
+Grammar of Graphics and their implementation through <code>"ggplot2"</code>. In this
+chapter we move on with some of the basic notions behind <code>"dplyr"</code>, specifically
+we introduce the set of functions commonly referred to as the <em>basic verbs</em>.</p>
+<p>To continue the discussion, we use the sample data given in the following
+code chunk:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-manipulation-with-dplyr.html#cb26-1" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb26-2"><a href="data-manipulation-with-dplyr.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Gaston&#39;</span>, <span class="st">&#39;Hermine&#39;</span>, <span class="st">&#39;Igor&#39;</span>, <span class="st">&#39;Julia&#39;</span>, <span class="st">&#39;Karl&#39;</span>, <span class="st">&#39;Lisa&#39;</span>, <span class="st">&#39;Matthew&#39;</span>, <span class="st">&#39;Nicole&#39;</span>),</span>
+<span id="cb26-3"><a href="data-manipulation-with-dplyr.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">135</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">40</span>),</span>
+<span id="cb26-4"><a href="data-manipulation-with-dplyr.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pressure =</span> <span class="fu">c</span>(<span class="dv">1005</span>, <span class="dv">989</span>, <span class="dv">924</span>, <span class="dv">948</span>, <span class="dv">956</span>, <span class="dv">982</span>, <span class="dv">998</span>, <span class="dv">994</span>),</span>
+<span id="cb26-5"><a href="data-manipulation-with-dplyr.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat3&#39;</span>, <span class="st">&#39;cat1&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>)</span>
+<span id="cb26-6"><a href="data-manipulation-with-dplyr.html#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-7"><a href="data-manipulation-with-dplyr.html#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="data-manipulation-with-dplyr.html#cb26-8" aria-hidden="true" tabindex="-1"></a>sep2010</span></code></pre></div>
+<pre><code># A tibble: 8 × 4
+  name     wind pressure category
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+1 Gaston     35     1005 ts      
+2 Hermine    60      989 ts      
+3 Igor      135      924 cat4    
+4 Julia     120      948 cat4    
+5 Karl      110      956 cat3    
+6 Lisa       75      982 cat1    
+7 Matthew    50      998 ts      
+8 Nicole     40      994 ts      </code></pre>
+<div id="basic-dplyr-verbs" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Basic <code>"dplyr"</code> verbs<a href="data-manipulation-with-dplyr.html#basic-dplyr-verbs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In no particular order of importance, let’s start with the set of elementary
+<code>"dplyr"</code> functions known as the <em>basic dplyr verbs</em>:</p>
 <ul>
-<li><p>National Oceanic and Atmospheric Administration (NOAA):
-<a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
-<li><p>SciJinks: It’s all about weather!
-<a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
-<li><p>NASA Space Place: How Do Hurricanes Form?
-<a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
+<li><p><code>filter()</code>: select (i.e. keeping) rows that match a condition</p></li>
+<li><p><code>slice()</code>: subset rows using their positions</p></li>
+<li><p><code>select()</code>: keep or drop columns using their names and types</p></li>
+<li><p><code>mutate()</code>: modify existing variables, or add new variables</p></li>
+<li><p><code>arrange()</code>: reorder rows using column names</p></li>
+<li><p><code>summarise()</code>: reduce variables to values</p></li>
+<li><p><code>group_by()</code>: grouped (aggregated) operations</p></li>
 </ul>
-<div id="tropical-cyclones" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Tropical Cyclones<a href="tropical-storms.html#tropical-cyclones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
-<li><p>They form near the equator over warm ocean waters.</p></li>
-<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
-<li><p>A tropical cyclone is a rotating low-pressure weather system that produces
-strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
-<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and
-rip currents.</p></li>
-<li><p>People call these storms by other names, such as typhoons or cyclones,
-depending on where they occur.</p></li>
-<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific
-Ocean are called “hurricanes.”</p></li>
-</ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/tropical-cyclones-map.png" alt="Nomenclature of tropical cyclones around the world." width="65%" />
-<p class="caption">
-Figure 2.2: Nomenclature of tropical cyclones around the world.
-</p>
+<div id="filter" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Filter<a href="data-manipulation-with-dplyr.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>filter()</code> allows you to select rows by defining a condition (which could be
+simple or compound). For example, we can filter <code>sep2010</code> by selecting those
+tropical cyclones of category tropical storm (<code>ts</code>)</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-manipulation-with-dplyr.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using a single condition</span></span>
+<span id="cb28-2"><a href="data-manipulation-with-dplyr.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sep2010, category <span class="sc">==</span> <span class="st">&quot;ts&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   name     wind pressure category
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Gaston     35     1005 ts      
+## 2 Hermine    60      989 ts      
+## 3 Matthew    50      998 ts      
+## 4 Nicole     40      994 ts</code></pre>
+<p>We can also use a compound logical condition: tropical storms having a wind
+speed greater than 40</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-manipulation-with-dplyr.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sep2010, category <span class="sc">==</span> <span class="st">&quot;ts&quot;</span> <span class="sc">&amp;</span> wind <span class="sc">&gt;</span> <span class="dv">40</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   name     wind pressure category
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Hermine    60      989 ts      
+## 2 Matthew    50      998 ts</code></pre>
 </div>
-</div>
-<div id="storm-classification" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Storm Classification<a href="tropical-storms.html#storm-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="slice" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Slice<a href="data-manipulation-with-dplyr.html#slice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>slice()</code> allows you to subset rows using their positions, for example:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-manipulation-with-dplyr.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first row</span></span>
+<span id="cb32-2"><a href="data-manipulation-with-dplyr.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   name    wind pressure category
+##   &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Gaston    35     1005 ts</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-manipulation-with-dplyr.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third row</span></span>
+<span id="cb34-2"><a href="data-manipulation-with-dplyr.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   name   wind pressure category
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Igor    135      924 cat4</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-manipulation-with-dplyr.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first three rows</span></span>
+<span id="cb36-2"><a href="data-manipulation-with-dplyr.html#cb36-2" aria-hidden="true" tabindex="-1"></a>three_rows <span class="ot">=</span> <span class="fu">slice</span>(sep2010, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb36-3"><a href="data-manipulation-with-dplyr.html#cb36-3" aria-hidden="true" tabindex="-1"></a>three_rows</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   name     wind pressure category
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Gaston     35     1005 ts      
+## 2 Hermine    60      989 ts      
+## 3 Igor      135      924 cat4</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-manipulation-with-dplyr.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a negative position</span></span>
+<span id="cb38-2"><a href="data-manipulation-with-dplyr.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   name     wind pressure category
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Hermine    60      989 ts      
+## 2 Igor      135      924 cat4    
+## 3 Julia     120      948 cat4    
+## 4 Karl      110      956 cat3    
+## 5 Lisa       75      982 cat1    
+## 6 Matthew    50      998 ts      
+## 7 Nicole     40      994 ts</code></pre>
+<p>We should note that <code>slice()</code> comes with a set of sibling functions such as:</p>
 <ul>
-<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
-<ul>
-<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
-<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
-<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
-</ul></li>
-<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained
-winds have reached 74 mph.</p></li>
-<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson
-Hurricane Wind Scale.</p></li>
-<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a
-hurricane’s sustained wind speed:</p>
-<ul>
-<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
-<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
-<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
-<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
-<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
-</ul></li>
-<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
-<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob
-Simpson to help explain damage that buildings will sustain under different wind
-speeds.</p></li>
-<li><p>Note that the Saffir-Simpson scale does not include hazards from rain,
-flooding, or storm surge.</p></li>
-</ul>
-</div>
-<div id="naming-storms" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Naming Storms<a href="tropical-storms.html#naming-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is
-given a name.</p></li>
-<li><p>The names are chosen by an international committee of the World Meteorological
-Organization (WMO).</p></li>
-<li><p>The list of names is available at: <a href="https://www.nhc.noaa.gov/aboutnames.shtml" class="uri">https://www.nhc.noaa.gov/aboutnames.shtml</a></p></li>
-<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
-<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
-<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
-<li><p>The names proceed in alphabetical order, omitting the “difficult” letters
-Q, U, X, Y, and Z.</p></li>
-<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
-<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic
-basin in a season, or more than 24 named tropical cyclones in the eastern North
-Pacific basin, any additional storms will take names from an alternate list of
-names approved by the WMO for each basin.</p></li>
+<li><p><code>slice_head()</code> to subset the first rows</p></li>
+<li><p><code>slice_tail()</code> to subset the last rows</p></li>
+<li><p><code>slice_min()</code> to subset rows with lowest values of a variable</p></li>
+<li><p><code>slice_max()</code> to subset rows with highest values of a variable</p></li>
+<li><p><code>slice_sample()</code> to randomly subset rows</p></li>
 </ul>
 </div>
-<div id="atlantic-hurricane-season" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season<a href="tropical-storms.html#atlantic-hurricane-season" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>The official Atlantic hurricane season runs from June through November, but
-occasionally storms form outside those months.</p></li>
-<li><p>September is the most active month (where most of the hurricanes occur),
-followed by August, and October (based on 1851 to 2015 data).</p></li>
-<li><p>A typical year has 12 named storms, including six hurricanes of which three
-become major hurricanes (category 3, 4, and 5).</p></li>
-<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
-</ul>
+<div id="select" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Select<a href="data-manipulation-with-dplyr.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>select()</code> allows you to select one or more columns by name:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-manipulation-with-dplyr.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, name, wind, pressure)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 3
+##   name     wind pressure
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Gaston     35     1005
+## 2 Hermine    60      989
+## 3 Igor      135      924
+## 4 Julia     120      948
+## 5 Karl      110      956
+## 6 Lisa       75      982
+## 7 Matthew    50      998
+## 8 Nicole     40      994</code></pre>
+<p><code>select()</code> also allows you to specify a range of consecutive columns via the <code>:</code> operator</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-manipulation-with-dplyr.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># consecutive columns</span></span>
+<span id="cb42-2"><a href="data-manipulation-with-dplyr.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, name<span class="sc">:</span>pressure)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 3
+##   name     wind pressure
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Gaston     35     1005
+## 2 Hermine    60      989
+## 3 Igor      135      924
+## 4 Julia     120      948
+## 5 Karl      110      956
+## 6 Lisa       75      982
+## 7 Matthew    50      998
+## 8 Nicole     40      994</code></pre>
+<p><code>select()</code> also allows you to exclude one or more columns by negating their
+names:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-manipulation-with-dplyr.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude columns by name</span></span>
+<span id="cb44-2"><a href="data-manipulation-with-dplyr.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, <span class="sc">-</span>(wind<span class="sc">:</span>category))</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 1
+##   name   
+##   &lt;chr&gt;  
+## 1 Gaston 
+## 2 Hermine
+## 3 Igor   
+## 4 Julia  
+## 5 Karl   
+## 6 Lisa   
+## 7 Matthew
+## 8 Nicole</code></pre>
+<p>Interestingly, you can also <code>select()</code> columns by their position</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-manipulation-with-dplyr.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># columns by position</span></span>
+<span id="cb46-2"><a href="data-manipulation-with-dplyr.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 3
+##   name     wind pressure
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Gaston     35     1005
+## 2 Hermine    60      989
+## 3 Igor      135      924
+## 4 Julia     120      948
+## 5 Karl      110      956
+## 6 Lisa       75      982
+## 7 Matthew    50      998
+## 8 Nicole     40      994</code></pre>
 </div>
-<div id="storm-formation" class="section level3 hasAnchor" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Storm Formation<a href="tropical-storms.html#storm-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To close this chapter, take a look at the following diagram that beautifully
-describes and illustrates the formation of hurricanes.</p>
-<p>Source: <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="images/hurricanes_poster_large.jpg" alt="How do hurricanes form? (source: SciJinks)" width="85%" />
-<p class="caption">
-Figure 2.3: How do hurricanes form? (source: SciJinks)
-</p>
-</div>
-<p>If you want to know more about the formation of hurricanes, you can also
-watch the following video by NOAA SciJinks:</p>
-<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
+<div id="mutate" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Mutate<a href="data-manipulation-with-dplyr.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another basic verb is <code>mutate()</code> which allows you to: 1) transform existing
+variables, but also 2) add new variables.</p>
+<p>Wind speed values—column <code>wind</code>—are expressed in knots. But what if we are
+interested in having wind speed expressed in miles per hour? Enter <code>mutate()</code>.
+Here is how to add a new column <code>wind_mph</code> (1 knot = 1.15078 mph)</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-manipulation-with-dplyr.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(sep2010, <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 5
+##   name     wind pressure category wind_mph
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 Gaston     35     1005 ts           40.3
+## 2 Hermine    60      989 ts           69.0
+## 3 Igor      135      924 cat4        155. 
+## 4 Julia     120      948 cat4        138. 
+## 5 Karl      110      956 cat3        127. 
+## 6 Lisa       75      982 cat1         86.3
+## 7 Matthew    50      998 ts           57.5
+## 8 Nicole     40      994 ts           46.0</code></pre>
+<p>If we just want to transform the existing values in column <code>wind</code> so that it is
+expressed in mph, then we simply <code>mutate()</code> it using the same variable name:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-manipulation-with-dplyr.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(sep2010, <span class="at">wind =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 4
+##   name     wind pressure category
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+## 1 Gaston   40.3     1005 ts      
+## 2 Hermine  69.0      989 ts      
+## 3 Igor    155.       924 cat4    
+## 4 Julia   138.       948 cat4    
+## 5 Karl    127.       956 cat3    
+## 6 Lisa     86.3      982 cat1    
+## 7 Matthew  57.5      998 ts      
+## 8 Nicole   46.0      994 ts</code></pre>
 
 </div>
 </div>
@@ -462,8 +517,8 @@ watch the following video by NOAA SciJinks:</p>
           </div>
         </div>
       </div>
-<a href="tables-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="storms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graphics-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="piper.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

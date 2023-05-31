@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9 The Pipe Operator | Tidy Hurricanes</title>
+  <title>6 The Pipe Operators | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9 The Pipe Operator | Tidy Hurricanes" />
+  <meta property="og:title" content="6 The Pipe Operators | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9 The Pipe Operator | Tidy Hurricanes" />
+  <meta name="twitter:title" content="6 The Pipe Operators | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="summarizing-1975-data.html"/>
-<link rel="next" href="basic-maps.html"/>
+<link rel="prev" href="data-manipulation-with-dplyr.html"/>
+<link rel="next" href="single-columns.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -172,106 +172,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
 </ul></li>
 <li class="part"><span><b>II Getting Started with Tidy Tools</b></span></li>
-<li class="chapter" data-level="4" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html"><i class="fa fa-check"></i><b>4</b> <code>"dplyr"</code> and <code>"ggplot2"</code></a>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with <code>"ggplot2"</code></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#basic-dplyr-verbs"><i class="fa fa-check"></i><b>4.1</b> Basic <code>"dplyr"</code> verbs</a>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#sample-data"><i class="fa fa-check"></i><b>4.1</b> Sample Data</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Basics of <code>"ggplot2"</code></a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#filter"><i class="fa fa-check"></i><b>4.1.1</b> Filter</a></li>
-<li class="chapter" data-level="4.1.2" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#slice"><i class="fa fa-check"></i><b>4.1.2</b> Slice</a></li>
-<li class="chapter" data-level="4.1.3" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#select"><i class="fa fa-check"></i><b>4.1.3</b> Select</a></li>
-<li class="chapter" data-level="4.1.4" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#mutate"><i class="fa fa-check"></i><b>4.1.4</b> Mutate</a></li>
+<li class="chapter" data-level="4.2.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#some-terminology"><i class="fa fa-check"></i><b>4.2.1</b> Some Terminology</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#exercises"><i class="fa fa-check"></i><b>4.2</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>5</b> Inspecting Single Columns</a>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#basic-scatterplot"><i class="fa fa-check"></i><b>4.3</b> Basic Scatterplot</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>5.1</b> Basic Inspection of Year</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>5.1.1</b> Barplot of <code>year</code> values</a></li>
+<li class="chapter" data-level="4.3.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#storing-a-ggplot-object"><i class="fa fa-check"></i><b>4.3.1</b> Storing a <code>ggplot</code> object</a></li>
+<li class="chapter" data-level="4.3.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-mappings"><i class="fa fa-check"></i><b>4.3.2</b> More Mappings</a></li>
+<li class="chapter" data-level="4.3.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#setting-values"><i class="fa fa-check"></i><b>4.3.3</b> Setting Values</a></li>
+<li class="chapter" data-level="4.3.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#customizing-scales"><i class="fa fa-check"></i><b>4.3.4</b> Customizing Scales</a></li>
+<li class="chapter" data-level="4.3.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-annotations-etc"><i class="fa fa-check"></i><b>4.3.5</b> Themes, Annotations, etc</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>5.2</b> Basic inspection of <code>month</code></a></li>
-<li class="chapter" data-level="5.3" data-path="single-columns.html"><a href="single-columns.html#exercises-1"><i class="fa fa-check"></i><b>5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with <code>"dplyr"</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#basic-dplyr-verbs"><i class="fa fa-check"></i><b>5.1</b> Basic <code>"dplyr"</code> verbs</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.1.1</b> Filter</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slice"><i class="fa fa-check"></i><b>5.1.2</b> Slice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1.3</b> Select</a></li>
+<li class="chapter" data-level="5.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.1.4</b> Mutate</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>6</b> The Pipe Operators</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>6.1</b> Piping</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="piper.html"><a href="piper.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.1.1</b> The pipe operator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>7</b> Inspecting Single Columns</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>7.1</b> Basic Inspection of Year</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>7.1.1</b> Barplot of <code>year</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>7.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="7.3" data-path="single-columns.html"><a href="single-columns.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
-<li class="chapter" data-level="6" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>6</b> Storms in 1975</a>
+<li class="chapter" data-level="8" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>8</b> Storms in 1975</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>6.1</b> Visualizing 1975 data</a>
+<li class="chapter" data-level="8.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>8.1</b> Visualizing 1975 data</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>6.1.1</b> Histograms</a></li>
-<li class="chapter" data-level="6.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>6.1.2</b> Boxplots</a></li>
-<li class="chapter" data-level="6.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>6.1.3</b> Density Curves</a></li>
-<li class="chapter" data-level="6.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>6.1.4</b> Facets</a></li>
+<li class="chapter" data-level="8.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>8.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="8.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>8.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="8.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>8.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="8.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>8.1.4</b> Facets</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>7</b> Storm Amy (1975)</a>
+<li class="chapter" data-level="9" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>9</b> Storm Amy (1975)</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>7.1</b> Exploring <code>wind</code></a></li>
-<li class="chapter" data-level="7.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>7.2</b> Exploring <code>pressure</code></a></li>
-<li class="chapter" data-level="7.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exercises-2"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="9.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>9.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="9.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>9.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="9.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exercises-1"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing 1975 Data</a>
+<li class="chapter" data-level="10" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>10</b> Summarizing 1975 Data</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>8.1</b> Group-by Operations</a></li>
-<li class="chapter" data-level="8.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>8.2</b> Arrange operations</a></li>
-<li class="chapter" data-level="8.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>8.3</b> Further inspection of 1975 storm Amy</a>
+<li class="chapter" data-level="10.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>10.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="10.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>10.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="10.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>10.3</b> Further inspection of 1975 storm Amy</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn"><i class="fa fa-check"></i><b>8.3.1</b> Your Turn</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>9</b> The Pipe Operator</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>9.1</b> Piping</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>9.1.1</b> The <code>magrittr</code> operator</a></li>
+<li class="chapter" data-level="10.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn"><i class="fa fa-check"></i><b>10.3.1</b> Your Turn</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>10</b> Basic Maps</a>
+<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>10.1</b> Graphing Maps</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>10.1.1</b> Plotting location of storm records</a></li>
-<li class="chapter" data-level="10.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>10.1.2</b> Basic map</a></li>
-<li class="chapter" data-level="10.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>10.1.3</b> Mapping 1975 Storms</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>11</b> Less Basic Maps</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>11.1</b> More mapping approaches</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>11.1.1</b> Storms from 1975 to 1980</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>12</b> Summary</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>12.1</b> Number of Storms per Year</a></li>
-<li class="chapter" data-level="12.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>12.2</b> Your Turn</a></li>
+<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
 </ul></li>
 <li class="part"><span><b>IV Analyzing Storms 1975-2020</b></span></li>
-<li class="chapter" data-level="13" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>13</b> Counting Tropical Systems</a></li>
-<li class="chapter" data-level="14" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>14</b> Visualizing Number of Systems</a>
+<li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
+<li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>14.1</b> Barcharts</a>
+<li class="chapter" data-level="13.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>13.1</b> Barcharts</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>14.1.1</b> Barchart with <code>geom_bar()</code></a></li>
-<li class="chapter" data-level="14.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>14.1.2</b> Barchart with <code>geom_col()</code></a></li>
+<li class="chapter" data-level="13.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>13.1.1</b> Barchart with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="13.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>13.1.2</b> Barchart with <code>geom_col()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>14.2</b> Customizing a Barchart</a>
+<li class="chapter" data-level="13.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>13.2</b> Customizing a Barchart</a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>14.2.1</b> Global versus Local Aesthetic Mappings</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>15</b> Counting More Systems</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>15.1</b> Counting Kinds of Storms</a>
-<ul>
-<li class="chapter" data-level="15.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>15.1.1</b> Counting Tropical Depressions</a></li>
-<li class="chapter" data-level="15.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>15.1.2</b> Counts Based on Maximum Wind Speed</a></li>
-<li class="chapter" data-level="15.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>15.1.3</b> Counting Tropical Storms</a></li>
+<li class="chapter" data-level="13.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Global versus Local Aesthetic Mappings</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>16</b> Counting All Types of Systems</a>
+<li class="chapter" data-level="14" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>14</b> Counting More Systems</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>16.1</b> Handling Various Conditions</a></li>
+<li class="chapter" data-level="14.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>14.1</b> Counting Kinds of Storms</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>14.1.1</b> Counting Tropical Depressions</a></li>
+<li class="chapter" data-level="14.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>14.1.2</b> Counts Based on Maximum Wind Speed</a></li>
+<li class="chapter" data-level="14.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>14.1.3</b> Counting Tropical Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>15</b> Counting All Types of Systems</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>16.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="16.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>16.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="16.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>16.1.3</b> Mapping 1975 Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>17</b> Less Basic Maps</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>17.1</b> More mapping approaches</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>17.1.1</b> Storms from 1975 to 1980</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
@@ -293,84 +308,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="piper" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">9</span> The Pipe Operator<a href="piper.html#piper" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This part introduces the <strong>pipe operator</strong>, denoted as <code>%&gt;%</code>,
-which allows you write function calls in a more human-readable way. This operator
-can be extremely useful in <code>"dplyr"</code> operations that require many steps.</p>
-<div id="piping" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Piping<a href="piper.html#piping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="piper" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> The Pipe Operators<a href="piper.html#piper" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This part introduces the <strong>pipe operators</strong>, which allow you write function
+calls in a more human-readable way. This kind of operators can be extremely
+useful within tidyverse operations that require many steps.</p>
+<p>We should note that there are two operators: <code>%&gt;%</code> and <code>|&gt;</code></p>
+<ul>
+<li><p><code>%&gt;%</code> is the <code>"magrittr"</code> operator, and it is the oldest of the 2 available
+pipes in R.</p></li>
+<li><p><code>|&gt;</code> is a more recent operator, and it is now part of <code>"base"</code> R.</p></li>
+</ul>
+<div id="piping" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Piping<a href="piper.html#piping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The behavior of <code>"dplyr"</code> is functional in the sense that function calls don’t
 have side-effects. This implies that you must always save their results in order
 to keep them in an object (in memory).</p>
 <p>The “ugly” side of this functional behavior is that it doesn’t lead to
-particularly elegant code, especially if you want to do many operations at once.
-For example, say you want to calculate the averages of <code>wind</code> speed, and
-air <code>pressure</code>, grouped by <code>name</code>, of storms in <code>year</code> 1975, displaying the
-output arranged by <code>wind</code> average.</p>
+particularly elegant code, especially if you want to do many operations at once.</p>
+<p>For example, say we are interested in
+the wind speed of hurricanes, and that in addition to having speeds measured
+in knots we also want them in mph and kph. And not only that, but we want to
+arrange the hurricanes by wind speed in increasing order.</p>
 <p>One option is to do calculations step-by-step, storing the intermediate
-results in their own data objects:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="piper.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
-<span id="cb106-2"><a href="piper.html#cb106-2" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">=</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
-<span id="cb106-3"><a href="piper.html#cb106-3" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">=</span> <span class="fu">group_by</span>(dat1, name)</span>
-<span id="cb106-4"><a href="piper.html#cb106-4" aria-hidden="true" tabindex="-1"></a>dat3 <span class="ot">=</span> <span class="fu">select</span>(dat2, name, wind, pressure)</span>
-<span id="cb106-5"><a href="piper.html#cb106-5" aria-hidden="true" tabindex="-1"></a>dat4 <span class="ot">=</span> <span class="fu">summarise</span>(dat3,</span>
-<span id="cb106-6"><a href="piper.html#cb106-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb106-7"><a href="piper.html#cb106-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pres =</span> <span class="fu">mean</span>(pressure, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb106-8"><a href="piper.html#cb106-8" aria-hidden="true" tabindex="-1"></a>dat5 <span class="ot">=</span> <span class="fu">arrange</span>(dat4, avg_wind)</span>
-<span id="cb106-9"><a href="piper.html#cb106-9" aria-hidden="true" tabindex="-1"></a>dat5</span></code></pre></div>
-<pre><code>## # A tibble: 8 × 3
-##   name     avg_wind avg_pres
-##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Hallie       34.6    1005.
-## 2 Caroline     38.9    1002.
-## 3 Blanche      45       999.
-## 4 Eloise       45       999.
-## 5 Amy          46.5     995.
-## 6 Gladys       66.3     986.
-## 7 Doris        67.1     988.
-## 8 Faye         68.4     988.</code></pre>
+results in their own data objects.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="piper.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
+<span id="cb1-2"><a href="piper.html#cb1-2" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">=</span> <span class="fu">filter</span>(sep2010, category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>)</span>
+<span id="cb1-3"><a href="piper.html#cb1-3" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">=</span> <span class="fu">select</span>(dat1, name, wind)</span>
+<span id="cb1-4"><a href="piper.html#cb1-4" aria-hidden="true" tabindex="-1"></a>dat3 <span class="ot">=</span> <span class="fu">mutate</span>(</span>
+<span id="cb1-5"><a href="piper.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  dat2,</span>
+<span id="cb1-6"><a href="piper.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
+<span id="cb1-7"><a href="piper.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>)</span>
+<span id="cb1-8"><a href="piper.html#cb1-8" aria-hidden="true" tabindex="-1"></a>dat4 <span class="ot">=</span> <span class="fu">arrange</span>(dat3, wind)</span>
+<span id="cb1-9"><a href="piper.html#cb1-9" aria-hidden="true" tabindex="-1"></a>dat4</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   name   wind wind_mph wind_kph
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Lisa     75     86.3     139.
+## 2 Karl    110    127.      204.
+## 3 Julia   120    138.      222.
+## 4 Igor    135    155.      250.</code></pre>
 <p>Another option, if you don’t want to name the intermediate results, requires
 wrapping the function calls inside each other:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="piper.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside-out style (hard to read)</span></span>
-<span id="cb108-2"><a href="piper.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(</span>
-<span id="cb108-3"><a href="piper.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb108-4"><a href="piper.html#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb108-5"><a href="piper.html#cb108-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(</span>
-<span id="cb108-6"><a href="piper.html#cb108-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>),</span>
-<span id="cb108-7"><a href="piper.html#cb108-7" aria-hidden="true" tabindex="-1"></a>        name),</span>
-<span id="cb108-8"><a href="piper.html#cb108-8" aria-hidden="true" tabindex="-1"></a>      name, wind, pressure),</span>
-<span id="cb108-9"><a href="piper.html#cb108-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb108-10"><a href="piper.html#cb108-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pres =</span> <span class="fu">mean</span>(pressure, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb108-11"><a href="piper.html#cb108-11" aria-hidden="true" tabindex="-1"></a>  avg_wind)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="piper.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside-out style (hard to read)</span></span>
+<span id="cb3-2"><a href="piper.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(</span>
+<span id="cb3-3"><a href="piper.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a href="piper.html#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb3-5"><a href="piper.html#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(sep2010, category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>), </span>
+<span id="cb3-6"><a href="piper.html#cb3-6" aria-hidden="true" tabindex="-1"></a>      name, wind),</span>
+<span id="cb3-7"><a href="piper.html#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
+<span id="cb3-8"><a href="piper.html#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>),</span>
+<span id="cb3-9"><a href="piper.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  wind)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   name   wind wind_mph wind_kph
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Lisa     75     86.3     139.
+## 2 Karl    110    127.      204.
+## 3 Julia   120    138.      222.
+## 4 Igor    135    155.      250.</code></pre>
 <p>This is difficult to read because the order of the operations is from inside
 to out. Thus, the arguments are a long way away from the function.
-To get around this problem, <code>"dplyr"</code> provides the <code>%&gt;%</code> operator from the
-<code>"magrittr"</code> package.</p>
-<div id="the-magrittr-operator" class="section level3 hasAnchor" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> The <code>magrittr</code> operator<a href="piper.html#the-magrittr-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>x %&gt;% f(y)</code> turns into <code>f(x, y)</code> so you can use it to rewrite multiple
+To get around this problem, you can use a piper either <code>%&gt;%</code> or <code>|&gt;</code>.</p>
+<div id="the-pipe-operator" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> The pipe operator<a href="piper.html#the-pipe-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>x |&gt; f(y)</code> turns into <code>f(x, y)</code> so you can use it to rewrite multiple
 operations that you can read left-to-right, top-to-bottom:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="piper.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using %&gt;%</span></span>
-<span id="cb109-2"><a href="piper.html#cb109-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
-<span id="cb109-3"><a href="piper.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1975</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb109-4"><a href="piper.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
-<span id="cb109-5"><a href="piper.html#cb109-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, wind, pressure) <span class="sc">%&gt;%</span></span>
-<span id="cb109-6"><a href="piper.html#cb109-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb109-7"><a href="piper.html#cb109-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb109-8"><a href="piper.html#cb109-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pres =</span> <span class="fu">mean</span>(pressure, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb109-9"><a href="piper.html#cb109-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(avg_wind)</span></code></pre></div>
-<pre><code>## # A tibble: 8 × 3
-##   name     avg_wind avg_pres
-##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;
-## 1 Hallie       34.6    1005.
-## 2 Caroline     38.9    1002.
-## 3 Blanche      45       999.
-## 4 Eloise       45       999.
-## 5 Amy          46.5     995.
-## 6 Gladys       66.3     986.
-## 7 Doris        67.1     988.
-## 8 Faye         68.4     988.</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="piper.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
+<span id="cb5-2"><a href="piper.html#cb5-2" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="piper.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="piper.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, wind) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="piper.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-6"><a href="piper.html#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
+<span id="cb5-7"><a href="piper.html#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="piper.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(wind)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   name   wind wind_mph wind_kph
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Lisa     75     86.3     139.
+## 2 Karl    110    127.      204.
+## 3 Julia   120    138.      222.
+## 4 Igor    135    155.      250.</code></pre>
 
 </div>
 </div>
@@ -380,8 +397,8 @@ operations that you can read left-to-right, top-to-bottom:</p>
           </div>
         </div>
       </div>
-<a href="summarizing-1975-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basic-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-manipulation-with-dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="single-columns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -435,20 +452,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

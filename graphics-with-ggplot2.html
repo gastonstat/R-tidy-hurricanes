@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Tropical Storms and Hurricanes | Tidy Hurricanes</title>
+  <title>4 Graphics with "ggplot2" | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta property="og:title" content="4 Graphics with "ggplot2" | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Tropical Storms and Hurricanes | Tidy Hurricanes" />
+  <meta name="twitter:title" content="4 Graphics with "ggplot2" | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="tables-and-tidyverse.html"/>
-<link rel="next" href="storms.html"/>
+<link rel="prev" href="storms.html"/>
+<link rel="next" href="data-manipulation-with-dplyr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -308,151 +308,201 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tropical-storms" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Tropical Storms and Hurricanes<a href="tropical-storms.html#tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
-<img src="images/sandy-hurricane.jpg" alt="NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)" width="80%" />
-<p class="caption">
-Figure 2.1: NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)
-</p>
-</div>
-<blockquote>
-<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the
-deadliest and most destructive, as well as the strongest, hurricane of the
-2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in
-damage, it was the second-costliest hurricane on record in the United States
-until surpassed by Hurricanes Harvey and Maria in 2017.</p>
-</blockquote>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
-<div id="a-little-bit-about-hurricanes" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> A little bit about Hurricanes<a href="tropical-storms.html#a-little-bit-about-hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I don’t remember very well when was the first time I got interested in
-Hurricanes. I did not grow up in hurricane country or anywhere near regions
-prone to be hit by this kind of storms. However, I do remember learning about
-clouds, meteorology, and how storms form over mountain ranges. I learned this
-when I was in my early 20s taking my first steps into the mountaineering world.
-Experiencing the force and dangers of several storms in the mountains and
-volcanoes of my homeland, sparked in me a general interest to know more about
-this type of weather phenomena.</p>
-<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em>
-which in turn comes from the Taino word <em>hurakán</em>, that was used
-by the indigenous people of the Caribbean and Central America to designate the
-“god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane
-is informally used to denote low-pressure systems with organized thunderstorm
-activity that form over tropical or subtropical waters. Among weather experts,
-though, the term hurricane is reserved for a specific class of tropical
-systems: those that reach wind speeds of at least 74 mph, and are exclusively
-formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
-<p>Despite my longtime interest in storms and hurricanes, my level of expertise
-in these subjects is fairly limited. Because of this, I prefer to give you a
-curated list of some facts about hurricanes that I’ve collected from the
-following sources:</p>
+<div id="graphics-with-ggplot2" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Graphics with <code>"ggplot2"</code><a href="graphics-with-ggplot2.html#graphics-with-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As previously said, our main focus will be around what I consider to be the
+two major tools from <em>tidyverse</em>: the packages <code>"dplyr"</code> and <code>"ggplot2"</code>.
+In turn, the main subject of this text has to do with analyzing tropical
+cyclones.</p>
+<p>Before we get our hands dirty analyzing the <code>storms</code> data set, as well as
+other external data sets, I want to give you a crash introduction to some of
+the fundamental ideas behind tidyverse. Likewise, I want to quickly review
+a handful of functions. The idea is to have a stepping stone that we can use
+to further explore the fascinating data of storms.</p>
+<div id="sample-data" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Sample Data<a href="graphics-with-ggplot2.html#sample-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For illustration purposes, I would like to begin with a small data set. To be
+more specific, let’s consider data for a set of tropical cyclones that formed
+during the month of September 2010 in the North Atlantic. If you ask me why I’m
+choosing this particular set of storms, here are three random fun facts:
+1) September tends to be the most active month
+for the formation of tropical cyclones in the North Atlantic; 2) 2010 was the
+year I moved to the USA, and 3) Sep-2010 turned out to have a storm named
+<em>Gaston</em> 😉.</p>
+<pre><code># A tibble: 8 × 4
+  name     wind pressure category
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+1 Gaston     35     1005 ts      
+2 Hermine    60      989 ts      
+3 Igor      135      924 cat4    
+4 Julia     120      948 cat4    
+5 Karl      110      956 cat3    
+6 Lisa       75      982 cat1    
+7 Matthew    50      998 ts      
+8 Nicole     40      994 ts      </code></pre>
+<p>As you can tell, the data is in tabular format organized into four columns and
+eight rows. Each row corresponds to a single storm, in turn, the columns are:</p>
 <ul>
-<li><p>National Oceanic and Atmospheric Administration (NOAA):
-<a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
-<li><p>SciJinks: It’s all about weather!
-<a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
-<li><p>NASA Space Place: How Do Hurricanes Form?
-<a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
-</ul>
-<div id="tropical-cyclones" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Tropical Cyclones<a href="tropical-storms.html#tropical-cyclones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<li><p><code>name</code> is the name given to the storm,</p></li>
+<li><p><code>wind</code> corresponds to the maximum wind speed (in knots) reached by the storm,</p></li>
+<li><p><code>pressure</code> has to do with the minimum pressure (in millibars) reached by
+the storm,</p></li>
+<li><p><code>category</code> indicates the category:</p>
 <ul>
-<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
-<li><p>They form near the equator over warm ocean waters.</p></li>
-<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
-<li><p>A tropical cyclone is a rotating low-pressure weather system that produces
-strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
-<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and
-rip currents.</p></li>
-<li><p>People call these storms by other names, such as typhoons or cyclones,
-depending on where they occur.</p></li>
-<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific
-Ocean are called “hurricanes.”</p></li>
-</ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
-<img src="images/tropical-cyclones-map.png" alt="Nomenclature of tropical cyclones around the world." width="65%" />
-<p class="caption">
-Figure 2.2: Nomenclature of tropical cyclones around the world.
-</p>
-</div>
-</div>
-<div id="storm-classification" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Storm Classification<a href="tropical-storms.html#storm-classification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
-<ul>
-<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
-<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
-<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
+<li><code>ts</code> stands for <em>tropical storm</em></li>
+<li><code>cat1</code> is a category-1 hurricane</li>
+<li><code>cat3</code> is a category-3 hurricane</li>
+<li><code>cat4</code> is a category-4 hurricane</li>
 </ul></li>
-<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained
-winds have reached 74 mph.</p></li>
-<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson
-Hurricane Wind Scale.</p></li>
-<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a
-hurricane’s sustained wind speed:</p>
+</ul>
+<p>The way this data is handled in R is with a <code>tibble</code> object. This class of
+object provides the rectangular structure to store tables in tidyverse, and it
+is central to this ecosystem.</p>
+<p>Recall that tibbles are <em>printed</em> in a very peculiar form:</p>
 <ul>
-<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
-<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
-<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
-<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
-<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
+<li><p>the number of rows that are displayed is limited to 10;</p></li>
+<li><p>depending on the width of the printing space, you will only see a few columns
+shown to fit such width,</p></li>
+<li><p>underneath the name of each column there is a three letter abbreviation
+inside angle brackets,</p></li>
+<li><p>this abbreviation indicates the <em>data type</em> used by R to store the values:</p>
+<ul>
+<li><code>&lt;chr&gt;</code> stands for <em>character</em> data</li>
+<li><code>&lt;dbl&gt;</code> means <em>double</em> (i.e. real numbers or numbers with decimal digits)</li>
 </ul></li>
-<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
-<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob
-Simpson to help explain damage that buildings will sustain under different wind
-speeds.</p></li>
-<li><p>Note that the Saffir-Simpson scale does not include hazards from rain,
-flooding, or storm surge.</p></li>
 </ul>
+<p>Here’s the command I’ve used to create this tibble:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="graphics-with-ggplot2.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-2"><a href="graphics-with-ggplot2.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Gaston&#39;</span>, <span class="st">&#39;Hermine&#39;</span>, <span class="st">&#39;Igor&#39;</span>, <span class="st">&#39;Julia&#39;</span>, <span class="st">&#39;Karl&#39;</span>, <span class="st">&#39;Lisa&#39;</span>, <span class="st">&#39;Matthew&#39;</span>, <span class="st">&#39;Nicole&#39;</span>),</span>
+<span id="cb17-3"><a href="graphics-with-ggplot2.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">135</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">40</span>),</span>
+<span id="cb17-4"><a href="graphics-with-ggplot2.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pressure =</span> <span class="fu">c</span>(<span class="dv">1005</span>, <span class="dv">989</span>, <span class="dv">924</span>, <span class="dv">948</span>, <span class="dv">956</span>, <span class="dv">982</span>, <span class="dv">998</span>, <span class="dv">994</span>),</span>
+<span id="cb17-5"><a href="graphics-with-ggplot2.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat3&#39;</span>, <span class="st">&#39;cat1&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>)</span>
+<span id="cb17-6"><a href="graphics-with-ggplot2.html#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>To create a <em>tibble</em> you use the <code>tibble()</code> function. One option to organize
+the content is by passing individual vectors (one vector per column) separated
+by commas.</p>
 </div>
-<div id="naming-storms" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Naming Storms<a href="tropical-storms.html#naming-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="basics-of-ggplot2" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Basics of <code>"ggplot2"</code><a href="graphics-with-ggplot2.html#basics-of-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With the <code>sep2010</code> data, we may be interested in obtaining a graphic like the
+following scatter plot:</p>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter1_sep2010-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="some-terminology" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Some Terminology<a href="graphics-with-ggplot2.html#some-terminology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before I show you how to produce the above scatter plot, it’s important to
+introduce some of the key terminology used in <code>"ggplot2"</code>:</p>
 <ul>
-<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is
-given a name.</p></li>
-<li><p>The names are chosen by an international committee of the World Meteorological
-Organization (WMO).</p></li>
-<li><p>The list of names is available at: <a href="https://www.nhc.noaa.gov/aboutnames.shtml" class="uri">https://www.nhc.noaa.gov/aboutnames.shtml</a></p></li>
-<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
-<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
-<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
-<li><p>The names proceed in alphabetical order, omitting the “difficult” letters
-Q, U, X, Y, and Z.</p></li>
-<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
-<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic
-basin in a season, or more than 24 named tropical cyclones in the eastern North
-Pacific basin, any additional storms will take names from an alternate list of
-names approved by the WMO for each basin.</p></li>
+<li><p>The starting point is the <strong>data</strong> that we want to visualize. The convention
+is to have data in a table object (e.g. <code>data.frame</code>, <code>tibble</code>) in which
+<em>variables</em> are stored as columns.</p></li>
+<li><p>Then we have so-called <strong>geoms</strong>, short for <em>geometric objects</em>; these are
+basically things such as bars, lines, points, polygons, and other kind of
+marks that are drawn to represent the data.</p></li>
+<li><p>Geoms have visual properties, formally known as <em>aesthetic attributes</em>, and colloquially referred to as <strong>aesthetics</strong>; these are things such as <span class="math inline">\(x\)</span> and
+<span class="math inline">\(y\)</span> positions, line color, fill color, point shapes, etc.</p></li>
+<li><p>The use of a variable to encode a visual property of a geom is called a <strong>mapping</strong>.</p></li>
+<li><p><strong>Scales</strong> are used to handle the mapping from the values in the data space
+to values in the aesthetic space.</p></li>
+<li><p><strong>Guides</strong> are those auxiliary elements that allow the viewer decode the
+mapping of the visual properties back to the data space. Perhaps the most
+typical guides are the tick marks, the labels on an axis, and legends (when
+applicable).</p></li>
 </ul>
+<p>At its core, graphing data can reduced to mapping (or associating) data values
+to visual properties of geometric objects. The data values tend to be expressed
+in numerical or categorical scales, while the visual properties include
+the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> positions of points, colors of lines, height of bars, and so on.</p>
+<p>At a glance, mapping a number with an <span class="math inline">\(x\)</span> coordinate may seem very
+different from mapping a number with a color of a point, but at the conceptual
+level, these two seemingly different mappings are equivalent.</p>
+<p>In the <em>grammar of graphics</em>, this deep similarity is not just recognized, but
+made central.</p>
 </div>
-<div id="atlantic-hurricane-season" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season<a href="tropical-storms.html#atlantic-hurricane-season" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="basic-scatterplot" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Basic Scatterplot<a href="graphics-with-ggplot2.html#basic-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A basic <code>ggplot()</code> specification looks like this:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="graphics-with-ggplot2.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sep2010, <span class="fu">aes</span>(<span class="at">x =</span> wind, <span class="at">y =</span> pressure))</span></code></pre></div>
+<p>This creates a <code>ggplot</code> object using the data frame <code>econ_chem</code>. It also
+specifies default <em>aesthetic mappings</em> within <code>aes()</code>:</p>
 <ul>
-<li><p>The official Atlantic hurricane season runs from June through November, but
-occasionally storms form outside those months.</p></li>
-<li><p>September is the most active month (where most of the hurricanes occur),
-followed by August, and October (based on 1851 to 2015 data).</p></li>
-<li><p>A typical year has 12 named storms, including six hurricanes of which three
-become major hurricanes (category 3, 4, and 5).</p></li>
-<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
+<li><p><code>x = wind</code> maps the column <code>wind</code> to the <span class="math inline">\(x\)</span> position</p></li>
+<li><p><code>y = pressure</code> maps the column <code>pressure</code> to the <span class="math inline">\(y\)</span> position</p></li>
 </ul>
+<p><code>"ggplot2"</code> has a simple requirement for data structures: they must be stored
+in data frames or tibbles, and each type of variable that is mapped to an
+aesthetic must be stored in its own column.</p>
+<p>After we’ve given <code>ggplot()</code> the data frame and the aesthetic mappings, there’s
+one more critical component. We need to tell it what <em>geometric objects</em> to
+put there. At this point, <code>"ggplot2"</code> doesn’t know if we want bars, lines, points,
+or something else to be drawn on the graph.</p>
+<p>We’ll add <code>geom_point()</code> to draw points, resulting in a scatter plot:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="graphics-with-ggplot2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sep2010, <span class="fu">aes</span>(<span class="at">x =</span> wind, <span class="at">y =</span> pressure)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="graphics-with-ggplot2.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter2_sep2010-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div id="storing-a-ggplot-object" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Storing a <code>ggplot</code> object<a href="graphics-with-ggplot2.html#storing-a-ggplot-object" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you are going to reuse some of these components, you can store them in
+variables. We can save the <code>ggplot</code> object in an object called <code>gg</code>, and then
+add <code>geom_point()</code> to it.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="graphics-with-ggplot2.html#cb20-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">=</span> <span class="fu">ggplot</span>(sep2010, <span class="fu">aes</span>(<span class="at">x =</span> wind, <span class="at">y =</span> pressure)) </span>
+<span id="cb20-2"><a href="graphics-with-ggplot2.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="graphics-with-ggplot2.html#cb20-3" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 </div>
-<div id="storm-formation" class="section level3 hasAnchor" number="2.1.5">
-<h3><span class="header-section-number">2.1.5</span> Storm Formation<a href="tropical-storms.html#storm-formation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To close this chapter, take a look at the following diagram that beautifully
-describes and illustrates the formation of hurricanes.</p>
-<p>Source: <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="images/hurricanes_poster_large.jpg" alt="How do hurricanes form? (source: SciJinks)" width="85%" />
-<p class="caption">
-Figure 2.3: How do hurricanes form? (source: SciJinks)
-</p>
+<div id="more-mappings" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> More Mappings<a href="graphics-with-ggplot2.html#more-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also <strong>map</strong> the variable <code>category</code> to the color of the points, by
+putting <code>aes()</code> inside the call to <code>geom_point()</code>, and specifying
+<code>color = category</code></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="graphics-with-ggplot2.html#cb21-1" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> category))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter3_sep2010-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>This doesn’t alter the default aesthetic mappings that we defined previously,
+inside of <code>ggplot(...)</code>. What it does is add an aesthetic mapping for this
+particular geom, <code>geom_point()</code>. If we added other geoms, this mapping would
+not apply to them.</p>
 </div>
-<p>If you want to know more about the formation of hurricanes, you can also
-watch the following video by NOAA SciJinks:</p>
-<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
+<div id="setting-values" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Setting Values<a href="graphics-with-ggplot2.html#setting-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Contrast this aesthetic <em>mapping</em> with aesthetic <strong>setting</strong>. This time, we
+won’t use <code>aes()</code>; we’ll just set the value of <code>color</code> directly to <code>"red"</code>.
+And we’ll also increase the size of the dots by setting <code>size</code>:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="graphics-with-ggplot2.html#cb22-1" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter4_sep2010-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="customizing-scales" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Customizing Scales<a href="graphics-with-ggplot2.html#customizing-scales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also modify the <code>scales</code>; that is, the mappings from data to visual
+attributes. Here, we’ll change the <span class="math inline">\(x\)</span> scale so that it has a larger range:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="graphics-with-ggplot2.html#cb23-1" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">150</span>))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter5_sep2010-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p>If we go back to the example with the <code>color = category</code> mapping, we can also
+modify the color scale and customize them with our own values:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="graphics-with-ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="graphics-with-ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> category), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="graphics-with-ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;cyan&quot;</span>))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter6_sep2010-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="themes-annotations-etc" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Themes, Annotations, etc<a href="graphics-with-ggplot2.html#themes-annotations-etc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Some aspects of a graph’s appearance fall outside the scope of the grammar of
+graphics. These include the color of the background and grid lines in the
+graphing area, the fonts used in the axis labels, annotations, text in the
+graph title &amp; subtitle, legend details, and things like that. These are
+controlled with auxiliary functions such as <code>labs()</code>, <code>theme()</code>, or <code>annotate()</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="graphics-with-ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="graphics-with-ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> category), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="graphics-with-ggplot2.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="graphics-with-ggplot2.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">150</span>)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="graphics-with-ggplot2.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">900</span>, <span class="dv">1010</span>)) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="graphics-with-ggplot2.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Storms in North Atlantic formed during Sep-2010&quot;</span>,</span>
+<span id="cb25-7"><a href="graphics-with-ggplot2.html#cb25-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Negative association between wind and pressure&quot;</span>,</span>
+<span id="cb25-8"><a href="graphics-with-ggplot2.html#cb25-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Maximum Wind Speed (kn)&quot;</span>,</span>
+<span id="cb25-9"><a href="graphics-with-ggplot2.html#cb25-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Minimum Pressure (mbar)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="graphics-with-ggplot2.html#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="dv">26</span>, <span class="at">y =</span> <span class="dv">1005</span>, <span class="at">label =</span> <span class="st">&quot;hey!&quot;</span>, <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="graphics-with-ggplot2.html#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb25-12"><a href="graphics-with-ggplot2.html#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/scatter7_sep2010-1.png" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -462,8 +512,8 @@ watch the following video by NOAA SciJinks:</p>
           </div>
         </div>
       </div>
-<a href="tables-and-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="storms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="storms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation-with-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
