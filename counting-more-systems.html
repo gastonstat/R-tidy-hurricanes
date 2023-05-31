@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14 Counting More Systems | Tidy Hurricanes</title>
+  <title>15 Counting More Systems | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14 Counting More Systems | Tidy Hurricanes" />
+  <meta property="og:title" content="15 Counting More Systems | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14 Counting More Systems | Tidy Hurricanes" />
+  <meta name="twitter:title" content="15 Counting More Systems | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -171,95 +171,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>4</b> Inspecting Single Columns</a>
+<li class="part"><span><b>II Getting Started with Tidy Tools</b></span></li>
+<li class="chapter" data-level="4" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html"><i class="fa fa-check"></i><b>4</b> <code>"dplyr"</code> and <code>"ggplot2"</code></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>4.1</b> Basic Inspection of Year</a>
+<li class="chapter" data-level="4.1" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#basic-dplyr-verbs"><i class="fa fa-check"></i><b>4.1</b> Basic <code>"dplyr"</code> verbs</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>4.1.1</b> Barplot of <code>year</code> values</a></li>
+<li class="chapter" data-level="4.1.1" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#filter"><i class="fa fa-check"></i><b>4.1.1</b> Filter</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#slice"><i class="fa fa-check"></i><b>4.1.2</b> Slice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#select"><i class="fa fa-check"></i><b>4.1.3</b> Select</a></li>
+<li class="chapter" data-level="4.1.4" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#mutate"><i class="fa fa-check"></i><b>4.1.4</b> Mutate</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>4.2</b> Basic inspection of <code>month</code></a></li>
-<li class="chapter" data-level="4.3" data-path="single-columns.html"><a href="single-columns.html#your-turn"><i class="fa fa-check"></i><b>4.3</b> Your Turn</a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#exercises"><i class="fa fa-check"></i><b>4.2</b> Exercises</a></li>
 </ul></li>
-<li class="part"><span><b>II Analyzing Storms in 1975</b></span></li>
-<li class="chapter" data-level="5" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>5</b> Storms in 1975</a>
+<li class="chapter" data-level="5" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>5</b> Inspecting Single Columns</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>5.1</b> Visualizing 1975 data</a>
+<li class="chapter" data-level="5.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>5.1</b> Basic Inspection of Year</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>5.1.1</b> Histograms</a></li>
-<li class="chapter" data-level="5.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>5.1.2</b> Boxplots</a></li>
-<li class="chapter" data-level="5.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>5.1.3</b> Density Curves</a></li>
-<li class="chapter" data-level="5.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>5.1.4</b> Facets</a></li>
+<li class="chapter" data-level="5.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>5.1.1</b> Barplot of <code>year</code> values</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>5.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="5.3" data-path="single-columns.html"><a href="single-columns.html#exercises-1"><i class="fa fa-check"></i><b>5.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>6</b> Storm Amy (1975)</a>
+<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="6" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>6</b> Storms in 1975</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>6.1</b> Exploring <code>wind</code></a></li>
-<li class="chapter" data-level="6.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>6.2</b> Exploring <code>pressure</code></a></li>
-<li class="chapter" data-level="6.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#your-turn-1"><i class="fa fa-check"></i><b>6.3</b> Your Turn</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>7</b> Summarizing 1975 Data</a>
+<li class="chapter" data-level="6.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>6.1</b> Visualizing 1975 data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>7.1</b> Group-by Operations</a></li>
-<li class="chapter" data-level="7.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>7.2</b> Arrange operations</a></li>
-<li class="chapter" data-level="7.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>7.3</b> Further inspection of 1975 storm Amy</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn-2"><i class="fa fa-check"></i><b>7.3.1</b> Your Turn</a></li>
+<li class="chapter" data-level="6.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>6.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="6.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>6.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="6.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>6.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="6.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>6.1.4</b> Facets</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>8</b> The Pipe Operator</a>
+<li class="chapter" data-level="7" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>7</b> Storm Amy (1975)</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>8.1</b> Piping</a>
+<li class="chapter" data-level="7.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>7.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="7.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>7.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="7.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exercises-2"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing 1975 Data</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>8.1.1</b> The <code>magrittr</code> operator</a></li>
+<li class="chapter" data-level="8.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>8.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="8.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>8.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="8.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>8.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn"><i class="fa fa-check"></i><b>8.3.1</b> Your Turn</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>9</b> Basic Maps</a>
+<li class="chapter" data-level="9" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>9</b> The Pipe Operator</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>9.1</b> Graphing Maps</a>
+<li class="chapter" data-level="9.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>9.1</b> Piping</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>9.1.1</b> Plotting location of storm records</a></li>
-<li class="chapter" data-level="9.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>9.1.2</b> Basic map</a></li>
-<li class="chapter" data-level="9.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>9.1.3</b> Mapping 1975 Storms</a></li>
+<li class="chapter" data-level="9.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>9.1.1</b> The <code>magrittr</code> operator</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>10</b> Less Basic Maps</a>
+<li class="chapter" data-level="10" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>10</b> Basic Maps</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>10.1</b> More mapping approaches</a>
+<li class="chapter" data-level="10.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>10.1</b> Graphing Maps</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>10.1.1</b> Storms from 1975 to 1980</a></li>
+<li class="chapter" data-level="10.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>10.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="10.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>10.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="10.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>10.1.3</b> Mapping 1975 Storms</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
+<li class="chapter" data-level="11" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>11</b> Less Basic Maps</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
-<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-3"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
-</ul></li>
-<li class="part"><span><b>III Analyzing Storms 1975-2020</b></span></li>
-<li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
-<li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
+<li class="chapter" data-level="11.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>11.1</b> More mapping approaches</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>13.1</b> Barcharts</a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>13.1.1</b> Barchart with <code>geom_bar()</code></a></li>
-<li class="chapter" data-level="13.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>13.1.2</b> Barchart with <code>geom_col()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>13.2</b> Customizing a Barchart</a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Global versus Local Aesthetic Mappings</a></li>
+<li class="chapter" data-level="11.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>11.1.1</b> Storms from 1975 to 1980</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>14</b> Counting More Systems</a>
+<li class="chapter" data-level="12" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>12</b> Summary</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>14.1</b> Counting Kinds of Storms</a>
+<li class="chapter" data-level="12.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>12.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="12.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>12.2</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>IV Analyzing Storms 1975-2020</b></span></li>
+<li class="chapter" data-level="13" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>13</b> Counting Tropical Systems</a></li>
+<li class="chapter" data-level="14" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>14</b> Visualizing Number of Systems</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>14.1.1</b> Counting Tropical Depressions</a></li>
-<li class="chapter" data-level="14.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>14.1.2</b> Counts Based on Maximum Wind Speed</a></li>
-<li class="chapter" data-level="14.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>14.1.3</b> Counting Tropical Storms</a></li>
+<li class="chapter" data-level="14.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>14.1</b> Barcharts</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>14.1.1</b> Barchart with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="14.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>14.1.2</b> Barchart with <code>geom_col()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>14.2</b> Customizing a Barchart</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>14.2.1</b> Global versus Local Aesthetic Mappings</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>15</b> Counting All Types of Systems</a>
+<li class="chapter" data-level="15" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>15</b> Counting More Systems</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
+<li class="chapter" data-level="15.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>15.1</b> Counting Kinds of Storms</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>15.1.1</b> Counting Tropical Depressions</a></li>
+<li class="chapter" data-level="15.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>15.1.2</b> Counts Based on Maximum Wind Speed</a></li>
+<li class="chapter" data-level="15.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>15.1.3</b> Counting Tropical Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>16</b> Counting All Types of Systems</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>16.1</b> Handling Various Conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
@@ -281,15 +293,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="counting-more-systems" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">14</span> Counting More Systems<a href="counting-more-systems.html#counting-more-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="counting-more-systems" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">15</span> Counting More Systems<a href="counting-more-systems.html#counting-more-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In the two previous chapters you learned how to count the number of tropical
 systems in each year, and how to graph a barchart of such counts.</p>
 <p>In this chapter, we continue discussing how to obtain more counts. Specifically,
 we describe how to get the frequencies of say tropical depressions, or tropical
 storms, or hurricanes, or major hurricanes.</p>
-<div id="counting-kinds-of-storms" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Counting Kinds of Storms<a href="counting-more-systems.html#counting-kinds-of-storms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="counting-kinds-of-storms" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Counting Kinds of Storms<a href="counting-more-systems.html#counting-kinds-of-storms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall that tropical systems are classified into different categories depending
 on their wind speed. This classification is based on the famous Saffir-Simpson
 wind scale, given in the following table.</p>
@@ -349,19 +361,19 @@ wind scale, given in the following table.</p>
 </tbody>
 </table>
 <p>Hurricanes of categories 3, 4, and 5 are considered to be <strong>major hurricanes</strong>.</p>
-<div id="counting-tropical-depressions" class="section level3 hasAnchor" number="14.1.1">
-<h3><span class="header-section-number">14.1.1</span> Counting Tropical Depressions<a href="counting-more-systems.html#counting-tropical-depressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="counting-tropical-depressions" class="section level3 hasAnchor" number="15.1.1">
+<h3><span class="header-section-number">15.1.1</span> Counting Tropical Depressions<a href="counting-more-systems.html#counting-tropical-depressions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We may start by getting the count of tropical depressions per year. Knowing
 that tropical depressions have winds no greater than 33 knots, we can <code>filter()</code>
 column <code>wind</code> for this numeric value.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="counting-more-systems.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trying to count tropical depressions per year</span></span>
-<span id="cb154-2"><a href="counting-more-systems.html#cb154-2" aria-hidden="true" tabindex="-1"></a>depression_counts_per_year <span class="ot">=</span> storms <span class="sc">%&gt;%</span> </span>
-<span id="cb154-3"><a href="counting-more-systems.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind <span class="sc">&lt;=</span> <span class="dv">33</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb154-4"><a href="counting-more-systems.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span></span>
-<span id="cb154-5"><a href="counting-more-systems.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb154-6"><a href="counting-more-systems.html#cb154-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb154-7"><a href="counting-more-systems.html#cb154-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect a few rows</span></span>
-<span id="cb154-8"><a href="counting-more-systems.html#cb154-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(depression_counts_per_year)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="counting-more-systems.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trying to count tropical depressions per year</span></span>
+<span id="cb175-2"><a href="counting-more-systems.html#cb175-2" aria-hidden="true" tabindex="-1"></a>depression_counts_per_year <span class="ot">=</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb175-3"><a href="counting-more-systems.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind <span class="sc">&lt;=</span> <span class="dv">33</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb175-4"><a href="counting-more-systems.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb175-5"><a href="counting-more-systems.html#cb175-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb175-6"><a href="counting-more-systems.html#cb175-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-7"><a href="counting-more-systems.html#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect a few rows</span></span>
+<span id="cb175-8"><a href="counting-more-systems.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(depression_counts_per_year)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##    year     n
 ##   &lt;dbl&gt; &lt;int&gt;
@@ -375,14 +387,14 @@ column <code>wind</code> for this numeric value.</p>
 1975, 2 in 1976, 3 in 1977, etc.</p>
 <p>What about the number of tropical storms? Well, to obtain this count we should
 filter <code>wind</code> values between 34 and 63 knots, and then compute the <code>count()</code>:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="counting-more-systems.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trying to count tropical storms per year</span></span>
-<span id="cb156-2"><a href="counting-more-systems.html#cb156-2" aria-hidden="true" tabindex="-1"></a>storm_counts_per_year <span class="ot">=</span> storms <span class="sc">%&gt;%</span> </span>
-<span id="cb156-3"><a href="counting-more-systems.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind <span class="sc">&gt;=</span> <span class="dv">34</span> <span class="sc">&amp;</span> wind <span class="sc">&lt;</span> <span class="dv">64</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb156-4"><a href="counting-more-systems.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span></span>
-<span id="cb156-5"><a href="counting-more-systems.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb156-6"><a href="counting-more-systems.html#cb156-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-7"><a href="counting-more-systems.html#cb156-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect a few rows</span></span>
-<span id="cb156-8"><a href="counting-more-systems.html#cb156-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(storm_counts_per_year)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="counting-more-systems.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trying to count tropical storms per year</span></span>
+<span id="cb177-2"><a href="counting-more-systems.html#cb177-2" aria-hidden="true" tabindex="-1"></a>storm_counts_per_year <span class="ot">=</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb177-3"><a href="counting-more-systems.html#cb177-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind <span class="sc">&gt;=</span> <span class="dv">34</span> <span class="sc">&amp;</span> wind <span class="sc">&lt;</span> <span class="dv">64</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb177-4"><a href="counting-more-systems.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb177-5"><a href="counting-more-systems.html#cb177-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb177-6"><a href="counting-more-systems.html#cb177-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-7"><a href="counting-more-systems.html#cb177-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect a few rows</span></span>
+<span id="cb177-8"><a href="counting-more-systems.html#cb177-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(storm_counts_per_year)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##    year     n
 ##   &lt;dbl&gt; &lt;int&gt;
@@ -396,11 +408,11 @@ filter <code>wind</code> values between 34 and 63 knots, and then compute the <c
 2 in 1976, 3 in 1977, etc.</p>
 <p>But wait … We know, from the preceding chapter, that the counts of systems
 per year are:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="counting-more-systems.html#cb158-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
-<span id="cb158-2"><a href="counting-more-systems.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
-<span id="cb158-3"><a href="counting-more-systems.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb158-4"><a href="counting-more-systems.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="counting-more-systems.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(system_counts_per_year)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="counting-more-systems.html#cb179-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb179-2"><a href="counting-more-systems.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
+<span id="cb179-3"><a href="counting-more-systems.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb179-4"><a href="counting-more-systems.html#cb179-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-5"><a href="counting-more-systems.html#cb179-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(system_counts_per_year)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##    year     n
 ##   &lt;dbl&gt; &lt;int&gt;
@@ -428,18 +440,18 @@ be asking yourself along the way when analyzing data. This is especially vital
 when you are working with a data set from some topic or field in which you don’t
 have much experience with.</p>
 </div>
-<div id="counts-based-on-maximum-wind-speed" class="section level3 hasAnchor" number="14.1.2">
-<h3><span class="header-section-number">14.1.2</span> Counts Based on Maximum Wind Speed<a href="counting-more-systems.html#counts-based-on-maximum-wind-speed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="counts-based-on-maximum-wind-speed" class="section level3 hasAnchor" number="15.1.2">
+<h3><span class="header-section-number">15.1.2</span> Counts Based on Maximum Wind Speed<a href="counting-more-systems.html#counts-based-on-maximum-wind-speed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A more adequate approach for identifying tropical depressions consists of first
 obtaining the maximum wind speed of each system, and then filtering for values
 of 33 knots or less.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="counting-more-systems.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying tropical depressions</span></span>
-<span id="cb160-2"><a href="counting-more-systems.html#cb160-2" aria-hidden="true" tabindex="-1"></a>depressions <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
-<span id="cb160-3"><a href="counting-more-systems.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
-<span id="cb160-4"><a href="counting-more-systems.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">wind_max =</span> <span class="fu">max</span>(wind), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb160-5"><a href="counting-more-systems.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind_max <span class="sc">&lt;=</span> <span class="dv">33</span>)</span>
-<span id="cb160-6"><a href="counting-more-systems.html#cb160-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-7"><a href="counting-more-systems.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(depressions, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="counting-more-systems.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying tropical depressions</span></span>
+<span id="cb181-2"><a href="counting-more-systems.html#cb181-2" aria-hidden="true" tabindex="-1"></a>depressions <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
+<span id="cb181-3"><a href="counting-more-systems.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb181-4"><a href="counting-more-systems.html#cb181-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">wind_max =</span> <span class="fu">max</span>(wind), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb181-5"><a href="counting-more-systems.html#cb181-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind_max <span class="sc">&lt;=</span> <span class="dv">33</span>)</span>
+<span id="cb181-6"><a href="counting-more-systems.html#cb181-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-7"><a href="counting-more-systems.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(depressions, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 3
 ##     year name     wind_max
 ##    &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt;
@@ -455,11 +467,11 @@ of 33 knots or less.</p>
 ## 10  1994 AL091994       30</code></pre>
 <p>Having obtained the data that exclusively contains tropical depressions, we
 can then count their number in each year:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="counting-more-systems.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counting tropical depressions per year</span></span>
-<span id="cb162-2"><a href="counting-more-systems.html#cb162-2" aria-hidden="true" tabindex="-1"></a>depression_counts_per_year <span class="ot">=</span> depressions <span class="sc">%&gt;%</span></span>
-<span id="cb162-3"><a href="counting-more-systems.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb162-4"><a href="counting-more-systems.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-5"><a href="counting-more-systems.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(depression_counts_per_year, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="counting-more-systems.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counting tropical depressions per year</span></span>
+<span id="cb183-2"><a href="counting-more-systems.html#cb183-2" aria-hidden="true" tabindex="-1"></a>depression_counts_per_year <span class="ot">=</span> depressions <span class="sc">%&gt;%</span></span>
+<span id="cb183-3"><a href="counting-more-systems.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb183-4"><a href="counting-more-systems.html#cb183-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-5"><a href="counting-more-systems.html#cb183-5" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(depression_counts_per_year, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -474,19 +486,19 @@ can then count their number in each year:</p>
 ##  9  2001     2
 ## 10  2002     2</code></pre>
 </div>
-<div id="counting-tropical-storms" class="section level3 hasAnchor" number="14.1.3">
-<h3><span class="header-section-number">14.1.3</span> Counting Tropical Storms<a href="counting-more-systems.html#counting-tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="counting-tropical-storms" class="section level3 hasAnchor" number="15.1.3">
+<h3><span class="header-section-number">15.1.3</span> Counting Tropical Storms<a href="counting-more-systems.html#counting-tropical-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Tropical storms are tropical systems with wind speeds between 39 mph and 73 mph
 or equivalently, between 34 and 63 knots. With this information, we proceed in
 the same way as in the above subsection: first we identify the set that
 exclusively contains tropical storms, and then we count them by year.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="counting-more-systems.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying tropical storms</span></span>
-<span id="cb164-2"><a href="counting-more-systems.html#cb164-2" aria-hidden="true" tabindex="-1"></a>trop_storms <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
-<span id="cb164-3"><a href="counting-more-systems.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
-<span id="cb164-4"><a href="counting-more-systems.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">wind_max =</span> <span class="fu">max</span>(wind), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb164-5"><a href="counting-more-systems.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind_max <span class="sc">&gt;=</span> <span class="dv">34</span> <span class="sc">&amp;</span> wind_max <span class="sc">&lt;</span> <span class="dv">64</span>)</span>
-<span id="cb164-6"><a href="counting-more-systems.html#cb164-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-7"><a href="counting-more-systems.html#cb164-7" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(trop_storms, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="counting-more-systems.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying tropical storms</span></span>
+<span id="cb185-2"><a href="counting-more-systems.html#cb185-2" aria-hidden="true" tabindex="-1"></a>trop_storms <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
+<span id="cb185-3"><a href="counting-more-systems.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb185-4"><a href="counting-more-systems.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">wind_max =</span> <span class="fu">max</span>(wind), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb185-5"><a href="counting-more-systems.html#cb185-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind_max <span class="sc">&gt;=</span> <span class="dv">34</span> <span class="sc">&amp;</span> wind_max <span class="sc">&lt;</span> <span class="dv">64</span>)</span>
+<span id="cb185-6"><a href="counting-more-systems.html#cb185-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-7"><a href="counting-more-systems.html#cb185-7" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(trop_storms, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 3
 ##     year name   wind_max
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
@@ -500,11 +512,11 @@ exclusively contains tropical storms, and then we count them by year.</p>
 ##  8  1978 Hope         55
 ##  9  1978 Irma         45
 ## 10  1978 Juliet       45</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="counting-more-systems.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counting tropical storms per year</span></span>
-<span id="cb166-2"><a href="counting-more-systems.html#cb166-2" aria-hidden="true" tabindex="-1"></a>storm_counts_per_year <span class="ot">=</span> trop_storms <span class="sc">%&gt;%</span></span>
-<span id="cb166-3"><a href="counting-more-systems.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb166-4"><a href="counting-more-systems.html#cb166-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-5"><a href="counting-more-systems.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(storm_counts_per_year, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="counting-more-systems.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># counting tropical storms per year</span></span>
+<span id="cb187-2"><a href="counting-more-systems.html#cb187-2" aria-hidden="true" tabindex="-1"></a>storm_counts_per_year <span class="ot">=</span> trop_storms <span class="sc">%&gt;%</span></span>
+<span id="cb187-3"><a href="counting-more-systems.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb187-4"><a href="counting-more-systems.html#cb187-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-5"><a href="counting-more-systems.html#cb187-5" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(storm_counts_per_year, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -528,16 +540,16 @@ on the Saffir-Simpson wind scale.</p>
 <code>category</code> value when identifying the set of tropical storms. If everything
 is correct, all the entries should have category value of 0 which is the
 numeric code for tropical storms.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="counting-more-systems.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying tropical storms</span></span>
-<span id="cb168-2"><a href="counting-more-systems.html#cb168-2" aria-hidden="true" tabindex="-1"></a>trop_storms <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
-<span id="cb168-3"><a href="counting-more-systems.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
-<span id="cb168-4"><a href="counting-more-systems.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb168-5"><a href="counting-more-systems.html#cb168-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_max =</span> <span class="fu">max</span>(wind), </span>
-<span id="cb168-6"><a href="counting-more-systems.html#cb168-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">categ_max =</span> <span class="fu">max</span>(category),</span>
-<span id="cb168-7"><a href="counting-more-systems.html#cb168-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb168-8"><a href="counting-more-systems.html#cb168-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind_max <span class="sc">&gt;=</span> <span class="dv">34</span> <span class="sc">&amp;</span> wind_max <span class="sc">&lt;</span> <span class="dv">64</span>)</span>
-<span id="cb168-9"><a href="counting-more-systems.html#cb168-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-10"><a href="counting-more-systems.html#cb168-10" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(trop_storms, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="counting-more-systems.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identifying tropical storms</span></span>
+<span id="cb189-2"><a href="counting-more-systems.html#cb189-2" aria-hidden="true" tabindex="-1"></a>trop_storms <span class="ot">=</span> storms <span class="sc">%&gt;%</span></span>
+<span id="cb189-3"><a href="counting-more-systems.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, name) <span class="sc">%&gt;%</span></span>
+<span id="cb189-4"><a href="counting-more-systems.html#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb189-5"><a href="counting-more-systems.html#cb189-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_max =</span> <span class="fu">max</span>(wind), </span>
+<span id="cb189-6"><a href="counting-more-systems.html#cb189-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">categ_max =</span> <span class="fu">max</span>(category),</span>
+<span id="cb189-7"><a href="counting-more-systems.html#cb189-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb189-8"><a href="counting-more-systems.html#cb189-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(wind_max <span class="sc">&gt;=</span> <span class="dv">34</span> <span class="sc">&amp;</span> wind_max <span class="sc">&lt;</span> <span class="dv">64</span>)</span>
+<span id="cb189-9"><a href="counting-more-systems.html#cb189-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb189-10"><a href="counting-more-systems.html#cb189-10" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(trop_storms, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 4
 ##     year name   wind_max categ_max
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;     &lt;dbl&gt;
@@ -563,9 +575,9 @@ a proper name. In theory, once a tropical system reaches <em>tropical storm</em>
 status, it receives a non-alphanumeric name such as <code>Amy</code> or <code>Amelia</code> or <code>Bess</code>.
 To detect all the entries in <code>trop_storms</code> that don’t have a proper name you
 can use the following command:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="counting-more-systems.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unnamed storms</span></span>
-<span id="cb170-2"><a href="counting-more-systems.html#cb170-2" aria-hidden="true" tabindex="-1"></a>trop_storms <span class="sc">%&gt;%</span></span>
-<span id="cb170-3"><a href="counting-more-systems.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_starts</span>(name, <span class="at">pattern =</span> <span class="st">&quot;A(l|L)</span><span class="sc">\\</span><span class="st">d+&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="counting-more-systems.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unnamed storms</span></span>
+<span id="cb191-2"><a href="counting-more-systems.html#cb191-2" aria-hidden="true" tabindex="-1"></a>trop_storms <span class="sc">%&gt;%</span></span>
+<span id="cb191-3"><a href="counting-more-systems.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_starts</span>(name, <span class="at">pattern =</span> <span class="st">&quot;A(l|L)</span><span class="sc">\\</span><span class="st">d+&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 4
 ##    year name     wind_max categ_max
 ##   &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt;     &lt;dbl&gt;

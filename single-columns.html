@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Inspecting Single Columns | Tidy Hurricanes</title>
+  <title>5 Inspecting Single Columns | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Inspecting Single Columns | Tidy Hurricanes" />
+  <meta property="og:title" content="5 Inspecting Single Columns | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Inspecting Single Columns | Tidy Hurricanes" />
+  <meta name="twitter:title" content="5 Inspecting Single Columns | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,7 +32,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="storms.html"/>
+<link rel="prev" href="dplyr-and-ggplot2.html"/>
 <link rel="next" href="storms-in-1975.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -171,95 +171,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>4</b> Inspecting Single Columns</a>
+<li class="part"><span><b>II Getting Started with Tidy Tools</b></span></li>
+<li class="chapter" data-level="4" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html"><i class="fa fa-check"></i><b>4</b> <code>"dplyr"</code> and <code>"ggplot2"</code></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>4.1</b> Basic Inspection of Year</a>
+<li class="chapter" data-level="4.1" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#basic-dplyr-verbs"><i class="fa fa-check"></i><b>4.1</b> Basic <code>"dplyr"</code> verbs</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>4.1.1</b> Barplot of <code>year</code> values</a></li>
+<li class="chapter" data-level="4.1.1" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#filter"><i class="fa fa-check"></i><b>4.1.1</b> Filter</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#slice"><i class="fa fa-check"></i><b>4.1.2</b> Slice</a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#select"><i class="fa fa-check"></i><b>4.1.3</b> Select</a></li>
+<li class="chapter" data-level="4.1.4" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#mutate"><i class="fa fa-check"></i><b>4.1.4</b> Mutate</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>4.2</b> Basic inspection of <code>month</code></a></li>
-<li class="chapter" data-level="4.3" data-path="single-columns.html"><a href="single-columns.html#your-turn"><i class="fa fa-check"></i><b>4.3</b> Your Turn</a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr-and-ggplot2.html"><a href="dplyr-and-ggplot2.html#exercises"><i class="fa fa-check"></i><b>4.2</b> Exercises</a></li>
 </ul></li>
-<li class="part"><span><b>II Analyzing Storms in 1975</b></span></li>
-<li class="chapter" data-level="5" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>5</b> Storms in 1975</a>
+<li class="chapter" data-level="5" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>5</b> Inspecting Single Columns</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>5.1</b> Visualizing 1975 data</a>
+<li class="chapter" data-level="5.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>5.1</b> Basic Inspection of Year</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>5.1.1</b> Histograms</a></li>
-<li class="chapter" data-level="5.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>5.1.2</b> Boxplots</a></li>
-<li class="chapter" data-level="5.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>5.1.3</b> Density Curves</a></li>
-<li class="chapter" data-level="5.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>5.1.4</b> Facets</a></li>
+<li class="chapter" data-level="5.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>5.1.1</b> Barplot of <code>year</code> values</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>5.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="5.3" data-path="single-columns.html"><a href="single-columns.html#exercises-1"><i class="fa fa-check"></i><b>5.3</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>6</b> Storm Amy (1975)</a>
+<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="6" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>6</b> Storms in 1975</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>6.1</b> Exploring <code>wind</code></a></li>
-<li class="chapter" data-level="6.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>6.2</b> Exploring <code>pressure</code></a></li>
-<li class="chapter" data-level="6.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#your-turn-1"><i class="fa fa-check"></i><b>6.3</b> Your Turn</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>7</b> Summarizing 1975 Data</a>
+<li class="chapter" data-level="6.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>6.1</b> Visualizing 1975 data</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>7.1</b> Group-by Operations</a></li>
-<li class="chapter" data-level="7.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>7.2</b> Arrange operations</a></li>
-<li class="chapter" data-level="7.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>7.3</b> Further inspection of 1975 storm Amy</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn-2"><i class="fa fa-check"></i><b>7.3.1</b> Your Turn</a></li>
+<li class="chapter" data-level="6.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>6.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="6.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>6.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="6.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>6.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="6.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>6.1.4</b> Facets</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>8</b> The Pipe Operator</a>
+<li class="chapter" data-level="7" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>7</b> Storm Amy (1975)</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>8.1</b> Piping</a>
+<li class="chapter" data-level="7.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>7.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="7.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>7.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="7.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exercises-2"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>8</b> Summarizing 1975 Data</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>8.1.1</b> The <code>magrittr</code> operator</a></li>
+<li class="chapter" data-level="8.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>8.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="8.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>8.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="8.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>8.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn"><i class="fa fa-check"></i><b>8.3.1</b> Your Turn</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>9</b> Basic Maps</a>
+<li class="chapter" data-level="9" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>9</b> The Pipe Operator</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>9.1</b> Graphing Maps</a>
+<li class="chapter" data-level="9.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>9.1</b> Piping</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>9.1.1</b> Plotting location of storm records</a></li>
-<li class="chapter" data-level="9.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>9.1.2</b> Basic map</a></li>
-<li class="chapter" data-level="9.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>9.1.3</b> Mapping 1975 Storms</a></li>
+<li class="chapter" data-level="9.1.1" data-path="piper.html"><a href="piper.html#the-magrittr-operator"><i class="fa fa-check"></i><b>9.1.1</b> The <code>magrittr</code> operator</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>10</b> Less Basic Maps</a>
+<li class="chapter" data-level="10" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>10</b> Basic Maps</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>10.1</b> More mapping approaches</a>
+<li class="chapter" data-level="10.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>10.1</b> Graphing Maps</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>10.1.1</b> Storms from 1975 to 1980</a></li>
+<li class="chapter" data-level="10.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>10.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="10.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>10.1.2</b> Basic map</a></li>
+<li class="chapter" data-level="10.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>10.1.3</b> Mapping 1975 Storms</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
+<li class="chapter" data-level="11" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>11</b> Less Basic Maps</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
-<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-3"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
-</ul></li>
-<li class="part"><span><b>III Analyzing Storms 1975-2020</b></span></li>
-<li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
-<li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
+<li class="chapter" data-level="11.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>11.1</b> More mapping approaches</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>13.1</b> Barcharts</a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>13.1.1</b> Barchart with <code>geom_bar()</code></a></li>
-<li class="chapter" data-level="13.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>13.1.2</b> Barchart with <code>geom_col()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>13.2</b> Customizing a Barchart</a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Global versus Local Aesthetic Mappings</a></li>
+<li class="chapter" data-level="11.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>11.1.1</b> Storms from 1975 to 1980</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>14</b> Counting More Systems</a>
+<li class="chapter" data-level="12" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>12</b> Summary</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>14.1</b> Counting Kinds of Storms</a>
+<li class="chapter" data-level="12.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>12.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="12.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>12.2</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>IV Analyzing Storms 1975-2020</b></span></li>
+<li class="chapter" data-level="13" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>13</b> Counting Tropical Systems</a></li>
+<li class="chapter" data-level="14" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>14</b> Visualizing Number of Systems</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>14.1.1</b> Counting Tropical Depressions</a></li>
-<li class="chapter" data-level="14.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>14.1.2</b> Counts Based on Maximum Wind Speed</a></li>
-<li class="chapter" data-level="14.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>14.1.3</b> Counting Tropical Storms</a></li>
+<li class="chapter" data-level="14.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>14.1</b> Barcharts</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>14.1.1</b> Barchart with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="14.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>14.1.2</b> Barchart with <code>geom_col()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>14.2</b> Customizing a Barchart</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>14.2.1</b> Global versus Local Aesthetic Mappings</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>15</b> Counting All Types of Systems</a>
+<li class="chapter" data-level="15" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>15</b> Counting More Systems</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
+<li class="chapter" data-level="15.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>15.1</b> Counting Kinds of Storms</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>15.1.1</b> Counting Tropical Depressions</a></li>
+<li class="chapter" data-level="15.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>15.1.2</b> Counts Based on Maximum Wind Speed</a></li>
+<li class="chapter" data-level="15.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>15.1.3</b> Counting Tropical Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>16</b> Counting All Types of Systems</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>16.1</b> Handling Various Conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
@@ -281,11 +293,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="single-columns" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Inspecting Single Columns<a href="single-columns.html#single-columns" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="single-columns" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Inspecting Single Columns<a href="single-columns.html#single-columns" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>As we just saw, because <code>storms</code> is an object of class <code>"tibble"</code>, when you
 type its name R displays the first 10 rows, which belong to storm Amy in 1975:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="single-columns.html#cb16-1" aria-hidden="true" tabindex="-1"></a>storms</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="single-columns.html#cb35-1" aria-hidden="true" tabindex="-1"></a>storms</span></code></pre></div>
 <pre><code>## # A tibble: 19,066 × 13
 ##    name   year month   day  hour   lat  long status      category  wind pressure
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
@@ -310,8 +322,8 @@ type its name R displays the first 10 rows, which belong to storm Amy in 1975:</
 </blockquote>
 <p>In a more or less arbitrary way, let’s begin inspecting <code>storms</code> by focusing
 on column <code>year</code>.</p>
-<div id="basic-inspection-of-year" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Basic Inspection of Year<a href="single-columns.html#basic-inspection-of-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-inspection-of-year" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Basic Inspection of Year<a href="single-columns.html#basic-inspection-of-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s formalize our first exploratory question:</p>
 <blockquote>
 <p><strong>What years have the data been collected for?</strong></p>
@@ -320,17 +332,17 @@ on column <code>year</code>.</p>
 There are several ways in R to manipulate a column from a tabular object. Using
 <code>"dplyr"</code>, there are two basic kinds of functions to extract variables:
 <code>pull()</code> and <code>select()</code>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
 <img src="images/dplyr-extract-column.png" alt="Extracting a column with dplyr functions &quot;pull&quot; and &quot;select&quot;" width="65%" />
 <p class="caption">
-Figure 4.1: Extracting a column with dplyr functions “pull” and “select”
+Figure 5.1: Extracting a column with dplyr functions “pull” and “select”
 </p>
 </div>
 <p>Let’s do a sanity check of years. We can use the function <code>pull()</code> that <em>pulls</em>
 or extracts an entire column. Because there are thousands of values in
 <code>year</code>, let’s also use <code>unique()</code> to find out the set of year values in the
 data. First we pull the year, and then we identify unique occurrences:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="single-columns.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, year))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="single-columns.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, year))</span></code></pre></div>
 <pre><code>##  [1] 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989
 ## [16] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
 ## [31] 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019
@@ -338,7 +350,7 @@ data. First we pull the year, and then we identify unique occurrences:</p>
 <p>Based on this output, we can see that <code>storms</code> has records during a 45-year
 period since 1975 to 2020.</p>
 <p>The same can be accomplished with <code>unique()</code> and <code>select()</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="single-columns.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">select</span>(storms, year))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="single-columns.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">select</span>(storms, year))</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 1
 ##     year
 ##    &lt;dbl&gt;
@@ -361,7 +373,7 @@ values. However, the format of their output is not the same. Observe that
 set of values).</p>
 <p>Interestingly, there is a third option that can be used to find the unique
 or <em>distinct</em> year values: using the function <code>distinct()</code></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="single-columns.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(storms, year)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="single-columns.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(storms, year)</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 1
 ##     year
 ##    &lt;dbl&gt;
@@ -377,11 +389,11 @@ or <em>distinct</em> year values: using the function <code>distinct()</code></p>
 ## 10  1984
 ## # ℹ 37 more rows</code></pre>
 <p>Again, notice the tabular output returned by <code>distinct()</code>.</p>
-<div id="barplot-of-year-values" class="section level3 hasAnchor" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Barplot of <code>year</code> values<a href="single-columns.html#barplot-of-year-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="barplot-of-year-values" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Barplot of <code>year</code> values<a href="single-columns.html#barplot-of-year-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s keep using the values in column <code>year</code> to obtain our first visualization
 with <code>"ggplot2"</code> functions. You could certainly begin a visual exploration of
-other variables, but we think <code>year</code> is a good place to start because it’s a
+other variables, but I think <code>year</code> is a good place to start because it’s a
 numeric variable, measured on a discrete scale, and this is a good candidate
 to use barcharts (the most popular type of graphic).</p>
 <p><code>"ggplot2"</code> comes with a large number of functions to create almost any
@@ -389,9 +401,9 @@ type of chart. Luckily for us, it already comes with predefined
 functions to graph barcharts. The syntax may seem a bit scary for beginners,
 but you will see that it follows a logical structure. Here’s the code to make
 a barplot of values in <code>year</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="single-columns.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barchart of year values</span></span>
-<span id="cb24-2"><a href="single-columns.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
-<span id="cb24-3"><a href="single-columns.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="single-columns.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># barchart of year values</span></span>
+<span id="cb43-2"><a href="single-columns.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="single-columns.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-barchart-year-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>How does the previous command work?</p>
 <ul>
@@ -411,16 +423,16 @@ tell <code>ggplot()</code> which variables of a <code>data</code> object will be
 attributes of graphical elements.</p>
 </div>
 </div>
-<div id="basic-inspection-of-month" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Basic inspection of <code>month</code><a href="single-columns.html#basic-inspection-of-month" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-inspection-of-month" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Basic inspection of <code>month</code><a href="single-columns.html#basic-inspection-of-month" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have explored column <code>year</code>, we can move to the column <code>month</code>
 and perform similar type of analysis. Using the same commands, all we have to
 do is change the name of the variable to <code>month</code> to see whether there are
 storms in all months:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="single-columns.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, month))</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="single-columns.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(<span class="fu">pull</span>(storms, month))</span></code></pre></div>
 <pre><code>##  [1]  6  7  8  9 10 11  5 12  4  1</code></pre>
 <p>In this case, it would be better if we <code>sort()</code> them:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="single-columns.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">pull</span>(storms, month)))</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="single-columns.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">pull</span>(storms, month)))</span></code></pre></div>
 <pre><code>##  [1]  1  4  5  6  7  8  9 10 11 12</code></pre>
 <p>Observe that not all months have recorded storms, this is the case for
 February (2) and March (3). Is this something to be concerned about? How is it
@@ -438,28 +450,33 @@ hurricanes. So a further thing to explore could involve computing the number of
 storms in April and May.</p>
 <hr />
 </div>
-<div id="your-turn" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Your Turn<a href="single-columns.html#your-turn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Use <code>pull()</code>, <code>select()</code>, and <code>unique()</code> to inspect the values in column
-<code>day</code></p></li>
-<li><p>Try to use <code>sort()</code> in order to arrange the unique values of <code>day</code></p></li>
-<li><p>Does the unique day values make sense? Are there days for which there
-seem to be no recorded storm data?</p></li>
-<li><p>Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
-<code>month</code>.</p></li>
-<li><p>Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
-<code>day</code>.</p></li>
-<li><p>Look at the cheatsheet for ggplot and locate the information for <code>geom_bar()</code>.
+<div id="exercises-1" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Exercises<a href="single-columns.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> Use <code>pull()</code>, <code>select()</code>, and <code>unique()</code> to inspect the values in column
+<code>day</code></p>
+<p><br></p>
+<p><strong>2)</strong> Try to use <code>sort()</code> in order to arrange the unique values of <code>day</code></p>
+<p><br></p>
+<p><strong>3)</strong> Does the unique day values make sense? Are there days for which there
+seem to be no recorded storm data?</p>
+<p><br></p>
+<p><strong>4)</strong> Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
+<code>month</code>.</p>
+<p><br></p>
+<p><strong>5)</strong> Use <code>"ggplot2"</code> functions to graph a barchart for the values in columns
+<code>day</code>.</p>
+<p><br></p>
+<p><strong>6)</strong> Look at the cheatsheet for ggplot and locate the information for <code>geom_bar()</code>.
 Find out how to specify: border <code>color</code>, <code>fill</code> color. Also, see what happens
-when you specify <code>alpha = 0.5</code>.</p></li>
-<li><p>Look at the cheatsheet for ggplot and locate the information for background
+when you specify <code>alpha = 0.5</code>.</p>
+<p><br></p>
+<p><strong>7)</strong> Look at the cheatsheet for ggplot and locate the information for background
 <em>Themes</em>, e.g. <code>theme_bw()</code>. Find out how to add theme <code>theme_classic()</code> to the
-previous barchart.</p></li>
-<li><p>Look at the cheatsheet for ggplot and locate the information for <em>Labels</em>.
+previous barchart.</p>
+<p><br></p>
+<p><strong>8)</strong> Look at the cheatsheet for ggplot and locate the information for <em>Labels</em>.
 Find out how to add a title with <code>ggtitle()</code> as well as with <code>labs()</code> to one
-of your previous barcharts.</p></li>
-</ul>
+of your previous barcharts.</p>
 
 </div>
 </div>
@@ -471,7 +488,7 @@ of your previous barcharts.</p></li>
           </div>
         </div>
       </div>
-<a href="storms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dplyr-and-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="storms-in-1975.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

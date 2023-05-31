@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13 Counting Tropical Systems | Tidy Hurricanes</title>
+  <title>4 "dplyr" and "ggplot2" | Tidy Hurricanes</title>
   <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13 Counting Tropical Systems | Tidy Hurricanes" />
+  <meta property="og:title" content="4 "dplyr" and "ggplot2" | Tidy Hurricanes" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
   <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
@@ -17,7 +17,7 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13 Counting Tropical Systems | Tidy Hurricanes" />
+  <meta name="twitter:title" content="4 "dplyr" and "ggplot2" | Tidy Hurricanes" />
   
   <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
 perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
@@ -32,8 +32,8 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="summary.html"/>
-<link rel="next" href="visualizing-number-of-systems.html"/>
+<link rel="prev" href="storms.html"/>
+<link rel="next" href="single-columns.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -293,189 +293,202 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="counting-tropical-systems" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">13</span> Counting Tropical Systems<a href="counting-tropical-systems.html#counting-tropical-systems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In chapter 4 we quickly explored the values in column <code>year</code>, discovering the
-45-year period of recorded data from 1975 to 2020. We can take a further step
-and ask:</p>
-<blockquote>
-<p>How many storms are there in each year?</p>
-</blockquote>
-<p>To answer this question, we need to do some data manipulation. My general
-recommendation when working with <code>"dplyr"</code>’s functions, especially
-when you are learning about them, is to do computations step by step, deciding
-which columns you need to use, which rows to consider, which functions to call,
-and so on.</p>
-<div id="attempt-number-1" class="section level4 unnumbered hasAnchor">
-<h4>Attempt Number 1<a href="counting-tropical-systems.html#attempt-number-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>To find the number of storms per year, think about the columns that you need to
-select. Also think about the operations that seem to be required to get such
-count. You obviously need to select <code>year</code>; and you need to <code>count()</code>. With
-this initial setting, you could assemble the following pipeline of commands:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="counting-tropical-systems.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first attempt</span></span>
-<span id="cb145-2"><a href="counting-tropical-systems.html#cb145-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
-<span id="cb145-3"><a href="counting-tropical-systems.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb145-4"><a href="counting-tropical-systems.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 1
-##       n
-##   &lt;int&gt;
-## 1 19066</code></pre>
-<p>Okay. This count is not what we are looking for. But before trying other
-ideas, spend some time reflecting on what the preceding command is doing.</p>
+<div id="dplyr-and-ggplot2" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> <code>"dplyr"</code> and <code>"ggplot2"</code><a href="dplyr-and-ggplot2.html#dplyr-and-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As previously said, our main focus will be around what I consider to be the
+two major tools from <em>tidyverse</em>: the packages <code>"dplyr"</code> and <code>"ggplot2"</code>.</p>
+<div id="basic-dplyr-verbs" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Basic <code>"dplyr"</code> verbs<a href="dplyr-and-ggplot2.html#basic-dplyr-verbs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In no particular order of importance, let’s start with the set of elementary
+<code>"dplyr"</code> functions known as the <em>basic dplyr verbs</em>:</p>
+<ul>
+<li><p><code>filter()</code>: select (i.e. keeping) rows that match a condition</p></li>
+<li><p><code>slice()</code>: subset rows using their positions</p></li>
+<li><p><code>select()</code>: keep or drop columns using their names and types</p></li>
+<li><p><code>mutate()</code>: modify existing variables, or add new variables</p></li>
+<li><p><code>arrange()</code>: reorder rows using column names</p></li>
+<li><p><code>summarise()</code>: reduce variables to values</p></li>
+<li><p><code>group_by()</code>: grouped (aggregated) operations</p></li>
+</ul>
+<div id="filter" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Filter<a href="dplyr-and-ggplot2.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>filter()</code> allows you to select rows by defining a condition (which could be
+simple or compound). For example, we can filter <code>storms</code> by selecting those
+rows from <code>year</code> 1975</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="dplyr-and-ggplot2.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using a single condition</span></span>
+<span id="cb16-2"><a href="dplyr-and-ggplot2.html#cb16-2" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span></code></pre></div>
+<p>We can also use a compound logical condition:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="dplyr-and-ggplot2.html#cb17-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span> <span class="sc">&amp;</span> name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
+<span id="cb17-2"><a href="dplyr-and-ggplot2.html#cb17-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 13
+##    name   year month   day  hour   lat  long status      category  wind pressure
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013
+##  2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013
+##  3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013
+##  4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013
+##  5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012
+##  6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012
+##  7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011
+##  8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006
+##  9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004
+## 10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002
+## # ℹ 21 more rows
+## # ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,
+## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 </div>
-<div id="attempt-number-2" class="section level4 unnumbered hasAnchor">
-<h4>Attempt Number 2<a href="counting-tropical-systems.html#attempt-number-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Perhaps we could add a <code>group_by(year)</code> operation before invoking <code>count()</code>:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="counting-tropical-systems.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second attempt</span></span>
-<span id="cb147-2"><a href="counting-tropical-systems.html#cb147-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
-<span id="cb147-3"><a href="counting-tropical-systems.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb147-4"><a href="counting-tropical-systems.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb147-5"><a href="counting-tropical-systems.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 47 × 2
-## # Groups:   year [47]
-##     year     n
-##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975   238
-##  2  1976   126
-##  3  1977    92
-##  4  1978   152
-##  5  1979   324
-##  6  1980   335
-##  7  1981   311
-##  8  1982   111
-##  9  1983    88
-## 10  1984   342
-## # ℹ 37 more rows</code></pre>
-<p>This result looks more interesting. The returned output is a table with two
-columns: <code>year</code> and <code>n</code>. But after careful inspection, you should notice
-something awkward. While the first column makes complete sense, the second
-column <code>n</code> does not seem to be very helpful. Are there really 86 tropical
-systems in 1975? Are there 52 systems in 1976? And so on, and so forth?
-Of course not; 1975 did not have 86 systems. The numeric values under column
-<code>n</code> simply refer to the number of entries (i.e. rows) associated to each year.</p>
-<p>You may not know this, but the previous table of counts can be obtained using a
-more compact command without the need to use <code>select()</code> and <code>group_by()</code>; you
-can just simply invoke <code>count(year)</code>:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="counting-tropical-systems.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same output of preceding command, only using count()</span></span>
-<span id="cb149-2"><a href="counting-tropical-systems.html#cb149-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
-<pre><code>## # A tibble: 47 × 2
-##     year     n
-##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975   238
-##  2  1976   126
-##  3  1977    92
-##  4  1978   152
-##  5  1979   324
-##  6  1980   335
-##  7  1981   311
-##  8  1982   111
-##  9  1983    88
-## 10  1984   342
-## # ℹ 37 more rows</code></pre>
+<div id="slice" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Slice<a href="dplyr-and-ggplot2.html#slice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>slice()</code> allows you to subset rows using their positions, for example:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="dplyr-and-ggplot2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first row</span></span>
+<span id="cb19-2"><a href="dplyr-and-ggplot2.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(amy75, <span class="dv">1</span>)</span>
+<span id="cb19-3"><a href="dplyr-and-ggplot2.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="dplyr-and-ggplot2.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># third row</span></span>
+<span id="cb19-5"><a href="dplyr-and-ggplot2.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(amy75, <span class="dv">3</span>)</span>
+<span id="cb19-6"><a href="dplyr-and-ggplot2.html#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="dplyr-and-ggplot2.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># first three rows</span></span>
+<span id="cb19-8"><a href="dplyr-and-ggplot2.html#cb19-8" aria-hidden="true" tabindex="-1"></a>three_rows <span class="ot">=</span> <span class="fu">slice</span>(amy75, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb19-9"><a href="dplyr-and-ggplot2.html#cb19-9" aria-hidden="true" tabindex="-1"></a>three_rows</span>
+<span id="cb19-10"><a href="dplyr-and-ggplot2.html#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="dplyr-and-ggplot2.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a negative position</span></span>
+<span id="cb19-12"><a href="dplyr-and-ggplot2.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(amy75, <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p>We should note that <code>slice()</code> comes with a set of sibling functions such as:</p>
+<ul>
+<li><p><code>slice_head()</code> to subset the first rows</p></li>
+<li><p><code>slice_tail()</code> to subset the last rows</p></li>
+<li><p><code>slice_min()</code> to subset rows with lowest values of a variable</p></li>
+<li><p><code>slice_max()</code> to subset rows with highest values of a variable</p></li>
+<li><p><code>slice_sample()</code> to randomly subset rows</p></li>
+</ul>
 </div>
-<div id="attempt-number-3" class="section level4 unnumbered hasAnchor">
-<h4>Attempt Number 3<a href="counting-tropical-systems.html#attempt-number-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>What if instead of counting <code>year</code> we count based on column <code>name</code>? For example:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="counting-tropical-systems.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
-<span id="cb151-2"><a href="counting-tropical-systems.html#cb151-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(name)</span></code></pre></div>
-<pre><code>## # A tibble: 258 × 2
-##    name         n
-##    &lt;chr&gt;    &lt;int&gt;
-##  1 AL011993    11
-##  2 AL012000     4
-##  3 AL021992     5
-##  4 AL021994     6
-##  5 AL021999     4
-##  6 AL022000    12
-##  7 AL022001     5
-##  8 AL022003     4
-##  9 AL022006    13
-## 10 AL031987    32
-## # ℹ 248 more rows</code></pre>
-<p>Mmm. Again, not the count that we are looking for. On a side note, observe the
-values displayed in the first rows of the returned table: e.g. <code>AL011993</code>,
-<code>AL012000</code>. These alphanumeric names correspond to names of tropical depressions
-that never reached <em>tropical storm</em> status. In other words, those system were
-not strong enough to be given a name, e.g. <code>Amy</code>, <code>Caroline</code>, <code>Doris</code>, etc.</p>
+<div id="select" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Select<a href="dplyr-and-ggplot2.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>select()</code> allows you to select one or more columns by name:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="dplyr-and-ggplot2.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(amy75, day, month, wind, pressure)</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 4
+##      day month  wind pressure
+##    &lt;int&gt; &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
+##  1    27     6    25     1013
+##  2    27     6    25     1013
+##  3    27     6    25     1013
+##  4    27     6    25     1013
+##  5    28     6    25     1012
+##  6    28     6    25     1012
+##  7    28     6    25     1011
+##  8    28     6    30     1006
+##  9    29     6    35     1004
+## 10    29     6    40     1002
+## # ℹ 21 more rows</code></pre>
+<p><code>select()</code> also allows you to specify a range of consecutive columns via the <code>:</code> operator</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="dplyr-and-ggplot2.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># consecutive columns</span></span>
+<span id="cb22-2"><a href="dplyr-and-ggplot2.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(amy75, name<span class="sc">:</span>long)</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 7
+##    name   year month   day  hour   lat  long
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Amy    1975     6    27     0  27.5 -79  
+##  2 Amy    1975     6    27     6  28.5 -79  
+##  3 Amy    1975     6    27    12  29.5 -79  
+##  4 Amy    1975     6    27    18  30.5 -79  
+##  5 Amy    1975     6    28     0  31.5 -78.8
+##  6 Amy    1975     6    28     6  32.4 -78.7
+##  7 Amy    1975     6    28    12  33.3 -78  
+##  8 Amy    1975     6    28    18  34   -77  
+##  9 Amy    1975     6    29     0  34.4 -75.8
+## 10 Amy    1975     6    29     6  34   -74.8
+## # ℹ 21 more rows</code></pre>
+<p><code>select()</code> also allows you to exclude one or more columns by negating their
+names:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="dplyr-and-ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude columns by name</span></span>
+<span id="cb24-2"><a href="dplyr-and-ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(amy75, <span class="sc">-</span>(lat<span class="sc">:</span>hurricane_force_diameter))</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 5
+##    name   year month   day  hour
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+##  1 Amy    1975     6    27     0
+##  2 Amy    1975     6    27     6
+##  3 Amy    1975     6    27    12
+##  4 Amy    1975     6    27    18
+##  5 Amy    1975     6    28     0
+##  6 Amy    1975     6    28     6
+##  7 Amy    1975     6    28    12
+##  8 Amy    1975     6    28    18
+##  9 Amy    1975     6    29     0
+## 10 Amy    1975     6    29     6
+## # ℹ 21 more rows</code></pre>
+<p>Interestingly, you can also <code>select()</code> columns by their position</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="dplyr-and-ggplot2.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># columns by position</span></span>
+<span id="cb26-2"><a href="dplyr-and-ggplot2.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(amy75, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 5
+##    name   year month   day  hour
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+##  1 Amy    1975     6    27     0
+##  2 Amy    1975     6    27     6
+##  3 Amy    1975     6    27    12
+##  4 Amy    1975     6    27    18
+##  5 Amy    1975     6    28     0
+##  6 Amy    1975     6    28     6
+##  7 Amy    1975     6    28    12
+##  8 Amy    1975     6    28    18
+##  9 Amy    1975     6    29     0
+## 10 Amy    1975     6    29     6
+## # ℹ 21 more rows</code></pre>
 </div>
-<div id="attempt-number-4" class="section level4 unnumbered hasAnchor">
-<h4>Attempt Number 4<a href="counting-tropical-systems.html#attempt-number-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>So far we’ve tried—unsuccessfully—counting based on column <code>year</code> alone,
-and also on column <code>name</code> alone. None of these columns, in and of itself, is
-enough because for any given storm or any given year we have multiple entries
-with duplicated values.</p>
-<p>Again, the following suggestion may not seem obvious, but you can also try
-counting by taking into account both <code>year</code> and <code>name</code></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="counting-tropical-systems.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
-<span id="cb153-2"><a href="counting-tropical-systems.html#cb153-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name)</span></code></pre></div>
-<pre><code>## # A tibble: 639 × 3
-##     year name         n
-##    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
-##  1  1975 Amy         31
-##  2  1975 Blanche     20
-##  3  1975 Caroline    33
-##  4  1975 Doris       29
-##  5  1975 Eloise      46
-##  6  1975 Faye        19
-##  7  1975 Gladys      46
-##  8  1975 Hallie      14
-##  9  1976 Belle       18
-## 10  1976 Candice     11
-## # ℹ 629 more rows</code></pre>
-<p>Compared to the previous attempts, this output looks more promising. Finally,
-we can see that there were three (named) storms in 1975, two in 1976, three
-more in 1977, etc. However, we still don’t have those specific counts: 3, 2, 3,
-etc. But at least we are making some progress in what it seems to be the right
-direction.</p>
+<div id="mutate" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Mutate<a href="dplyr-and-ggplot2.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another basic verb is <code>mutate()</code> which allows you to: 1) transform existing
+variables, but also 2) add new variables.</p>
+<p>For illustration purposes, let’s create a subset of storm Amy by selecting
+<code>day</code>, <code>month</code>, <code>hour</code>, and <code>wind</code>:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="dplyr-and-ggplot2.html#cb28-1" aria-hidden="true" tabindex="-1"></a>amy75_dat <span class="ot">=</span> <span class="fu">select</span>(amy75, day, month, hour, wind)</span>
+<span id="cb28-2"><a href="dplyr-and-ggplot2.html#cb28-2" aria-hidden="true" tabindex="-1"></a>amy75_dat</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 4
+##      day month  hour  wind
+##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1    27     6     0    25
+##  2    27     6     6    25
+##  3    27     6    12    25
+##  4    27     6    18    25
+##  5    28     6     0    25
+##  6    28     6     6    25
+##  7    28     6    12    25
+##  8    28     6    18    30
+##  9    29     6     0    35
+## 10    29     6     6    40
+## # ℹ 21 more rows</code></pre>
+<p>Wind speed values—column <code>wind</code>—are expressed in knots. But what if we are
+interested in having wind speed expressed in miles per hour? Enter <code>mutate()</code>.
+Here is how to add a new column <code>wind_mph</code> (1 knot = 1.15078 mph)</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="dplyr-and-ggplot2.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(amy75_dat, <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 31 × 5
+##      day month  hour  wind wind_mph
+##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;
+##  1    27     6     0    25     28.8
+##  2    27     6     6    25     28.8
+##  3    27     6    12    25     28.8
+##  4    27     6    18    25     28.8
+##  5    28     6     0    25     28.8
+##  6    28     6     6    25     28.8
+##  7    28     6    12    25     28.8
+##  8    28     6    18    30     34.5
+##  9    29     6     0    35     40.3
+## 10    29     6     6    40     46.0
+## # ℹ 21 more rows</code></pre>
+<hr />
 </div>
-<div id="attempt-number-5" class="section level4 unnumbered hasAnchor">
-<h4>Attempt Number 5<a href="counting-tropical-systems.html#attempt-number-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Why not taking the preceding command, and adding an extra <code>count()</code> but only
-considering <code>year</code>?</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="counting-tropical-systems.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
-<span id="cb155-2"><a href="counting-tropical-systems.html#cb155-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
-<pre><code>## # A tibble: 47 × 2
-##     year     n
-##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     8
-##  2  1976     7
-##  3  1977     6
-##  4  1978    11
-##  5  1979     8
-##  6  1980    11
-##  7  1981    11
-##  8  1982     5
-##  9  1983     4
-## 10  1984    12
-## # ℹ 37 more rows</code></pre>
-<p>Voila! Now we are talking. This table contains precisely the counts that
-we are looking for: number of systems in each year.</p>
-<p>For convenience purposes, let’s assign this table into its own object,
-which we can call <code>system_counts_per_year</code>, or some other meaningful name
-that you might prefer to use:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="counting-tropical-systems.html#cb157-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
-<span id="cb157-2"><a href="counting-tropical-systems.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
-<span id="cb157-3"><a href="counting-tropical-systems.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb157-4"><a href="counting-tropical-systems.html#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-5"><a href="counting-tropical-systems.html#cb157-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
-<pre><code>## # A tibble: 47 × 2
-##     year     n
-##    &lt;dbl&gt; &lt;int&gt;
-##  1  1975     8
-##  2  1976     7
-##  3  1977     6
-##  4  1978    11
-##  5  1979     8
-##  6  1980    11
-##  7  1981    11
-##  8  1982     5
-##  9  1983     4
-## 10  1984    12
-## # ℹ 37 more rows</code></pre>
-<p>Now that we have the counts or frequencies, it would be nice to visualize them
-with a barchart, like the following one:</p>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
-<p>Let’s discuss how to obtain this kind of graphic in the next chapter.</p>
+</div>
+<div id="exercises" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Exercises<a href="dplyr-and-ggplot2.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: lower-alpha">
+<li>use <code>slice()</code> to subset the 10th row of <code>starwars</code>.</li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="dplyr-and-ggplot2.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(starwars, <span class="dv">10</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>use <code>slice_head()</code> to subset the first 4 rows of <code>starwars</code></li>
+</ol>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="dplyr-and-ggplot2.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_head</span>(starwars, <span class="at">n =</span> <span class="dv">4</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>use <code>slice_tail()</code> to subset the last 3 rows of <code>starwars</code></li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="dplyr-and-ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_tail</span>(starwars, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -484,8 +497,8 @@ with a barchart, like the following one:</p>
           </div>
         </div>
       </div>
-<a href="summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-number-of-systems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="storms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="single-columns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
