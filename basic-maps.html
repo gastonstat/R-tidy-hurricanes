@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -316,10 +317,10 @@ data set contains geographical information such as longitude and latitude, we
 need to take a further step in this module in order to learn about plotting
 basic geographical maps.</p>
 <p>You will need the following packages:</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="basic-maps.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)      <span class="co"># for syntactic manipulation of tables</span></span>
-<span id="cb202-2"><a href="basic-maps.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)           <span class="co"># for drawing basic geographical maps</span></span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="basic-maps.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)      <span class="co"># for syntactic manipulation of tables</span></span>
+<span id="cb206-2"><a href="basic-maps.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)           <span class="co"># for drawing basic geographical maps</span></span></code></pre></div>
 <p>and the following objects:</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="basic-maps.html#cb203-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="basic-maps.html#cb207-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span></code></pre></div>
 <div id="graphing-maps" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">16.1</span> Graphing Maps<a href="basic-maps.html#graphing-maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this part, we give a basic exposure to plotting maps with <code>"ggplot2"</code>
@@ -338,16 +339,16 @@ the storm records. Recall that the <code>ggplot</code> function to do this is
 <code>geom_point()</code>. To distinguish each storm, we can color the
 dots by taking into account the different storm names. This involves <em>mapping</em>
 the column <code>name</code> to the <code>color</code> attribute:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="basic-maps.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms75, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span> </span>
-<span id="cb204-2"><a href="basic-maps.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="basic-maps.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms75, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span> </span>
+<span id="cb208-2"><a href="basic-maps.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map0-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Keep in mind that the previous command can also be written as:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="basic-maps.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative ways to write equivalent commands</span></span>
-<span id="cb205-2"><a href="basic-maps.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms75) <span class="sc">+</span>  </span>
-<span id="cb205-3"><a href="basic-maps.html#cb205-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span>
-<span id="cb205-4"><a href="basic-maps.html#cb205-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-5"><a href="basic-maps.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span>  </span>
-<span id="cb205-6"><a href="basic-maps.html#cb205-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="basic-maps.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative ways to write equivalent commands</span></span>
+<span id="cb209-2"><a href="basic-maps.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms75) <span class="sc">+</span>  </span>
+<span id="cb209-3"><a href="basic-maps.html#cb209-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span>
+<span id="cb209-4"><a href="basic-maps.html#cb209-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-5"><a href="basic-maps.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span>  </span>
+<span id="cb209-6"><a href="basic-maps.html#cb209-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span></code></pre></div>
 <p>The above scatterplot is a good starting point to visualize the location of the
 storm records, but it would be nice to have an actual image of a map. Let’s
 see how to do this in the following subsections.</p>
@@ -363,13 +364,13 @@ table with geospatial information of a world map. All you have to do is specify
 the name of the map provided by the <code>"maps"</code> package. In this example, let’s
 use the <code>"world"</code> map. Once we have this data, we can use it with <code>ggplot()</code>
 and a <code>geom_polygon()</code> layer like this:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="basic-maps.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># world map data</span></span>
-<span id="cb206-2"><a href="basic-maps.html#cb206-2" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;world&quot;</span>)</span>
-<span id="cb206-3"><a href="basic-maps.html#cb206-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-4"><a href="basic-maps.html#cb206-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a default world map</span></span>
-<span id="cb206-5"><a href="basic-maps.html#cb206-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb206-6"><a href="basic-maps.html#cb206-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world_map, </span>
-<span id="cb206-7"><a href="basic-maps.html#cb206-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group))</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="basic-maps.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># world map data</span></span>
+<span id="cb210-2"><a href="basic-maps.html#cb210-2" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;world&quot;</span>)</span>
+<span id="cb210-3"><a href="basic-maps.html#cb210-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-4"><a href="basic-maps.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a default world map</span></span>
+<span id="cb210-5"><a href="basic-maps.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb210-6"><a href="basic-maps.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world_map, </span>
+<span id="cb210-7"><a href="basic-maps.html#cb210-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group))</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map1-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>In the above command, notice how we specify the <code>data</code> argument inside
 <code>geom_polygon()</code> instead of inside <code>ggplot()</code>. We do this because the data
@@ -379,14 +380,14 @@ position of each storm’s record.</p>
 <p>To handle the code more easily, let’s modify the map, and create a <code>"ggplot"</code>
 object called <code>gg_world</code>. We’ll use this object as our “canvas” for plotting
 the storm locations:</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="basic-maps.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># map &quot;canvas&quot; stored as gg_world</span></span>
-<span id="cb207-2"><a href="basic-maps.html#cb207-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb207-3"><a href="basic-maps.html#cb207-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world_map, </span>
-<span id="cb207-4"><a href="basic-maps.html#cb207-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
-<span id="cb207-5"><a href="basic-maps.html#cb207-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;gray95&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;gray70&quot;</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb207-6"><a href="basic-maps.html#cb207-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb207-7"><a href="basic-maps.html#cb207-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb207-8"><a href="basic-maps.html#cb207-8" aria-hidden="true" tabindex="-1"></a>gg_world</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="basic-maps.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># map &quot;canvas&quot; stored as gg_world</span></span>
+<span id="cb211-2"><a href="basic-maps.html#cb211-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb211-3"><a href="basic-maps.html#cb211-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world_map, </span>
+<span id="cb211-4"><a href="basic-maps.html#cb211-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
+<span id="cb211-5"><a href="basic-maps.html#cb211-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;gray95&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;gray70&quot;</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb211-6"><a href="basic-maps.html#cb211-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb211-7"><a href="basic-maps.html#cb211-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-8"><a href="basic-maps.html#cb211-8" aria-hidden="true" tabindex="-1"></a>gg_world</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map2-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mapping-1975-storms" class="section level3 hasAnchor" number="16.1.3">
@@ -397,40 +398,40 @@ as the <code>data</code> argument inside this function. In other words, we are u
 separate data frames. One is <code>world_map</code>, used to draw the polygons of the map;
 the other one is <code>stomrs75</code> to graph the dots of each storm. Notice also that
 there are no inputs provided to the function <code>ggplot()</code>.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="basic-maps.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># world map, adding storms in 1975</span></span>
-<span id="cb208-2"><a href="basic-maps.html#cb208-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
-<span id="cb208-3"><a href="basic-maps.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
-<span id="cb208-4"><a href="basic-maps.html#cb208-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="basic-maps.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># world map, adding storms in 1975</span></span>
+<span id="cb212-2"><a href="basic-maps.html#cb212-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb212-3"><a href="basic-maps.html#cb212-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb212-4"><a href="basic-maps.html#cb212-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map3-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Because the analyzed hurricanes occurred in the North Atlantic basin, we can
 focus on that region by modifying the x-and-y axis limits:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="basic-maps.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zoom-in</span></span>
-<span id="cb209-2"><a href="basic-maps.html#cb209-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
-<span id="cb209-3"><a href="basic-maps.html#cb209-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
-<span id="cb209-4"><a href="basic-maps.html#cb209-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span></span>
-<span id="cb209-5"><a href="basic-maps.html#cb209-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb209-6"><a href="basic-maps.html#cb209-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="basic-maps.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zoom-in</span></span>
+<span id="cb213-2"><a href="basic-maps.html#cb213-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb213-3"><a href="basic-maps.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb213-4"><a href="basic-maps.html#cb213-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span></span>
+<span id="cb213-5"><a href="basic-maps.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb213-6"><a href="basic-maps.html#cb213-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map4-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>It’s worth mentioning that this zooming-in has a secondary effect of distorting
 some of the polygons. For example, Alaska seems to get cut in half. Also the
 polygon of Colombia is incomplete. Ignoring these distortions for now, we can
 continue exploring things by taking into account more variables. For instance,
 let’s map the <code>wind</code> speed to the <code>size</code> argument of points.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="basic-maps.html#cb210-1" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
-<span id="cb210-2"><a href="basic-maps.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
-<span id="cb210-3"><a href="basic-maps.html#cb210-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name, <span class="at">size =</span> wind),</span>
-<span id="cb210-4"><a href="basic-maps.html#cb210-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb210-5"><a href="basic-maps.html#cb210-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb210-6"><a href="basic-maps.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="basic-maps.html#cb214-1" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb214-2"><a href="basic-maps.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb214-3"><a href="basic-maps.html#cb214-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name, <span class="at">size =</span> wind),</span>
+<span id="cb214-4"><a href="basic-maps.html#cb214-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb214-5"><a href="basic-maps.html#cb214-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb214-6"><a href="basic-maps.html#cb214-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map5-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>A very similar appearance can be achieved by replacing <code>geom_point()</code> with
 <code>geom_path()</code>:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="basic-maps.html#cb211-1" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
-<span id="cb211-2"><a href="basic-maps.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms75,</span>
-<span id="cb211-3"><a href="basic-maps.html#cb211-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name, <span class="at">size =</span> wind),</span>
-<span id="cb211-4"><a href="basic-maps.html#cb211-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb211-5"><a href="basic-maps.html#cb211-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb211-6"><a href="basic-maps.html#cb211-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="basic-maps.html#cb215-1" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb215-2"><a href="basic-maps.html#cb215-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb215-3"><a href="basic-maps.html#cb215-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name, <span class="at">size =</span> wind),</span>
+<span id="cb215-4"><a href="basic-maps.html#cb215-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb215-5"><a href="basic-maps.html#cb215-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb215-6"><a href="basic-maps.html#cb215-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-map6-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
 
 </div>

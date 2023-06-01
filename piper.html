@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -332,15 +333,15 @@ in knots we also want them in mph and kph. And not only that, but we want to
 arrange the hurricanes by wind speed in increasing order.</p>
 <p>One option is to do calculations step-by-step, storing the intermediate
 results in their own data objects.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="piper.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
-<span id="cb1-2"><a href="piper.html#cb1-2" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">=</span> <span class="fu">filter</span>(sep2010, category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>)</span>
-<span id="cb1-3"><a href="piper.html#cb1-3" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">=</span> <span class="fu">select</span>(dat1, name, wind)</span>
-<span id="cb1-4"><a href="piper.html#cb1-4" aria-hidden="true" tabindex="-1"></a>dat3 <span class="ot">=</span> <span class="fu">mutate</span>(</span>
-<span id="cb1-5"><a href="piper.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  dat2,</span>
-<span id="cb1-6"><a href="piper.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
-<span id="cb1-7"><a href="piper.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>)</span>
-<span id="cb1-8"><a href="piper.html#cb1-8" aria-hidden="true" tabindex="-1"></a>dat4 <span class="ot">=</span> <span class="fu">arrange</span>(dat3, wind)</span>
-<span id="cb1-9"><a href="piper.html#cb1-9" aria-hidden="true" tabindex="-1"></a>dat4</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="piper.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
+<span id="cb52-2"><a href="piper.html#cb52-2" aria-hidden="true" tabindex="-1"></a>dat1 <span class="ot">=</span> <span class="fu">filter</span>(sep2010, category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>)</span>
+<span id="cb52-3"><a href="piper.html#cb52-3" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">=</span> <span class="fu">select</span>(dat1, name, wind)</span>
+<span id="cb52-4"><a href="piper.html#cb52-4" aria-hidden="true" tabindex="-1"></a>dat3 <span class="ot">=</span> <span class="fu">mutate</span>(</span>
+<span id="cb52-5"><a href="piper.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  dat2,</span>
+<span id="cb52-6"><a href="piper.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
+<span id="cb52-7"><a href="piper.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>)</span>
+<span id="cb52-8"><a href="piper.html#cb52-8" aria-hidden="true" tabindex="-1"></a>dat4 <span class="ot">=</span> <span class="fu">arrange</span>(dat3, wind)</span>
+<span id="cb52-9"><a href="piper.html#cb52-9" aria-hidden="true" tabindex="-1"></a>dat4</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 4
 ##   name   wind wind_mph wind_kph
 ##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -350,15 +351,15 @@ results in their own data objects.</p>
 ## 4 Igor    135    155.      250.</code></pre>
 <p>Another option, if you don’t want to name the intermediate results, requires
 wrapping the function calls inside each other:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="piper.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside-out style (hard to read)</span></span>
-<span id="cb3-2"><a href="piper.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(</span>
-<span id="cb3-3"><a href="piper.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-4"><a href="piper.html#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb3-5"><a href="piper.html#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(sep2010, category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>), </span>
-<span id="cb3-6"><a href="piper.html#cb3-6" aria-hidden="true" tabindex="-1"></a>      name, wind),</span>
-<span id="cb3-7"><a href="piper.html#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
-<span id="cb3-8"><a href="piper.html#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>),</span>
-<span id="cb3-9"><a href="piper.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  wind)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="piper.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside-out style (hard to read)</span></span>
+<span id="cb54-2"><a href="piper.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(</span>
+<span id="cb54-3"><a href="piper.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb54-4"><a href="piper.html#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb54-5"><a href="piper.html#cb54-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(sep2010, category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>), </span>
+<span id="cb54-6"><a href="piper.html#cb54-6" aria-hidden="true" tabindex="-1"></a>      name, wind),</span>
+<span id="cb54-7"><a href="piper.html#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
+<span id="cb54-8"><a href="piper.html#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>),</span>
+<span id="cb54-9"><a href="piper.html#cb54-9" aria-hidden="true" tabindex="-1"></a>  wind)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 4
 ##   name   wind wind_mph wind_kph
 ##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -373,14 +374,14 @@ To get around this problem, you can use a piper either <code>%&gt;%</code> or <c
 <h3><span class="header-section-number">6.1.1</span> The pipe operator<a href="piper.html#the-pipe-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>x |&gt; f(y)</code> turns into <code>f(x, y)</code> so you can use it to rewrite multiple
 operations that you can read left-to-right, top-to-bottom:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="piper.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
-<span id="cb5-2"><a href="piper.html#cb5-2" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="piper.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="piper.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, wind) <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="piper.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-6"><a href="piper.html#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
-<span id="cb5-7"><a href="piper.html#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="piper.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(wind)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="piper.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulation step-by-step</span></span>
+<span id="cb56-2"><a href="piper.html#cb56-2" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="sc">|&gt;</span> </span>
+<span id="cb56-3"><a href="piper.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">!=</span> <span class="st">&quot;ts&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="piper.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, wind) <span class="sc">|&gt;</span></span>
+<span id="cb56-5"><a href="piper.html#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb56-6"><a href="piper.html#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>,</span>
+<span id="cb56-7"><a href="piper.html#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wind_kph =</span> wind <span class="sc">*</span><span class="fl">1.852</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-8"><a href="piper.html#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(wind)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 4
 ##   name   wind wind_mph wind_kph
 ##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -452,6 +453,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

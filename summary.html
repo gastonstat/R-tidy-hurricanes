@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -330,9 +331,9 @@ functions in R:</p>
 <h2><span class="header-section-number">11.1</span> Number of Storms per Year<a href="summary.html#number-of-storms-per-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you recall, our first ggplot involved a barchart for the values in column
 <code>year</code></p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="summary.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
-<span id="cb130-2"><a href="summary.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="summary.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb129-2"><a href="summary.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p>We discovered that the 41-year period of recorded data from 1975 to 2015. We
 can take a further step and ask: how many storms are there in each year?</p>
 <p>To answer this question, we need to do some data manipulation with <code>"dplyr"</code>.
@@ -348,7 +349,7 @@ Therefore, we also need column <code>name</code>.</p>
 step by step. As you get more comfortable with <code>"dplyr"</code> and other functions,
 you won’t have the need to disect every single command.</p>
 <p>A first step is to <code>select()</code> variables <code>year</code> and <code>name</code>:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="summary.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(storms, year, name)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="summary.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(storms, year, name)</span></code></pre></div>
 <pre><code>## # A tibble: 19,066 × 2
 ##     year name 
 ##    &lt;dbl&gt; &lt;chr&gt;
@@ -367,7 +368,7 @@ you won’t have the need to disect every single command.</p>
 the output below seem identical. But notice the tiny difference: the output
 below has a second line of text with some relevant information:
 <code># Groups:   year [41]</code>, telling us that the values are grouped by year.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="summary.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="summary.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year)</span></code></pre></div>
 <pre><code>## # A tibble: 19,066 × 2
 ## # Groups:   year [47]
 ##     year name 
@@ -384,7 +385,7 @@ below has a second line of text with some relevant information:
 ## 10  1975 Amy  
 ## # ℹ 19,056 more rows</code></pre>
 <p>Then, we identify the <code>distinct()</code> values (combination of year-name):</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="summary.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="summary.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
 <pre><code>## # A tibble: 639 × 2
 ## # Groups:   year [47]
 ##     year name    
@@ -402,9 +403,9 @@ below has a second line of text with some relevant information:
 ## # ℹ 629 more rows</code></pre>
 <p>For convenience purposes, let’s assign this table into its own object,
 which we can call <code>storms_year_name</code></p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="summary.html#cb137-1" aria-hidden="true" tabindex="-1"></a>storms_year_name <span class="ot">&lt;-</span> <span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="summary.html#cb136-1" aria-hidden="true" tabindex="-1"></a>storms_year_name <span class="ot">&lt;-</span> <span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
 <p>Finally, we need to <code>count()</code> how many storms are in each year:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="summary.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms_year_name, year)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="summary.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms_year_name, year)</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n
@@ -422,15 +423,13 @@ which we can call <code>storms_year_name</code></p>
 ## # ℹ 37 more rows</code></pre>
 <p>All the previous commands can be assembled together with various embedded lines
 of code:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="summary.html#cb140-1" aria-hidden="true" tabindex="-1"></a>storms_per_year <span class="ot">&lt;-</span> <span class="fu">count</span>(</span>
-<span id="cb140-2"><a href="summary.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(</span>
-<span id="cb140-3"><a href="summary.html#cb140-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(</span>
-<span id="cb140-4"><a href="summary.html#cb140-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(storms, year, name), </span>
-<span id="cb140-5"><a href="summary.html#cb140-5" aria-hidden="true" tabindex="-1"></a>      year)</span>
-<span id="cb140-6"><a href="summary.html#cb140-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb140-7"><a href="summary.html#cb140-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb140-8"><a href="summary.html#cb140-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-9"><a href="summary.html#cb140-9" aria-hidden="true" tabindex="-1"></a>storms_per_year</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="summary.html#cb139-1" aria-hidden="true" tabindex="-1"></a>storms_per_year <span class="ot">&lt;-</span> storms <span class="sc">|&gt;</span></span>
+<span id="cb139-2"><a href="summary.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, name) <span class="sc">|&gt;</span></span>
+<span id="cb139-3"><a href="summary.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb139-4"><a href="summary.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span></span>
+<span id="cb139-5"><a href="summary.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span>
+<span id="cb139-6"><a href="summary.html#cb139-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-7"><a href="summary.html#cb139-7" aria-hidden="true" tabindex="-1"></a>storms_per_year</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n
@@ -449,15 +448,15 @@ of code:</p>
 <p>Now that we have the counts or frequencies, we can make our next barchart.
 In this case, we will use the table <code>storms_year_name</code> as the input data for
 <code>ggplot()</code>:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="summary.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms_year_name) <span class="sc">+</span> </span>
-<span id="cb142-2"><a href="summary.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="summary.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms_year_name) <span class="sc">+</span> </span>
+<span id="cb141-2"><a href="summary.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>By looking at the chart, there are some fairly tall bars. Although it’s hard
 to see exactly which years have a considerably large number of storms,
 eyeballing things out it seems that around 1995, 2003, 2005, and 2010 there are
 20 or more storms. We can find the actual answer by using <code>arrange()</code>,
 specifying the counts to be shown in descending order—with <code>desc()</code>:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="summary.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(storms_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="summary.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(storms_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n

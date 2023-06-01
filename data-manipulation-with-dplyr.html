@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -314,8 +315,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Grammar of Graphics and their implementation through <code>"ggplot2"</code>. In this
 chapter we move on with some of the basic notions behind <code>"dplyr"</code>, specifically
 we introduce the set of functions commonly referred to as the <em>basic verbs</em>.</p>
-<p>To continue the discussion, we use the sample data given in the following
-code chunk:</p>
+<p>To continue the discussion, we use the sample data for tropical cyclones that
+formed during the month of September 2010 in the North Atlantic:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-manipulation-with-dplyr.html#cb26-1" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb26-2"><a href="data-manipulation-with-dplyr.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Gaston&#39;</span>, <span class="st">&#39;Hermine&#39;</span>, <span class="st">&#39;Igor&#39;</span>, <span class="st">&#39;Julia&#39;</span>, <span class="st">&#39;Karl&#39;</span>, <span class="st">&#39;Lisa&#39;</span>, <span class="st">&#39;Matthew&#39;</span>, <span class="st">&#39;Nicole&#39;</span>),</span>
 <span id="cb26-3"><a href="data-manipulation-with-dplyr.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">135</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">40</span>),</span>

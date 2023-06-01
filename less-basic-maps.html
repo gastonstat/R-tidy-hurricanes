@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -311,11 +312,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="less-basic-maps" class="section level1 hasAnchor" number="17">
 <h1><span class="header-section-number">17</span> Less Basic Maps<a href="less-basic-maps.html#less-basic-maps" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The code in this chapter requires the following packages:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="less-basic-maps.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)          <span class="co"># for syntactic manipulation of tables</span></span>
-<span id="cb212-2"><a href="less-basic-maps.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)      <span class="co"># world map data from Natural Earth</span></span>
-<span id="cb212-3"><a href="less-basic-maps.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)  <span class="co"># companion package of rnaturalearth</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="less-basic-maps.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)          <span class="co"># for syntactic manipulation of tables</span></span>
+<span id="cb216-2"><a href="less-basic-maps.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)      <span class="co"># world map data from Natural Earth</span></span>
+<span id="cb216-3"><a href="less-basic-maps.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)  <span class="co"># companion package of rnaturalearth</span></span></code></pre></div>
 <p>and the following table for storms in 1975:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="less-basic-maps.html#cb213-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="less-basic-maps.html#cb217-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span></code></pre></div>
 <div id="more-mapping-approaches" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> More mapping approaches<a href="less-basic-maps.html#more-mapping-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Another interesting map graphing approach is by using map-objects from the
@@ -323,49 +324,49 @@ package <code>"rnaturalearth"</code>.</p>
 <p>We use the <code>ne_countries()</code> function—from <code>"rnaturalearth"</code>—to get world
 country polygons. In the following command, we specify a <code>medium</code> scale
 resolution, and a returned object of class <code>"sf"</code> (simple features).</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="less-basic-maps.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another world data frame</span></span>
-<span id="cb214-2"><a href="less-basic-maps.html#cb214-2" aria-hidden="true" tabindex="-1"></a>world_df <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb214-3"><a href="less-basic-maps.html#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(world_df)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="less-basic-maps.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another world data frame</span></span>
+<span id="cb218-2"><a href="less-basic-maps.html#cb218-2" aria-hidden="true" tabindex="-1"></a>world_df <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb218-3"><a href="less-basic-maps.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(world_df)</span></code></pre></div>
 <pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
 <p>Now we can pass <code>world_df</code> to <code>ggplot()</code>, and use <code>geom_sf()</code> which is the
 function that allows us to visualize <em>simple features</em> objects <code>"sf"</code>.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="less-basic-maps.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another world map (from &quot;rnaturalearth&quot;)</span></span>
-<span id="cb216-2"><a href="less-basic-maps.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world_df) <span class="sc">+</span></span>
-<span id="cb216-3"><a href="less-basic-maps.html#cb216-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
-<span id="cb216-4"><a href="less-basic-maps.html#cb216-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="less-basic-maps.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another world map (from &quot;rnaturalearth&quot;)</span></span>
+<span id="cb220-2"><a href="less-basic-maps.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world_df) <span class="sc">+</span></span>
+<span id="cb220-3"><a href="less-basic-maps.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
+<span id="cb220-4"><a href="less-basic-maps.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/world1-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>One advantage of using this other mapping approach is that we can zoom-in
 without having distorted polygons. To focus on a specific region, we set the
 x-axis and y-axis limits with the <code>coord_sf()</code> function. Again, for coding
 convenience, let’s create another <code>"ggplot"</code> object</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="less-basic-maps.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot object to be used as a canvas</span></span>
-<span id="cb217-2"><a href="less-basic-maps.html#cb217-2" aria-hidden="true" tabindex="-1"></a>gg_world2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world_df) <span class="sc">+</span></span>
-<span id="cb217-3"><a href="less-basic-maps.html#cb217-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
-<span id="cb217-4"><a href="less-basic-maps.html#cb217-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>), <span class="at">expand =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb217-5"><a href="less-basic-maps.html#cb217-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb217-6"><a href="less-basic-maps.html#cb217-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb217-7"><a href="less-basic-maps.html#cb217-7" aria-hidden="true" tabindex="-1"></a>gg_world2</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="less-basic-maps.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot object to be used as a canvas</span></span>
+<span id="cb221-2"><a href="less-basic-maps.html#cb221-2" aria-hidden="true" tabindex="-1"></a>gg_world2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> world_df) <span class="sc">+</span></span>
+<span id="cb221-3"><a href="less-basic-maps.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
+<span id="cb221-4"><a href="less-basic-maps.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>), <span class="at">expand =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb221-5"><a href="less-basic-maps.html#cb221-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb221-6"><a href="less-basic-maps.html#cb221-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-7"><a href="less-basic-maps.html#cb221-7" aria-hidden="true" tabindex="-1"></a>gg_world2</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/world2-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Now let’s add the storms:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="less-basic-maps.html#cb218-1" aria-hidden="true" tabindex="-1"></a>gg_world2 <span class="sc">+</span> </span>
-<span id="cb218-2"><a href="less-basic-maps.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms75,</span>
-<span id="cb218-3"><a href="less-basic-maps.html#cb218-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name),</span>
-<span id="cb218-4"><a href="less-basic-maps.html#cb218-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="less-basic-maps.html#cb222-1" aria-hidden="true" tabindex="-1"></a>gg_world2 <span class="sc">+</span> </span>
+<span id="cb222-2"><a href="less-basic-maps.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb222-3"><a href="less-basic-maps.html#cb222-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name),</span>
+<span id="cb222-4"><a href="less-basic-maps.html#cb222-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/storms75map5-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <div id="storms-from-1975-to-1980" class="section level3 hasAnchor" number="17.1.1">
 <h3><span class="header-section-number">17.1.1</span> Storms from 1975 to 1980<a href="less-basic-maps.html#storms-from-1975-to-1980" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As a simple experiment, let’s graph storms between 1975 and 1980 (six years).
 First we create a dedicated data table <code>storms_75_80</code> to select the rows we are
 interested in:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="less-basic-maps.html#cb219-1" aria-hidden="true" tabindex="-1"></a>storms_75_80 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">%in%</span> <span class="dv">1975</span><span class="sc">:</span><span class="dv">1980</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="less-basic-maps.html#cb223-1" aria-hidden="true" tabindex="-1"></a>storms_75_80 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">%in%</span> <span class="dv">1975</span><span class="sc">:</span><span class="dv">1980</span>)</span></code></pre></div>
 <p>And then we can use <code>facet_wrap(~ year)</code> to graph storms by year:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="less-basic-maps.html#cb220-1" aria-hidden="true" tabindex="-1"></a>gg_world2 <span class="sc">+</span></span>
-<span id="cb220-2"><a href="less-basic-maps.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms_75_80,</span>
-<span id="cb220-3"><a href="less-basic-maps.html#cb220-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> name),</span>
-<span id="cb220-4"><a href="less-basic-maps.html#cb220-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>) <span class="sc">+</span></span>
-<span id="cb220-5"><a href="less-basic-maps.html#cb220-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb220-6"><a href="less-basic-maps.html#cb220-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>)) <span class="sc">+</span> </span>
-<span id="cb220-7"><a href="less-basic-maps.html#cb220-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> year)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="less-basic-maps.html#cb224-1" aria-hidden="true" tabindex="-1"></a>gg_world2 <span class="sc">+</span></span>
+<span id="cb224-2"><a href="less-basic-maps.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms_75_80,</span>
+<span id="cb224-3"><a href="less-basic-maps.html#cb224-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> name),</span>
+<span id="cb224-4"><a href="less-basic-maps.html#cb224-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>) <span class="sc">+</span></span>
+<span id="cb224-5"><a href="less-basic-maps.html#cb224-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb224-6"><a href="less-basic-maps.html#cb224-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>)) <span class="sc">+</span> </span>
+<span id="cb224-7"><a href="less-basic-maps.html#cb224-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> year)</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/world23-1.png" width="90%" style="display: block; margin: auto;" /></p>
 
 </div>

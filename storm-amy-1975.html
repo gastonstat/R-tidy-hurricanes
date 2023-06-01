@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -312,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">9</span> Storm Amy (1975)<a href="storm-amy-1975.html#storm-amy-1975" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Let’s focus on storm <code>Amy</code> in 1975, subsetting <code>storms75</code> to filter out just
 the rows of Amy into its own table</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="storm-amy-1975.html#cb95-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
-<span id="cb95-2"><a href="storm-amy-1975.html#cb95-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="storm-amy-1975.html#cb94-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
+<span id="cb94-2"><a href="storm-amy-1975.html#cb94-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
 <pre><code>## # A tibble: 31 × 13
 ##    name   year month   day  hour   lat  long status      category  wind pressure
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
@@ -332,8 +333,8 @@ the rows of Amy into its own table</p>
 ## #   hurricane_force_diameter &lt;int&gt;</code></pre>
 <p>The same table can also be obtained with this alternative command applied
 on the entire <code>storms</code> tibble, and filtering using a compound logical condition:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="storm-amy-1975.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent command</span></span>
-<span id="cb97-2"><a href="storm-amy-1975.html#cb97-2" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span> <span class="sc">&amp;</span> name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="storm-amy-1975.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent command</span></span>
+<span id="cb96-2"><a href="storm-amy-1975.html#cb96-2" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span> <span class="sc">&amp;</span> name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span></code></pre></div>
 <div id="exploring-wind" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Exploring <code>wind</code><a href="storm-amy-1975.html#exploring-wind" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s keep exploring <code>wind</code> but now let’s do it chronologically, that is,
@@ -342,24 +343,24 @@ are tracked every six hours).</p>
 <p>We begin with a scatterplot using <code>geom_point()</code>,
 and we specify that the x-axis should use a numeric sequence <code>1:nrow(amy75)</code>
 from the first row till the last row of <code>amy75</code>, and <code>wind</code> for y-axis:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="storm-amy-1975.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb98-2"><a href="storm-amy-1975.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="storm-amy-1975.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> wind)) <span class="sc">+</span></span>
+<span id="cb97-2"><a href="storm-amy-1975.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-scatter1-amy75-wind-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Because the x-axis denotes progression over time, we can connect the dots
 with a line. A simple way to do this is by adding another layer to our plot,
 this time with <code>geom_line()</code></p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="storm-amy-1975.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb99-2"><a href="storm-amy-1975.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb99-3"><a href="storm-amy-1975.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="storm-amy-1975.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> wind)) <span class="sc">+</span></span>
+<span id="cb98-2"><a href="storm-amy-1975.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb98-3"><a href="storm-amy-1975.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-scatter2-amy75-wind-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>As you can tell, Amy started to being recorded with wind speed of 25 knots, and
 then after (7 x 6) = 42 hours, its speed kept increasing to 30, 35, 40, and so on
 until reaching its maximum speed of 60 knots that lasted 54 hours (9 x 6).</p>
 <p>At this point, we can ask about the <code>status</code> of Amy along its lifetime. One
 option is to map <code>status</code> to the <code>color</code> attribute of points:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="storm-amy-1975.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> wind)) <span class="sc">+</span></span>
-<span id="cb100-2"><a href="storm-amy-1975.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> status)) <span class="sc">+</span> </span>
-<span id="cb100-3"><a href="storm-amy-1975.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="storm-amy-1975.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> wind)) <span class="sc">+</span></span>
+<span id="cb99-2"><a href="storm-amy-1975.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> status)) <span class="sc">+</span> </span>
+<span id="cb99-3"><a href="storm-amy-1975.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-scatter3-amy75-wind-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>We see that Amy started as a tropical depression, and then became a tropical
 storm, but never became a hurricane. For a storm to reach hurricane status, of category 1, it must have one-minute maximum sustained winds of at least 64 kn
@@ -369,23 +370,23 @@ storm, but never became a hurricane. For a storm to reach hurricane status, of c
 <h2><span class="header-section-number">9.2</span> Exploring <code>pressure</code><a href="storm-amy-1975.html#exploring-pressure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What about the pressure values of Amy? We can produce a similar scatterplot
 with a line connecting the dots:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="storm-amy-1975.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> pressure)) <span class="sc">+</span></span>
-<span id="cb101-2"><a href="storm-amy-1975.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> status)) <span class="sc">+</span> </span>
-<span id="cb101-3"><a href="storm-amy-1975.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="storm-amy-1975.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> pressure)) <span class="sc">+</span></span>
+<span id="cb100-2"><a href="storm-amy-1975.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> status)) <span class="sc">+</span> </span>
+<span id="cb100-3"><a href="storm-amy-1975.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-scatter1-amy75-press-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>As an exploratory exercise, we can also play with the size of points, the
 size (width) of lines, colors, etc. Here’s one suggestion graphing <code>pressure</code>
 and taking into account the <code>wind</code> speed reflected in the size of points and
 line segments:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="storm-amy-1975.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> pressure)) <span class="sc">+</span></span>
-<span id="cb102-2"><a href="storm-amy-1975.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">size =</span> wind), <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">color =</span> <span class="st">&#39;gray70&#39;</span>) <span class="sc">+</span></span>
-<span id="cb102-3"><a href="storm-amy-1975.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> wind, <span class="at">color =</span> status))</span></code></pre></div>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated
-## in ggplot2 3.4.0.
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="storm-amy-1975.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> amy75, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(amy75), <span class="at">y =</span> pressure)) <span class="sc">+</span></span>
+<span id="cb101-2"><a href="storm-amy-1975.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">size =</span> wind), <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">color =</span> <span class="st">&#39;gray70&#39;</span>) <span class="sc">+</span></span>
+<span id="cb101-3"><a href="storm-amy-1975.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> wind, <span class="at">color =</span> status))</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
+## ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to
-## see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see
+## where this warning was generated.</code></pre>
 <p><img src="R-tidy-hurricanes_files/figure-html/plot-scatter2-amy75-press-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>If you know a little bit about storms, you know that there’s actually an
 association between <code>wind</code> and <code>pressure</code>. But let’s pretend for a second that
@@ -395,7 +396,7 @@ is going on between the <code>pressure</code> of a storm and its <code>wind</cod
 becomes stronger, with higher winds, its pressure levels drop accordingly,
 suggesting a negative correlation, which is confirmed when we compute this
 statistic:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="storm-amy-1975.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(amy75, <span class="fu">cor</span>(wind, pressure))</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="storm-amy-1975.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(amy75, <span class="fu">cor</span>(wind, pressure))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   `cor(wind, pressure)`
 ##                   &lt;dbl&gt;

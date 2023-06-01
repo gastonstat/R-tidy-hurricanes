@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -312,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">10</span> Summarizing 1975 Data<a href="summarizing-1975-data.html#summarizing-1975-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>We’ve been working with the table <code>storms75</code>, which was obtained by <em>filtering</em>
 those rows with <code>year</code> equal to 1975:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="summarizing-1975-data.html#cb106-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
-<span id="cb106-2"><a href="summarizing-1975-data.html#cb106-2" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="summarizing-1975-data.html#cb105-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
+<span id="cb105-2"><a href="summarizing-1975-data.html#cb105-2" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
 <pre><code>## # A tibble: 238 × 13
 ##    name   year month   day  hour   lat  long status      category  wind pressure
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
@@ -336,7 +337,7 @@ those rows with <code>year</code> equal to 1975:</p>
 on certain groups or categories of data. <code>"dplyr"</code> provides the function
 <code>group_by()</code> which takes a data table, and we specify the column(s) on which
 rows will be grouped by:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-60"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
 <img src="images/dplyr-group-by.png" alt="Group-by operations" width="80%" />
 <p class="caption">
 Figure 10.1: Group-by operations
@@ -346,11 +347,11 @@ Figure 10.1: Group-by operations
 average <code>pressure</code> of each storm in 1975. First we need to group by <code>name</code>,
 and then we use <code>summarise()</code> to indicate that we want to get the <code>mean()</code>
 of <code>wind</code> and <code>pressure</code>, like this:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="summarizing-1975-data.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
-<span id="cb108-2"><a href="summarizing-1975-data.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
-<span id="cb108-3"><a href="summarizing-1975-data.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
-<span id="cb108-4"><a href="summarizing-1975-data.html#cb108-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
-<span id="cb108-5"><a href="summarizing-1975-data.html#cb108-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="summarizing-1975-data.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb107-2"><a href="summarizing-1975-data.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
+<span id="cb107-3"><a href="summarizing-1975-data.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
+<span id="cb107-4"><a href="summarizing-1975-data.html#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
+<span id="cb107-5"><a href="summarizing-1975-data.html#cb107-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -363,13 +364,13 @@ of <code>wind</code> and <code>pressure</code>, like this:</p>
 ## 7 Gladys       66.3         986.
 ## 8 Hallie       34.6        1005.</code></pre>
 <p>Sometimes, you’ll find convenient to assign the output into its own table:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="summarizing-1975-data.html#cb110-1" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
-<span id="cb110-2"><a href="summarizing-1975-data.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
-<span id="cb110-3"><a href="summarizing-1975-data.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
-<span id="cb110-4"><a href="summarizing-1975-data.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
-<span id="cb110-5"><a href="summarizing-1975-data.html#cb110-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb110-6"><a href="summarizing-1975-data.html#cb110-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-7"><a href="summarizing-1975-data.html#cb110-7" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="summarizing-1975-data.html#cb109-1" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
+<span id="cb109-2"><a href="summarizing-1975-data.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
+<span id="cb109-3"><a href="summarizing-1975-data.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
+<span id="cb109-4"><a href="summarizing-1975-data.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
+<span id="cb109-5"><a href="summarizing-1975-data.html#cb109-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb109-6"><a href="summarizing-1975-data.html#cb109-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-7"><a href="summarizing-1975-data.html#cb109-7" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -392,7 +393,7 @@ arragement of rows based on the values of one or more columns. In <code>"dplyr"<
 this can easily be achieved with the function <code>arrange()</code>. The way this function
 works is passing the name of the table, and then specifying one or more columns
 to order rows based on such values.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-63"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-64"></span>
 <img src="images/dplyr-arrange.png" alt="Arranging rows" width="85%" />
 <p class="caption">
 Figure 10.2: Arranging rows
@@ -400,7 +401,7 @@ Figure 10.2: Arranging rows
 </div>
 <p>Say you want to arrange the contents of the average summary table, by taking
 into account the column <code>avg_wind</code>:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="summarizing-1975-data.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_wind)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="summarizing-1975-data.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_wind)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -413,7 +414,7 @@ into account the column <code>avg_wind</code>:</p>
 ## 7 Doris        67.1         988.
 ## 8 Faye         68.4         988.</code></pre>
 <p>Likewise, you can also arrange the averages by <code>avg_pressure</code>:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="summarizing-1975-data.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_pressure)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="summarizing-1975-data.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_pressure)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -429,7 +430,7 @@ into account the column <code>avg_wind</code>:</p>
 But what if you want to organize rows in decreasing order? No problem, just
 use the auxiliary function <code>desc()</code> to indicate that rows should be arranged
 decreasingly:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="summarizing-1975-data.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, <span class="fu">desc</span>(avg_wind))</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="summarizing-1975-data.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, <span class="fu">desc</span>(avg_wind))</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -447,8 +448,8 @@ decreasingly:</p>
 <p>Let’s focus on a specific storm, for example storm <code>Amy</code> in 1975. For sake of
 simplicity, we are going to create a table <code>amy75</code> containing the values of
 this storm:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="summarizing-1975-data.html#cb118-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
-<span id="cb118-2"><a href="summarizing-1975-data.html#cb118-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="summarizing-1975-data.html#cb117-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
+<span id="cb117-2"><a href="summarizing-1975-data.html#cb117-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
 <pre><code>## # A tibble: 31 × 13
 ##    name   year month   day  hour   lat  long status      category  wind pressure
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
@@ -471,29 +472,29 @@ this storm:</p>
 <li><p>during which months was Amy active? and for how many days?</p></li>
 <li><p>what are the basic summary statistics for <code>wind</code> and <code>pressure</code>?</p></li>
 </ul>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="summarizing-1975-data.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which are the `status` categories for Amy?</span></span>
-<span id="cb120-2"><a href="summarizing-1975-data.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, status)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="summarizing-1975-data.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which are the `status` categories for Amy?</span></span>
+<span id="cb119-2"><a href="summarizing-1975-data.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, status)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 1
 ##   status             
 ##   &lt;fct&gt;              
 ## 1 tropical depression
 ## 2 tropical storm     
 ## 3 extratropical</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="summarizing-1975-data.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># during which months was Amy active?</span></span>
-<span id="cb122-2"><a href="summarizing-1975-data.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, month)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="summarizing-1975-data.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># during which months was Amy active?</span></span>
+<span id="cb121-2"><a href="summarizing-1975-data.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, month)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 1
 ##   month
 ##   &lt;dbl&gt;
 ## 1     6
 ## 2     7</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="summarizing-1975-data.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for how many days was Amy active?</span></span>
-<span id="cb124-2"><a href="summarizing-1975-data.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="fu">distinct</span>(amy75, day))</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="summarizing-1975-data.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for how many days was Amy active?</span></span>
+<span id="cb123-2"><a href="summarizing-1975-data.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="fu">distinct</span>(amy75, day))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##       n
 ##   &lt;int&gt;
 ## 1     8</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="summarizing-1975-data.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for wind</span></span>
-<span id="cb126-2"><a href="summarizing-1975-data.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, wind))</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="summarizing-1975-data.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for wind</span></span>
+<span id="cb125-2"><a href="summarizing-1975-data.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, wind))</span></code></pre></div>
 <pre><code>##       wind      
 ##  Min.   :25.00  
 ##  1st Qu.:32.50  
@@ -501,8 +502,8 @@ this storm:</p>
 ##  Mean   :46.45  
 ##  3rd Qu.:60.00  
 ##  Max.   :60.00</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="summarizing-1975-data.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for pressure</span></span>
-<span id="cb128-2"><a href="summarizing-1975-data.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, pressure))</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="summarizing-1975-data.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for pressure</span></span>
+<span id="cb127-2"><a href="summarizing-1975-data.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, pressure))</span></code></pre></div>
 <pre><code>##     pressure     
 ##  Min.   : 981.0  
 ##  1st Qu.: 986.0  

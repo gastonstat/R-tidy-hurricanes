@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
 <li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
@@ -327,10 +328,10 @@ and so on.</p>
 select. Also think about the operations that seem to be required to get such
 count. You obviously need to select <code>year</code>; and you need to <code>count()</code>. With
 this initial setting, you could assemble the following pipeline of commands:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="counting-tropical-systems.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first attempt</span></span>
-<span id="cb145-2"><a href="counting-tropical-systems.html#cb145-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
-<span id="cb145-3"><a href="counting-tropical-systems.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb145-4"><a href="counting-tropical-systems.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="counting-tropical-systems.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first attempt</span></span>
+<span id="cb144-2"><a href="counting-tropical-systems.html#cb144-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb144-3"><a href="counting-tropical-systems.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb144-4"><a href="counting-tropical-systems.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##       n
 ##   &lt;int&gt;
@@ -341,11 +342,11 @@ ideas, spend some time reflecting on what the preceding command is doing.</p>
 <div id="attempt-number-2" class="section level4 unnumbered hasAnchor">
 <h4>Attempt Number 2<a href="counting-tropical-systems.html#attempt-number-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Perhaps we could add a <code>group_by(year)</code> operation before invoking <code>count()</code>:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="counting-tropical-systems.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second attempt</span></span>
-<span id="cb147-2"><a href="counting-tropical-systems.html#cb147-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
-<span id="cb147-3"><a href="counting-tropical-systems.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb147-4"><a href="counting-tropical-systems.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb147-5"><a href="counting-tropical-systems.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="counting-tropical-systems.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second attempt</span></span>
+<span id="cb146-2"><a href="counting-tropical-systems.html#cb146-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span></span>
+<span id="cb146-3"><a href="counting-tropical-systems.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb146-4"><a href="counting-tropical-systems.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb146-5"><a href="counting-tropical-systems.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n
@@ -371,8 +372,8 @@ Of course not; 1975 did not have 86 systems. The numeric values under column
 <p>You may not know this, but the previous table of counts can be obtained using a
 more compact command without the need to use <code>select()</code> and <code>group_by()</code>; you
 can just simply invoke <code>count(year)</code>:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="counting-tropical-systems.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same output of preceding command, only using count()</span></span>
-<span id="cb149-2"><a href="counting-tropical-systems.html#cb149-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="counting-tropical-systems.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same output of preceding command, only using count()</span></span>
+<span id="cb148-2"><a href="counting-tropical-systems.html#cb148-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -391,8 +392,8 @@ can just simply invoke <code>count(year)</code>:</p>
 <div id="attempt-number-3" class="section level4 unnumbered hasAnchor">
 <h4>Attempt Number 3<a href="counting-tropical-systems.html#attempt-number-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>What if instead of counting <code>year</code> we count based on column <code>name</code>? For example:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="counting-tropical-systems.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
-<span id="cb151-2"><a href="counting-tropical-systems.html#cb151-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(name)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="counting-tropical-systems.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
+<span id="cb150-2"><a href="counting-tropical-systems.html#cb150-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(name)</span></code></pre></div>
 <pre><code>## # A tibble: 258 × 2
 ##    name         n
 ##    &lt;chr&gt;    &lt;int&gt;
@@ -421,8 +422,8 @@ enough because for any given storm or any given year we have multiple entries
 with duplicated values.</p>
 <p>Again, the following suggestion may not seem obvious, but you can also try
 counting by taking into account both <code>year</code> and <code>name</code></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="counting-tropical-systems.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
-<span id="cb153-2"><a href="counting-tropical-systems.html#cb153-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="counting-tropical-systems.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
+<span id="cb152-2"><a href="counting-tropical-systems.html#cb152-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name)</span></code></pre></div>
 <pre><code>## # A tibble: 639 × 3
 ##     year name         n
 ##    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
@@ -447,8 +448,8 @@ direction.</p>
 <h4>Attempt Number 5<a href="counting-tropical-systems.html#attempt-number-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Why not taking the preceding command, and adding an extra <code>count()</code> but only
 considering <code>year</code>?</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="counting-tropical-systems.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
-<span id="cb155-2"><a href="counting-tropical-systems.html#cb155-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="counting-tropical-systems.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
+<span id="cb154-2"><a href="counting-tropical-systems.html#cb154-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">%&gt;%</span> <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> <span class="fu">count</span>(year)</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -468,11 +469,11 @@ we are looking for: number of systems in each year.</p>
 <p>For convenience purposes, let’s assign this table into its own object,
 which we can call <code>system_counts_per_year</code>, or some other meaningful name
 that you might prefer to use:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="counting-tropical-systems.html#cb157-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
-<span id="cb157-2"><a href="counting-tropical-systems.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
-<span id="cb157-3"><a href="counting-tropical-systems.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
-<span id="cb157-4"><a href="counting-tropical-systems.html#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-5"><a href="counting-tropical-systems.html#cb157-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="counting-tropical-systems.html#cb156-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">%&gt;%</span> </span>
+<span id="cb156-2"><a href="counting-tropical-systems.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">%&gt;%</span> </span>
+<span id="cb156-3"><a href="counting-tropical-systems.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb156-4"><a href="counting-tropical-systems.html#cb156-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="counting-tropical-systems.html#cb156-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ##     year     n
 ##    &lt;dbl&gt; &lt;int&gt;
@@ -489,7 +490,7 @@ that you might prefer to use:</p>
 ## # ℹ 37 more rows</code></pre>
 <p>Now that we have the counts or frequencies, it would be nice to visualize them
 with a barchart, like the following one:</p>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <p>Let’s discuss how to obtain this kind of graphic in the next chapter.</p>
 
 </div>

@@ -1,10 +1,10 @@
 fig:unnamed-chunk-3
 fig:unnamed-chunk-4
 fig:unnamed-chunk-5
-fig:unnamed-chunk-40
-fig:unnamed-chunk-47
-fig:unnamed-chunk-60
-fig:unnamed-chunk-63
+fig:unnamed-chunk-41
+fig:unnamed-chunk-48
+fig:unnamed-chunk-61
+fig:unnamed-chunk-64
 tables-and-tidyverse
 tropical-storms
 a-little-bit-about-hurricanes
