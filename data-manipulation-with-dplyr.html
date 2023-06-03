@@ -54,6 +54,22 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -197,6 +213,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1.3</b> Select</a></li>
 <li class="chapter" data-level="5.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.1.4</b> Mutate</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#reordering-rows-arrange"><i class="fa fa-check"></i><b>5.2</b> Reordering rows: <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>5.3</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>5.4</b> Grouped operations</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>6</b> The Pipe Operators</a>
 <ul>
@@ -205,6 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.1" data-path="piper.html"><a href="piper.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.1.1</b> The pipe operator</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
 <li class="chapter" data-level="7" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>7</b> Inspecting Single Columns</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>7.1</b> Basic Inspection of Year</a>
@@ -214,7 +234,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>7.2</b> Basic inspection of <code>month</code></a></li>
 <li class="chapter" data-level="7.3" data-path="single-columns.html"><a href="single-columns.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
-<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
 <li class="chapter" data-level="8" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>8</b> Storms in 1975</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>8.1</b> Visualizing 1975 data</a>
@@ -245,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
 <li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
 </ul></li>
-<li class="part"><span><b>IV Analyzing Storms 1975-2020</b></span></li>
+<li class="part"><span><b>IV Counting Storms 1975-2020</b></span></li>
 <li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
 <li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
 <ul>
@@ -273,21 +292,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
 <li class="part"><span><b>V Maps</b></span></li>
-<li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
+<li class="chapter" data-level="16" data-path="maps-intro.html"><a href="maps-intro.html"><i class="fa fa-check"></i><b>16</b> Introduction to Maps</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
+<li class="chapter" data-level="16.1" data-path="maps-intro.html"><a href="maps-intro.html#some-words-about-maps-in-r"><i class="fa fa-check"></i><b>16.1</b> Some Words about Maps in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="maps-ggplot.html"><a href="maps-ggplot.html"><i class="fa fa-check"></i><b>17</b> Basic Maps</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>16.1.1</b> Plotting location of storm records</a></li>
-<li class="chapter" data-level="16.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>16.1.2</b> Basic map</a></li>
-<li class="chapter" data-level="16.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>16.1.3</b> Mapping 1975 Storms</a></li>
+<li class="chapter" data-level="17.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#graphing-maps"><i class="fa fa-check"></i><b>17.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>17.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="17.1.2" data-path="maps-ggplot.html"><a href="maps-ggplot.html#basic-world-map"><i class="fa fa-check"></i><b>17.1.2</b> Basic World Map</a></li>
+<li class="chapter" data-level="17.1.3" data-path="maps-ggplot.html"><a href="maps-ggplot.html#mapping-1975-storms"><i class="fa fa-check"></i><b>17.1.3</b> Mapping 1975 Storms</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>17</b> Less Basic Maps</a>
+<li class="chapter" data-level="18" data-path="maps-sf.html"><a href="maps-sf.html"><i class="fa fa-check"></i><b>18</b> Simple Features Maps</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>17.1</b> More mapping approaches</a>
+<li class="chapter" data-level="18.1" data-path="maps-sf.html"><a href="maps-sf.html#basic-world-map-1"><i class="fa fa-check"></i><b>18.1</b> Basic World Map</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>17.1.1</b> Storms from 1975 to 1980</a></li>
+<li class="chapter" data-level="18.1.1" data-path="maps-sf.html"><a href="maps-sf.html#world-coastline-map"><i class="fa fa-check"></i><b>18.1.1</b> World Coastline Map</a></li>
+<li class="chapter" data-level="18.1.2" data-path="maps-sf.html"><a href="maps-sf.html#world-countries-map"><i class="fa fa-check"></i><b>18.1.2</b> World Countries Map</a></li>
+<li class="chapter" data-level="18.1.3" data-path="maps-sf.html"><a href="maps-sf.html#north-america-map"><i class="fa fa-check"></i><b>18.1.3</b> North America Map</a></li>
 </ul></li>
+<li class="chapter" data-level="18.2" data-path="maps-sf.html"><a href="maps-sf.html#plotting-storms"><i class="fa fa-check"></i><b>18.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="maps-sf.html"><a href="maps-sf.html#hurricanes-in-1975"><i class="fa fa-check"></i><b>18.2.1</b> Hurricanes in 1975</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="maps-sf.html"><a href="maps-sf.html#more-maps"><i class="fa fa-check"></i><b>18.3</b> More Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="maps-leaflet.html"><a href="maps-leaflet.html"><i class="fa fa-check"></i><b>19</b> Leaflet Maps</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#introduction"><i class="fa fa-check"></i><b>19.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#a-basic-interactive-map-of-the-world"><i class="fa fa-check"></i><b>19.1.1</b> A Basic Interactive Map of the World</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="maps-leaflet.html"><a href="maps-leaflet.html#plotting-storms-1"><i class="fa fa-check"></i><b>19.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#customizing-color-palette"><i class="fa fa-check"></i><b>19.2.1</b> Customizing color palette</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="maps-tmap.html"><a href="maps-tmap.html"><i class="fa fa-check"></i><b>20</b> Thematic Maps</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="maps-tmap.html"><a href="maps-tmap.html#basic-world-map-2"><i class="fa fa-check"></i><b>20.1</b> Basic World Map</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="maps-tmap.html"><a href="maps-tmap.html#tmaps-with-sf-objects"><i class="fa fa-check"></i><b>20.1.1</b> tmaps with <code>sf</code> objects</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-storms-in-2010"><i class="fa fa-check"></i><b>20.2</b> Adding Storms in 2010</a></li>
+<li class="chapter" data-level="20.3" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-hurricanes-in-2010"><i class="fa fa-check"></i><b>20.3</b> Adding Hurricanes in 2010</a></li>
+<li class="chapter" data-level="20.4" data-path="maps-tmap.html"><a href="maps-tmap.html#interactive-map"><i class="fa fa-check"></i><b>20.4</b> Interactive Map</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
@@ -314,28 +365,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the preceding chapter, we introduced some of the key ideas behind the
 Grammar of Graphics and their implementation through <code>"ggplot2"</code>. In this
 chapter we move on with some of the basic notions behind <code>"dplyr"</code>, specifically
-we introduce the set of functions commonly referred to as the <em>basic verbs</em>.</p>
+we introduce the set of functions commonly referred to as the <em>basic dplyr verbs</em>.</p>
 <p>To continue the discussion, we use the sample data for tropical cyclones that
 formed during the month of September 2010 in the North Atlantic:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-manipulation-with-dplyr.html#cb26-1" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb26-2"><a href="data-manipulation-with-dplyr.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;Gaston&#39;</span>, <span class="st">&#39;Hermine&#39;</span>, <span class="st">&#39;Igor&#39;</span>, <span class="st">&#39;Julia&#39;</span>, <span class="st">&#39;Karl&#39;</span>, <span class="st">&#39;Lisa&#39;</span>, <span class="st">&#39;Matthew&#39;</span>, <span class="st">&#39;Nicole&#39;</span>),</span>
 <span id="cb26-3"><a href="data-manipulation-with-dplyr.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">135</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">40</span>),</span>
 <span id="cb26-4"><a href="data-manipulation-with-dplyr.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pressure =</span> <span class="fu">c</span>(<span class="dv">1005</span>, <span class="dv">989</span>, <span class="dv">924</span>, <span class="dv">948</span>, <span class="dv">956</span>, <span class="dv">982</span>, <span class="dv">998</span>, <span class="dv">994</span>),</span>
-<span id="cb26-5"><a href="data-manipulation-with-dplyr.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat3&#39;</span>, <span class="st">&#39;cat1&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>)</span>
-<span id="cb26-6"><a href="data-manipulation-with-dplyr.html#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-7"><a href="data-manipulation-with-dplyr.html#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="data-manipulation-with-dplyr.html#cb26-8" aria-hidden="true" tabindex="-1"></a>sep2010</span></code></pre></div>
-<pre><code># A tibble: 8 × 4
-  name     wind pressure category
-  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-1 Gaston     35     1005 ts      
-2 Hermine    60      989 ts      
-3 Igor      135      924 cat4    
-4 Julia     120      948 cat4    
-5 Karl      110      956 cat3    
-6 Lisa       75      982 cat1    
-7 Matthew    50      998 ts      
-8 Nicole     40      994 ts      </code></pre>
+<span id="cb26-5"><a href="data-manipulation-with-dplyr.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat4&#39;</span>, <span class="st">&#39;cat3&#39;</span>, <span class="st">&#39;cat1&#39;</span>, <span class="st">&#39;ts&#39;</span>, <span class="st">&#39;ts&#39;</span>),</span>
+<span id="cb26-6"><a href="data-manipulation-with-dplyr.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">days =</span> <span class="fu">c</span>(1L, 4L, 13L, 8L, 4L, 6L, 3L, 1L)</span>
+<span id="cb26-7"><a href="data-manipulation-with-dplyr.html#cb26-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-8"><a href="data-manipulation-with-dplyr.html#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="data-manipulation-with-dplyr.html#cb26-9" aria-hidden="true" tabindex="-1"></a>sep2010</span></code></pre></div>
+<pre><code># A tibble: 8 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston     35     1005 ts           1
+2 Hermine    60      989 ts           4
+3 Igor      135      924 cat4        13
+4 Julia     120      948 cat4         8
+5 Karl      110      956 cat3         4
+6 Lisa       75      982 cat1         6
+7 Matthew    50      998 ts           3
+8 Nicole     40      994 ts           1</code></pre>
 <div id="basic-dplyr-verbs" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Basic <code>"dplyr"</code> verbs<a href="data-manipulation-with-dplyr.html#basic-dplyr-verbs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In no particular order of importance, let’s start with the set of elementary
@@ -356,58 +408,58 @@ simple or compound). For example, we can filter <code>sep2010</code> by selectin
 tropical cyclones of category tropical storm (<code>ts</code>)</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-manipulation-with-dplyr.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using a single condition</span></span>
 <span id="cb28-2"><a href="data-manipulation-with-dplyr.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sep2010, category <span class="sc">==</span> <span class="st">&quot;ts&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 4 × 4
-##   name     wind pressure category
-##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Gaston     35     1005 ts      
-## 2 Hermine    60      989 ts      
-## 3 Matthew    50      998 ts      
-## 4 Nicole     40      994 ts</code></pre>
+<pre><code>## # A tibble: 4 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Gaston     35     1005 ts           1
+## 2 Hermine    60      989 ts           4
+## 3 Matthew    50      998 ts           3
+## 4 Nicole     40      994 ts           1</code></pre>
 <p>We can also use a compound logical condition: tropical storms having a wind
 speed greater than 40</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-manipulation-with-dplyr.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sep2010, category <span class="sc">==</span> <span class="st">&quot;ts&quot;</span> <span class="sc">&amp;</span> wind <span class="sc">&gt;</span> <span class="dv">40</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 4
-##   name     wind pressure category
-##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Hermine    60      989 ts      
-## 2 Matthew    50      998 ts</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Hermine    60      989 ts           4
+## 2 Matthew    50      998 ts           3</code></pre>
 </div>
 <div id="slice" class="section level3 hasAnchor" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Slice<a href="data-manipulation-with-dplyr.html#slice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>slice()</code> allows you to subset rows using their positions, for example:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-manipulation-with-dplyr.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first row</span></span>
 <span id="cb32-2"><a href="data-manipulation-with-dplyr.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 4
-##   name    wind pressure category
-##   &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Gaston    35     1005 ts</code></pre>
+<pre><code>## # A tibble: 1 × 5
+##   name    wind pressure category  days
+##   &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Gaston    35     1005 ts           1</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-manipulation-with-dplyr.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third row</span></span>
 <span id="cb34-2"><a href="data-manipulation-with-dplyr.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 4
-##   name   wind pressure category
-##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Igor    135      924 cat4</code></pre>
+<pre><code>## # A tibble: 1 × 5
+##   name   wind pressure category  days
+##   &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Igor    135      924 cat4        13</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-manipulation-with-dplyr.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first three rows</span></span>
 <span id="cb36-2"><a href="data-manipulation-with-dplyr.html#cb36-2" aria-hidden="true" tabindex="-1"></a>three_rows <span class="ot">=</span> <span class="fu">slice</span>(sep2010, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
 <span id="cb36-3"><a href="data-manipulation-with-dplyr.html#cb36-3" aria-hidden="true" tabindex="-1"></a>three_rows</span></code></pre></div>
-<pre><code>## # A tibble: 3 × 4
-##   name     wind pressure category
-##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Gaston     35     1005 ts      
-## 2 Hermine    60      989 ts      
-## 3 Igor      135      924 cat4</code></pre>
+<pre><code>## # A tibble: 3 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Gaston     35     1005 ts           1
+## 2 Hermine    60      989 ts           4
+## 3 Igor      135      924 cat4        13</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-manipulation-with-dplyr.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a negative position</span></span>
 <span id="cb38-2"><a href="data-manipulation-with-dplyr.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 7 × 4
-##   name     wind pressure category
-##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Hermine    60      989 ts      
-## 2 Igor      135      924 cat4    
-## 3 Julia     120      948 cat4    
-## 4 Karl      110      956 cat3    
-## 5 Lisa       75      982 cat1    
-## 6 Matthew    50      998 ts      
-## 7 Nicole     40      994 ts</code></pre>
+<pre><code>## # A tibble: 7 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Hermine    60      989 ts           4
+## 2 Igor      135      924 cat4        13
+## 3 Julia     120      948 cat4         8
+## 4 Karl      110      956 cat3         4
+## 5 Lisa       75      982 cat1         6
+## 6 Matthew    50      998 ts           3
+## 7 Nicole     40      994 ts           1</code></pre>
 <p>We should note that <code>slice()</code> comes with a set of sibling functions such as:</p>
 <ul>
 <li><p><code>slice_head()</code> to subset the first rows</p></li>
@@ -450,17 +502,17 @@ speed greater than 40</p>
 names:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-manipulation-with-dplyr.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude columns by name</span></span>
 <span id="cb44-2"><a href="data-manipulation-with-dplyr.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, <span class="sc">-</span>(wind<span class="sc">:</span>category))</span></code></pre></div>
-<pre><code>## # A tibble: 8 × 1
-##   name   
-##   &lt;chr&gt;  
-## 1 Gaston 
-## 2 Hermine
-## 3 Igor   
-## 4 Julia  
-## 5 Karl   
-## 6 Lisa   
-## 7 Matthew
-## 8 Nicole</code></pre>
+<pre><code>## # A tibble: 8 × 2
+##   name     days
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 Gaston      1
+## 2 Hermine     4
+## 3 Igor       13
+## 4 Julia       8
+## 5 Karl        4
+## 6 Lisa        6
+## 7 Matthew     3
+## 8 Nicole      1</code></pre>
 <p>Interestingly, you can also <code>select()</code> columns by their position</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-manipulation-with-dplyr.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># columns by position</span></span>
 <span id="cb46-2"><a href="data-manipulation-with-dplyr.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
@@ -484,33 +536,146 @@ variables, but also 2) add new variables.</p>
 interested in having wind speed expressed in miles per hour? Enter <code>mutate()</code>.
 Here is how to add a new column <code>wind_mph</code> (1 knot = 1.15078 mph)</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-manipulation-with-dplyr.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(sep2010, <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 8 × 5
-##   name     wind pressure category wind_mph
-##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
-## 1 Gaston     35     1005 ts           40.3
-## 2 Hermine    60      989 ts           69.0
-## 3 Igor      135      924 cat4        155. 
-## 4 Julia     120      948 cat4        138. 
-## 5 Karl      110      956 cat3        127. 
-## 6 Lisa       75      982 cat1         86.3
-## 7 Matthew    50      998 ts           57.5
-## 8 Nicole     40      994 ts           46.0</code></pre>
+<pre><code>## # A tibble: 8 × 6
+##   name     wind pressure category  days wind_mph
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;
+## 1 Gaston     35     1005 ts           1     40.3
+## 2 Hermine    60      989 ts           4     69.0
+## 3 Igor      135      924 cat4        13    155. 
+## 4 Julia     120      948 cat4         8    138. 
+## 5 Karl      110      956 cat3         4    127. 
+## 6 Lisa       75      982 cat1         6     86.3
+## 7 Matthew    50      998 ts           3     57.5
+## 8 Nicole     40      994 ts           1     46.0</code></pre>
 <p>If we just want to transform the existing values in column <code>wind</code> so that it is
 expressed in mph, then we simply <code>mutate()</code> it using the same variable name:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-manipulation-with-dplyr.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(sep2010, <span class="at">wind =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 8 × 4
-##   name     wind pressure category
-##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
-## 1 Gaston   40.3     1005 ts      
-## 2 Hermine  69.0      989 ts      
-## 3 Igor    155.       924 cat4    
-## 4 Julia   138.       948 cat4    
-## 5 Karl    127.       956 cat3    
-## 6 Lisa     86.3      982 cat1    
-## 7 Matthew  57.5      998 ts      
-## 8 Nicole   46.0      994 ts</code></pre>
-
+<pre><code>## # A tibble: 8 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Gaston   40.3     1005 ts           1
+## 2 Hermine  69.0      989 ts           4
+## 3 Igor    155.       924 cat4        13
+## 4 Julia   138.       948 cat4         8
+## 5 Karl    127.       956 cat3         4
+## 6 Lisa     86.3      982 cat1         6
+## 7 Matthew  57.5      998 ts           3
+## 8 Nicole   46.0      994 ts           1</code></pre>
+<p>Recall that, in order to permanently change the data, you need to assign the
+changes to an object:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-manipulation-with-dplyr.html#cb52-1" aria-hidden="true" tabindex="-1"></a>sep2010b <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sep2010, <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span>
+<span id="cb52-2"><a href="data-manipulation-with-dplyr.html#cb52-2" aria-hidden="true" tabindex="-1"></a>sep2010b</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 6
+##   name     wind pressure category  days wind_mph
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;
+## 1 Gaston     35     1005 ts           1     40.3
+## 2 Hermine    60      989 ts           4     69.0
+## 3 Igor      135      924 cat4        13    155. 
+## 4 Julia     120      948 cat4         8    138. 
+## 5 Karl      110      956 cat3         4    127. 
+## 6 Lisa       75      982 cat1         6     86.3
+## 7 Matthew    50      998 ts           3     57.5
+## 8 Nicole     40      994 ts           1     46.0</code></pre>
 </div>
+</div>
+<div id="reordering-rows-arrange" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Reordering rows: <code>arrange()</code><a href="data-manipulation-with-dplyr.html#reordering-rows-arrange" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The next basic verb of <code>"dplyr"</code> is <code>arrange()</code> which allows you to reorder
+rows. For example, here’s how to arrange the rows of <code>sep2010</code> by <code>wind</code></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-manipulation-with-dplyr.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by wind (increasingly)</span></span>
+<span id="cb54-2"><a href="data-manipulation-with-dplyr.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(sep2010, wind)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Gaston     35     1005 ts           1
+## 2 Nicole     40      994 ts           1
+## 3 Matthew    50      998 ts           3
+## 4 Hermine    60      989 ts           4
+## 5 Lisa       75      982 cat1         6
+## 6 Karl      110      956 cat3         4
+## 7 Julia     120      948 cat4         8
+## 8 Igor      135      924 cat4        13</code></pre>
+<p>By default <code>arrange()</code> sorts rows in increasing order. To arrange rows in
+descending order you need to use the auxiliary function <code>desc()</code>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-manipulation-with-dplyr.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by wind (decreasingly)</span></span>
+<span id="cb56-2"><a href="data-manipulation-with-dplyr.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(sep2010, <span class="fu">desc</span>(wind))</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Igor      135      924 cat4        13
+## 2 Julia     120      948 cat4         8
+## 3 Karl      110      956 cat3         4
+## 4 Lisa       75      982 cat1         6
+## 5 Hermine    60      989 ts           4
+## 6 Matthew    50      998 ts           3
+## 7 Nicole     40      994 ts           1
+## 8 Gaston     35     1005 ts           1</code></pre>
+<p>Last but not least, you can also pass more than one column for arranging
+purposes:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="data-manipulation-with-dplyr.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by days, and then pressure</span></span>
+<span id="cb58-2"><a href="data-manipulation-with-dplyr.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(sep2010, days, pressure)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 5
+##   name     wind pressure category  days
+##   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+## 1 Nicole     40      994 ts           1
+## 2 Gaston     35     1005 ts           1
+## 3 Matthew    50      998 ts           3
+## 4 Karl      110      956 cat3         4
+## 5 Hermine    60      989 ts           4
+## 6 Lisa       75      982 cat1         6
+## 7 Julia     120      948 cat4         8
+## 8 Igor      135      924 cat4        13</code></pre>
+</div>
+<div id="summarizing-values-with-summarise" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Summarizing values with <code>summarise()</code><a href="data-manipulation-with-dplyr.html#summarizing-values-with-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The next verb is <code>summarise()</code>, which is also available as <code>summarize()</code>.
+Conceptually, this involves applying a function on one or more columns, in
+order to summarize values. This is probably easier to understand with one
+example.</p>
+<p>Say you are interested in calculating the average duration of all storms
+To do this <em>“a la dplyr”</em> you use <code>summarise()</code> as follows:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="data-manipulation-with-dplyr.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average duration</span></span>
+<span id="cb60-2"><a href="data-manipulation-with-dplyr.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(sep2010, <span class="at">avg_days =</span> <span class="fu">mean</span>(days))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   avg_days
+##      &lt;dbl&gt;
+## 1        5</code></pre>
+<p>What if you want to calculate some summary statistics for <code>days</code>: min,
+median, mean, and max?</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="data-manipulation-with-dplyr.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some stats for days (dplyr)</span></span>
+<span id="cb62-2"><a href="data-manipulation-with-dplyr.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb62-3"><a href="data-manipulation-with-dplyr.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  sep2010, </span>
+<span id="cb62-4"><a href="data-manipulation-with-dplyr.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">min =</span> <span class="fu">min</span>(days),</span>
+<span id="cb62-5"><a href="data-manipulation-with-dplyr.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">median =</span> <span class="fu">median</span>(days),</span>
+<span id="cb62-6"><a href="data-manipulation-with-dplyr.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg =</span> <span class="fu">mean</span>(days),</span>
+<span id="cb62-7"><a href="data-manipulation-with-dplyr.html#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">max =</span> <span class="fu">max</span>(days)</span>
+<span id="cb62-8"><a href="data-manipulation-with-dplyr.html#cb62-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##     min median   avg   max
+##   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1     1      4     5    13</code></pre>
+</div>
+<div id="grouped-operations" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Grouped operations<a href="data-manipulation-with-dplyr.html#grouped-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To better appreciate the power of <code>summarise()</code>, we need to introduce another
+major <code>"dplyr"</code> basic verb: <code>group_by()</code>. This is the function that
+allows you to perform data aggregations, or <em>grouped operations</em>.</p>
+<p>Let’s see the combination of <code>summarise()</code> and <code>group_by()</code> to calculate the
+average number of days by category:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="data-manipulation-with-dplyr.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average days, grouped by category</span></span>
+<span id="cb64-2"><a href="data-manipulation-with-dplyr.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb64-3"><a href="data-manipulation-with-dplyr.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sep2010, category),</span>
+<span id="cb64-4"><a href="data-manipulation-with-dplyr.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_days =</span> <span class="fu">mean</span>(days)</span>
+<span id="cb64-5"><a href="data-manipulation-with-dplyr.html#cb64-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Here’s a less simpler example: average days, by category, displayed
+in descending order by average days:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="data-manipulation-with-dplyr.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(</span>
+<span id="cb65-2"><a href="data-manipulation-with-dplyr.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb65-3"><a href="data-manipulation-with-dplyr.html#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sep2010, category),</span>
+<span id="cb65-4"><a href="data-manipulation-with-dplyr.html#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_days =</span> <span class="fu">mean</span>(days)),</span>
+<span id="cb65-5"><a href="data-manipulation-with-dplyr.html#cb65-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">desc</span>(avg_days)</span>
+<span id="cb65-6"><a href="data-manipulation-with-dplyr.html#cb65-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+
 </div>
 </div>
             </section>

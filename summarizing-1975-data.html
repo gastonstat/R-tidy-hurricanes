@@ -54,6 +54,22 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -197,6 +213,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1.3</b> Select</a></li>
 <li class="chapter" data-level="5.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.1.4</b> Mutate</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#reordering-rows-arrange"><i class="fa fa-check"></i><b>5.2</b> Reordering rows: <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>5.3</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>5.4</b> Grouped operations</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>6</b> The Pipe Operators</a>
 <ul>
@@ -205,6 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.1" data-path="piper.html"><a href="piper.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.1.1</b> The pipe operator</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
 <li class="chapter" data-level="7" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>7</b> Inspecting Single Columns</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>7.1</b> Basic Inspection of Year</a>
@@ -214,7 +234,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>7.2</b> Basic inspection of <code>month</code></a></li>
 <li class="chapter" data-level="7.3" data-path="single-columns.html"><a href="single-columns.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
-<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
 <li class="chapter" data-level="8" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>8</b> Storms in 1975</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>8.1</b> Visualizing 1975 data</a>
@@ -245,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
 <li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
 </ul></li>
-<li class="part"><span><b>IV Analyzing Storms 1975-2020</b></span></li>
+<li class="part"><span><b>IV Counting Storms 1975-2020</b></span></li>
 <li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
 <li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
 <ul>
@@ -273,21 +292,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
 <li class="part"><span><b>V Maps</b></span></li>
-<li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
+<li class="chapter" data-level="16" data-path="maps-intro.html"><a href="maps-intro.html"><i class="fa fa-check"></i><b>16</b> Introduction to Maps</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
+<li class="chapter" data-level="16.1" data-path="maps-intro.html"><a href="maps-intro.html#some-words-about-maps-in-r"><i class="fa fa-check"></i><b>16.1</b> Some Words about Maps in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="maps-ggplot.html"><a href="maps-ggplot.html"><i class="fa fa-check"></i><b>17</b> Basic Maps</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>16.1.1</b> Plotting location of storm records</a></li>
-<li class="chapter" data-level="16.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>16.1.2</b> Basic map</a></li>
-<li class="chapter" data-level="16.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>16.1.3</b> Mapping 1975 Storms</a></li>
+<li class="chapter" data-level="17.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#graphing-maps"><i class="fa fa-check"></i><b>17.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>17.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="17.1.2" data-path="maps-ggplot.html"><a href="maps-ggplot.html#basic-world-map"><i class="fa fa-check"></i><b>17.1.2</b> Basic World Map</a></li>
+<li class="chapter" data-level="17.1.3" data-path="maps-ggplot.html"><a href="maps-ggplot.html#mapping-1975-storms"><i class="fa fa-check"></i><b>17.1.3</b> Mapping 1975 Storms</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>17</b> Less Basic Maps</a>
+<li class="chapter" data-level="18" data-path="maps-sf.html"><a href="maps-sf.html"><i class="fa fa-check"></i><b>18</b> Simple Features Maps</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>17.1</b> More mapping approaches</a>
+<li class="chapter" data-level="18.1" data-path="maps-sf.html"><a href="maps-sf.html#basic-world-map-1"><i class="fa fa-check"></i><b>18.1</b> Basic World Map</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>17.1.1</b> Storms from 1975 to 1980</a></li>
+<li class="chapter" data-level="18.1.1" data-path="maps-sf.html"><a href="maps-sf.html#world-coastline-map"><i class="fa fa-check"></i><b>18.1.1</b> World Coastline Map</a></li>
+<li class="chapter" data-level="18.1.2" data-path="maps-sf.html"><a href="maps-sf.html#world-countries-map"><i class="fa fa-check"></i><b>18.1.2</b> World Countries Map</a></li>
+<li class="chapter" data-level="18.1.3" data-path="maps-sf.html"><a href="maps-sf.html#north-america-map"><i class="fa fa-check"></i><b>18.1.3</b> North America Map</a></li>
 </ul></li>
+<li class="chapter" data-level="18.2" data-path="maps-sf.html"><a href="maps-sf.html#plotting-storms"><i class="fa fa-check"></i><b>18.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="maps-sf.html"><a href="maps-sf.html#hurricanes-in-1975"><i class="fa fa-check"></i><b>18.2.1</b> Hurricanes in 1975</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="maps-sf.html"><a href="maps-sf.html#more-maps"><i class="fa fa-check"></i><b>18.3</b> More Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="maps-leaflet.html"><a href="maps-leaflet.html"><i class="fa fa-check"></i><b>19</b> Leaflet Maps</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#introduction"><i class="fa fa-check"></i><b>19.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#a-basic-interactive-map-of-the-world"><i class="fa fa-check"></i><b>19.1.1</b> A Basic Interactive Map of the World</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="maps-leaflet.html"><a href="maps-leaflet.html#plotting-storms-1"><i class="fa fa-check"></i><b>19.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#customizing-color-palette"><i class="fa fa-check"></i><b>19.2.1</b> Customizing color palette</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="maps-tmap.html"><a href="maps-tmap.html"><i class="fa fa-check"></i><b>20</b> Thematic Maps</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="maps-tmap.html"><a href="maps-tmap.html#basic-world-map-2"><i class="fa fa-check"></i><b>20.1</b> Basic World Map</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="maps-tmap.html"><a href="maps-tmap.html#tmaps-with-sf-objects"><i class="fa fa-check"></i><b>20.1.1</b> tmaps with <code>sf</code> objects</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-storms-in-2010"><i class="fa fa-check"></i><b>20.2</b> Adding Storms in 2010</a></li>
+<li class="chapter" data-level="20.3" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-hurricanes-in-2010"><i class="fa fa-check"></i><b>20.3</b> Adding Hurricanes in 2010</a></li>
+<li class="chapter" data-level="20.4" data-path="maps-tmap.html"><a href="maps-tmap.html#interactive-map"><i class="fa fa-check"></i><b>20.4</b> Interactive Map</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
@@ -313,8 +364,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">10</span> Summarizing 1975 Data<a href="summarizing-1975-data.html#summarizing-1975-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>We’ve been working with the table <code>storms75</code>, which was obtained by <em>filtering</em>
 those rows with <code>year</code> equal to 1975:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="summarizing-1975-data.html#cb105-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
-<span id="cb105-2"><a href="summarizing-1975-data.html#cb105-2" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="summarizing-1975-data.html#cb119-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span>
+<span id="cb119-2"><a href="summarizing-1975-data.html#cb119-2" aria-hidden="true" tabindex="-1"></a>storms75</span></code></pre></div>
 <pre><code>## # A tibble: 238 × 13
 ##    name   year month   day  hour   lat  long status      category  wind pressure
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
@@ -337,7 +388,7 @@ those rows with <code>year</code> equal to 1975:</p>
 on certain groups or categories of data. <code>"dplyr"</code> provides the function
 <code>group_by()</code> which takes a data table, and we specify the column(s) on which
 rows will be grouped by:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
 <img src="images/dplyr-group-by.png" alt="Group-by operations" width="80%" />
 <p class="caption">
 Figure 10.1: Group-by operations
@@ -347,11 +398,11 @@ Figure 10.1: Group-by operations
 average <code>pressure</code> of each storm in 1975. First we need to group by <code>name</code>,
 and then we use <code>summarise()</code> to indicate that we want to get the <code>mean()</code>
 of <code>wind</code> and <code>pressure</code>, like this:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="summarizing-1975-data.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
-<span id="cb107-2"><a href="summarizing-1975-data.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
-<span id="cb107-3"><a href="summarizing-1975-data.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
-<span id="cb107-4"><a href="summarizing-1975-data.html#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
-<span id="cb107-5"><a href="summarizing-1975-data.html#cb107-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="summarizing-1975-data.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb121-2"><a href="summarizing-1975-data.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
+<span id="cb121-3"><a href="summarizing-1975-data.html#cb121-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
+<span id="cb121-4"><a href="summarizing-1975-data.html#cb121-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
+<span id="cb121-5"><a href="summarizing-1975-data.html#cb121-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -364,13 +415,13 @@ of <code>wind</code> and <code>pressure</code>, like this:</p>
 ## 7 Gladys       66.3         986.
 ## 8 Hallie       34.6        1005.</code></pre>
 <p>Sometimes, you’ll find convenient to assign the output into its own table:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="summarizing-1975-data.html#cb109-1" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
-<span id="cb109-2"><a href="summarizing-1975-data.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
-<span id="cb109-3"><a href="summarizing-1975-data.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
-<span id="cb109-4"><a href="summarizing-1975-data.html#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
-<span id="cb109-5"><a href="summarizing-1975-data.html#cb109-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb109-6"><a href="summarizing-1975-data.html#cb109-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-7"><a href="summarizing-1975-data.html#cb109-7" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="summarizing-1975-data.html#cb123-1" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
+<span id="cb123-2"><a href="summarizing-1975-data.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(storms75, name),</span>
+<span id="cb123-3"><a href="summarizing-1975-data.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_wind =</span> <span class="fu">mean</span>(wind),</span>
+<span id="cb123-4"><a href="summarizing-1975-data.html#cb123-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_pressure =</span> <span class="fu">mean</span>(pressure)</span>
+<span id="cb123-5"><a href="summarizing-1975-data.html#cb123-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb123-6"><a href="summarizing-1975-data.html#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="summarizing-1975-data.html#cb123-7" aria-hidden="true" tabindex="-1"></a>avg_wind_pressure_75</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -393,7 +444,7 @@ arragement of rows based on the values of one or more columns. In <code>"dplyr"<
 this can easily be achieved with the function <code>arrange()</code>. The way this function
 works is passing the name of the table, and then specifying one or more columns
 to order rows based on such values.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-64"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
 <img src="images/dplyr-arrange.png" alt="Arranging rows" width="85%" />
 <p class="caption">
 Figure 10.2: Arranging rows
@@ -401,7 +452,7 @@ Figure 10.2: Arranging rows
 </div>
 <p>Say you want to arrange the contents of the average summary table, by taking
 into account the column <code>avg_wind</code>:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="summarizing-1975-data.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_wind)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="summarizing-1975-data.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_wind)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -414,7 +465,7 @@ into account the column <code>avg_wind</code>:</p>
 ## 7 Doris        67.1         988.
 ## 8 Faye         68.4         988.</code></pre>
 <p>Likewise, you can also arrange the averages by <code>avg_pressure</code>:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="summarizing-1975-data.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_pressure)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="summarizing-1975-data.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, avg_pressure)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -430,7 +481,7 @@ into account the column <code>avg_wind</code>:</p>
 But what if you want to organize rows in decreasing order? No problem, just
 use the auxiliary function <code>desc()</code> to indicate that rows should be arranged
 decreasingly:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="summarizing-1975-data.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, <span class="fu">desc</span>(avg_wind))</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="summarizing-1975-data.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(avg_wind_pressure_75, <span class="fu">desc</span>(avg_wind))</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 3
 ##   name     avg_wind avg_pressure
 ##   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -448,8 +499,8 @@ decreasingly:</p>
 <p>Let’s focus on a specific storm, for example storm <code>Amy</code> in 1975. For sake of
 simplicity, we are going to create a table <code>amy75</code> containing the values of
 this storm:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="summarizing-1975-data.html#cb117-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
-<span id="cb117-2"><a href="summarizing-1975-data.html#cb117-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="summarizing-1975-data.html#cb131-1" aria-hidden="true" tabindex="-1"></a>amy75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms75, name <span class="sc">==</span> <span class="st">&quot;Amy&quot;</span>)</span>
+<span id="cb131-2"><a href="summarizing-1975-data.html#cb131-2" aria-hidden="true" tabindex="-1"></a>amy75</span></code></pre></div>
 <pre><code>## # A tibble: 31 × 13
 ##    name   year month   day  hour   lat  long status      category  wind pressure
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;
@@ -472,29 +523,29 @@ this storm:</p>
 <li><p>during which months was Amy active? and for how many days?</p></li>
 <li><p>what are the basic summary statistics for <code>wind</code> and <code>pressure</code>?</p></li>
 </ul>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="summarizing-1975-data.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which are the `status` categories for Amy?</span></span>
-<span id="cb119-2"><a href="summarizing-1975-data.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, status)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="summarizing-1975-data.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which are the `status` categories for Amy?</span></span>
+<span id="cb133-2"><a href="summarizing-1975-data.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, status)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 1
 ##   status             
 ##   &lt;fct&gt;              
 ## 1 tropical depression
 ## 2 tropical storm     
 ## 3 extratropical</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="summarizing-1975-data.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># during which months was Amy active?</span></span>
-<span id="cb121-2"><a href="summarizing-1975-data.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, month)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="summarizing-1975-data.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># during which months was Amy active?</span></span>
+<span id="cb135-2"><a href="summarizing-1975-data.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(amy75, month)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 1
 ##   month
 ##   &lt;dbl&gt;
 ## 1     6
 ## 2     7</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="summarizing-1975-data.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for how many days was Amy active?</span></span>
-<span id="cb123-2"><a href="summarizing-1975-data.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="fu">distinct</span>(amy75, day))</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="summarizing-1975-data.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for how many days was Amy active?</span></span>
+<span id="cb137-2"><a href="summarizing-1975-data.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(<span class="fu">distinct</span>(amy75, day))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##       n
 ##   &lt;int&gt;
 ## 1     8</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="summarizing-1975-data.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for wind</span></span>
-<span id="cb125-2"><a href="summarizing-1975-data.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, wind))</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="summarizing-1975-data.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for wind</span></span>
+<span id="cb139-2"><a href="summarizing-1975-data.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, wind))</span></code></pre></div>
 <pre><code>##       wind      
 ##  Min.   :25.00  
 ##  1st Qu.:32.50  
@@ -502,8 +553,8 @@ this storm:</p>
 ##  Mean   :46.45  
 ##  3rd Qu.:60.00  
 ##  Max.   :60.00</code></pre>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="summarizing-1975-data.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for pressure</span></span>
-<span id="cb127-2"><a href="summarizing-1975-data.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, pressure))</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="summarizing-1975-data.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics for pressure</span></span>
+<span id="cb141-2"><a href="summarizing-1975-data.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">select</span>(amy75, pressure))</span></code></pre></div>
 <pre><code>##     pressure     
 ##  Min.   : 981.0  
 ##  1st Qu.: 986.0  

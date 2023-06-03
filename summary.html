@@ -54,6 +54,22 @@ perform an exploratory analysis of storms and hurricanes in the North Atlantic.<
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -197,6 +213,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1.3</b> Select</a></li>
 <li class="chapter" data-level="5.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.1.4</b> Mutate</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#reordering-rows-arrange"><i class="fa fa-check"></i><b>5.2</b> Reordering rows: <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>5.3</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>5.4</b> Grouped operations</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>6</b> The Pipe Operators</a>
 <ul>
@@ -205,6 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.1" data-path="piper.html"><a href="piper.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.1.1</b> The pipe operator</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
 <li class="chapter" data-level="7" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>7</b> Inspecting Single Columns</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>7.1</b> Basic Inspection of Year</a>
@@ -214,7 +234,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>7.2</b> Basic inspection of <code>month</code></a></li>
 <li class="chapter" data-level="7.3" data-path="single-columns.html"><a href="single-columns.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
 </ul></li>
-<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
 <li class="chapter" data-level="8" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>8</b> Storms in 1975</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>8.1</b> Visualizing 1975 data</a>
@@ -245,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
 <li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
 </ul></li>
-<li class="part"><span><b>IV Analyzing Storms 1975-2020</b></span></li>
+<li class="part"><span><b>IV Counting Storms 1975-2020</b></span></li>
 <li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
 <li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
 <ul>
@@ -273,21 +292,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
 </ul></li>
 <li class="part"><span><b>V Maps</b></span></li>
-<li class="chapter" data-level="16" data-path="basic-maps.html"><a href="basic-maps.html"><i class="fa fa-check"></i><b>16</b> Basic Maps</a>
+<li class="chapter" data-level="16" data-path="maps-intro.html"><a href="maps-intro.html"><i class="fa fa-check"></i><b>16</b> Introduction to Maps</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="basic-maps.html"><a href="basic-maps.html#graphing-maps"><i class="fa fa-check"></i><b>16.1</b> Graphing Maps</a>
+<li class="chapter" data-level="16.1" data-path="maps-intro.html"><a href="maps-intro.html#some-words-about-maps-in-r"><i class="fa fa-check"></i><b>16.1</b> Some Words about Maps in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="maps-ggplot.html"><a href="maps-ggplot.html"><i class="fa fa-check"></i><b>17</b> Basic Maps</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="basic-maps.html"><a href="basic-maps.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>16.1.1</b> Plotting location of storm records</a></li>
-<li class="chapter" data-level="16.1.2" data-path="basic-maps.html"><a href="basic-maps.html#basic-map"><i class="fa fa-check"></i><b>16.1.2</b> Basic map</a></li>
-<li class="chapter" data-level="16.1.3" data-path="basic-maps.html"><a href="basic-maps.html#mapping-1975-storms"><i class="fa fa-check"></i><b>16.1.3</b> Mapping 1975 Storms</a></li>
+<li class="chapter" data-level="17.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#graphing-maps"><i class="fa fa-check"></i><b>17.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>17.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="17.1.2" data-path="maps-ggplot.html"><a href="maps-ggplot.html#basic-world-map"><i class="fa fa-check"></i><b>17.1.2</b> Basic World Map</a></li>
+<li class="chapter" data-level="17.1.3" data-path="maps-ggplot.html"><a href="maps-ggplot.html#mapping-1975-storms"><i class="fa fa-check"></i><b>17.1.3</b> Mapping 1975 Storms</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="less-basic-maps.html"><a href="less-basic-maps.html"><i class="fa fa-check"></i><b>17</b> Less Basic Maps</a>
+<li class="chapter" data-level="18" data-path="maps-sf.html"><a href="maps-sf.html"><i class="fa fa-check"></i><b>18</b> Simple Features Maps</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#more-mapping-approaches"><i class="fa fa-check"></i><b>17.1</b> More mapping approaches</a>
+<li class="chapter" data-level="18.1" data-path="maps-sf.html"><a href="maps-sf.html#basic-world-map-1"><i class="fa fa-check"></i><b>18.1</b> Basic World Map</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="less-basic-maps.html"><a href="less-basic-maps.html#storms-from-1975-to-1980"><i class="fa fa-check"></i><b>17.1.1</b> Storms from 1975 to 1980</a></li>
+<li class="chapter" data-level="18.1.1" data-path="maps-sf.html"><a href="maps-sf.html#world-coastline-map"><i class="fa fa-check"></i><b>18.1.1</b> World Coastline Map</a></li>
+<li class="chapter" data-level="18.1.2" data-path="maps-sf.html"><a href="maps-sf.html#world-countries-map"><i class="fa fa-check"></i><b>18.1.2</b> World Countries Map</a></li>
+<li class="chapter" data-level="18.1.3" data-path="maps-sf.html"><a href="maps-sf.html#north-america-map"><i class="fa fa-check"></i><b>18.1.3</b> North America Map</a></li>
 </ul></li>
+<li class="chapter" data-level="18.2" data-path="maps-sf.html"><a href="maps-sf.html#plotting-storms"><i class="fa fa-check"></i><b>18.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="maps-sf.html"><a href="maps-sf.html#hurricanes-in-1975"><i class="fa fa-check"></i><b>18.2.1</b> Hurricanes in 1975</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="maps-sf.html"><a href="maps-sf.html#more-maps"><i class="fa fa-check"></i><b>18.3</b> More Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="maps-leaflet.html"><a href="maps-leaflet.html"><i class="fa fa-check"></i><b>19</b> Leaflet Maps</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#introduction"><i class="fa fa-check"></i><b>19.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#a-basic-interactive-map-of-the-world"><i class="fa fa-check"></i><b>19.1.1</b> A Basic Interactive Map of the World</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="maps-leaflet.html"><a href="maps-leaflet.html#plotting-storms-1"><i class="fa fa-check"></i><b>19.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#customizing-color-palette"><i class="fa fa-check"></i><b>19.2.1</b> Customizing color palette</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="maps-tmap.html"><a href="maps-tmap.html"><i class="fa fa-check"></i><b>20</b> Thematic Maps</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="maps-tmap.html"><a href="maps-tmap.html#basic-world-map-2"><i class="fa fa-check"></i><b>20.1</b> Basic World Map</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="maps-tmap.html"><a href="maps-tmap.html#tmaps-with-sf-objects"><i class="fa fa-check"></i><b>20.1.1</b> tmaps with <code>sf</code> objects</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-storms-in-2010"><i class="fa fa-check"></i><b>20.2</b> Adding Storms in 2010</a></li>
+<li class="chapter" data-level="20.3" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-hurricanes-in-2010"><i class="fa fa-check"></i><b>20.3</b> Adding Hurricanes in 2010</a></li>
+<li class="chapter" data-level="20.4" data-path="maps-tmap.html"><a href="maps-tmap.html#interactive-map"><i class="fa fa-check"></i><b>20.4</b> Interactive Map</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
@@ -331,9 +382,9 @@ functions in R:</p>
 <h2><span class="header-section-number">11.1</span> Number of Storms per Year<a href="summary.html#number-of-storms-per-year" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you recall, our first ggplot involved a barchart for the values in column
 <code>year</code></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="summary.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
-<span id="cb129-2"><a href="summary.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="summary.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms) <span class="sc">+</span> </span>
+<span id="cb143-2"><a href="summary.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>We discovered that the 41-year period of recorded data from 1975 to 2015. We
 can take a further step and ask: how many storms are there in each year?</p>
 <p>To answer this question, we need to do some data manipulation with <code>"dplyr"</code>.
@@ -349,7 +400,7 @@ Therefore, we also need column <code>name</code>.</p>
 step by step. As you get more comfortable with <code>"dplyr"</code> and other functions,
 you won’t have the need to disect every single command.</p>
 <p>A first step is to <code>select()</code> variables <code>year</code> and <code>name</code>:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="summary.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(storms, year, name)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="summary.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(storms, year, name)</span></code></pre></div>
 <pre><code>## # A tibble: 19,066 × 2
 ##     year name 
 ##    &lt;dbl&gt; &lt;chr&gt;
@@ -368,7 +419,7 @@ you won’t have the need to disect every single command.</p>
 the output below seem identical. But notice the tiny difference: the output
 below has a second line of text with some relevant information:
 <code># Groups:   year [41]</code>, telling us that the values are grouped by year.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="summary.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="summary.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year)</span></code></pre></div>
 <pre><code>## # A tibble: 19,066 × 2
 ## # Groups:   year [47]
 ##     year name 
@@ -385,7 +436,7 @@ below has a second line of text with some relevant information:
 ## 10  1975 Amy  
 ## # ℹ 19,056 more rows</code></pre>
 <p>Then, we identify the <code>distinct()</code> values (combination of year-name):</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="summary.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="summary.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
 <pre><code>## # A tibble: 639 × 2
 ## # Groups:   year [47]
 ##     year name    
@@ -403,9 +454,9 @@ below has a second line of text with some relevant information:
 ## # ℹ 629 more rows</code></pre>
 <p>For convenience purposes, let’s assign this table into its own object,
 which we can call <code>storms_year_name</code></p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="summary.html#cb136-1" aria-hidden="true" tabindex="-1"></a>storms_year_name <span class="ot">&lt;-</span> <span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="summary.html#cb150-1" aria-hidden="true" tabindex="-1"></a>storms_year_name <span class="ot">&lt;-</span> <span class="fu">distinct</span>(<span class="fu">group_by</span>(<span class="fu">select</span>(storms, year, name), year))</span></code></pre></div>
 <p>Finally, we need to <code>count()</code> how many storms are in each year:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="summary.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms_year_name, year)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="summary.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(storms_year_name, year)</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n
@@ -423,13 +474,13 @@ which we can call <code>storms_year_name</code></p>
 ## # ℹ 37 more rows</code></pre>
 <p>All the previous commands can be assembled together with various embedded lines
 of code:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="summary.html#cb139-1" aria-hidden="true" tabindex="-1"></a>storms_per_year <span class="ot">&lt;-</span> storms <span class="sc">|&gt;</span></span>
-<span id="cb139-2"><a href="summary.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, name) <span class="sc">|&gt;</span></span>
-<span id="cb139-3"><a href="summary.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb139-4"><a href="summary.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span></span>
-<span id="cb139-5"><a href="summary.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span>
-<span id="cb139-6"><a href="summary.html#cb139-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-7"><a href="summary.html#cb139-7" aria-hidden="true" tabindex="-1"></a>storms_per_year</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="summary.html#cb153-1" aria-hidden="true" tabindex="-1"></a>storms_per_year <span class="ot">&lt;-</span> storms <span class="sc">|&gt;</span></span>
+<span id="cb153-2"><a href="summary.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, name) <span class="sc">|&gt;</span></span>
+<span id="cb153-3"><a href="summary.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb153-4"><a href="summary.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span></span>
+<span id="cb153-5"><a href="summary.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span>
+<span id="cb153-6"><a href="summary.html#cb153-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-7"><a href="summary.html#cb153-7" aria-hidden="true" tabindex="-1"></a>storms_per_year</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n
@@ -448,15 +499,15 @@ of code:</p>
 <p>Now that we have the counts or frequencies, we can make our next barchart.
 In this case, we will use the table <code>storms_year_name</code> as the input data for
 <code>ggplot()</code>:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="summary.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms_year_name) <span class="sc">+</span> </span>
-<span id="cb141-2"><a href="summary.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
-<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="summary.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms_year_name) <span class="sc">+</span> </span>
+<span id="cb155-2"><a href="summary.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p>By looking at the chart, there are some fairly tall bars. Although it’s hard
 to see exactly which years have a considerably large number of storms,
 eyeballing things out it seems that around 1995, 2003, 2005, and 2010 there are
 20 or more storms. We can find the actual answer by using <code>arrange()</code>,
 specifying the counts to be shown in descending order—with <code>desc()</code>:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="summary.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(storms_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="summary.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(storms_per_year, <span class="fu">desc</span>(n))</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 2
 ## # Groups:   year [47]
 ##     year     n

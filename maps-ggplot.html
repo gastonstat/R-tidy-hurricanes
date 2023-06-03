@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>17 Basic Maps | Tidy Hurricanes</title>
+  <meta name="description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="17 Basic Maps | Tidy Hurricanes" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+  <meta property="og:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="17 Basic Maps | Tidy Hurricanes" />
+  
+  <meta name="twitter:description" content="<p>This manuscript describes various examples for how to use Tidyverse tools to
+perform an exploratory analysis of storms and hurricanes in the North Atlantic.</p>" />
+  <meta name="twitter:image" content="https://www.gastonsanchez.com/R-tidy-hurricanes/images/R-tidy-hurricanes-cover.png" />
+
+<meta name="author" content="Gaston Sanchez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="maps-intro.html"/>
+<link rel="next" href="maps-sf.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>Tidy Hurricanes</b><br><small>Gaston Sanchez</small></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-series-of-r-tutorials"><i class="fa fa-check"></i>My Series of R Tutorials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#donation"><i class="fa fa-check"></i>Donation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="1" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html"><i class="fa fa-check"></i><b>1</b> Tables and Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#installing-tidyverse"><i class="fa fa-check"></i>Installing Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#a-bit-about-tidyverse"><i class="fa fa-check"></i>A bit about Tidyverse</a></li>
+<li class="chapter" data-level="" data-path="tables-and-tidyverse.html"><a href="tables-and-tidyverse.html#note"><i class="fa fa-check"></i>Note</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tropical-storms.html"><a href="tropical-storms.html"><i class="fa fa-check"></i><b>2</b> Tropical Storms and Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tropical-storms.html"><a href="tropical-storms.html#a-little-bit-about-hurricanes"><i class="fa fa-check"></i><b>2.1</b> A little bit about Hurricanes</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="tropical-storms.html"><a href="tropical-storms.html#tropical-cyclones"><i class="fa fa-check"></i><b>2.1.1</b> Tropical Cyclones</a></li>
+<li class="chapter" data-level="2.1.2" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-classification"><i class="fa fa-check"></i><b>2.1.2</b> Storm Classification</a></li>
+<li class="chapter" data-level="2.1.3" data-path="tropical-storms.html"><a href="tropical-storms.html#naming-storms"><i class="fa fa-check"></i><b>2.1.3</b> Naming Storms</a></li>
+<li class="chapter" data-level="2.1.4" data-path="tropical-storms.html"><a href="tropical-storms.html#atlantic-hurricane-season"><i class="fa fa-check"></i><b>2.1.4</b> Atlantic Hurricane Season</a></li>
+<li class="chapter" data-level="2.1.5" data-path="tropical-storms.html"><a href="tropical-storms.html#storm-formation"><i class="fa fa-check"></i><b>2.1.5</b> Storm Formation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="storms.html"><a href="storms.html"><i class="fa fa-check"></i><b>3</b> Data Set <code>storms</code></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="storms.html"><a href="storms.html#atlantic-hurricane-data"><i class="fa fa-check"></i><b>3.1</b> Atlantic Hurricane Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="storms.html"><a href="storms.html#data-storms"><i class="fa fa-check"></i><b>3.1.1</b> Data <code>storms</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="storms.html"><a href="storms.html#storms-documentation"><i class="fa fa-check"></i><b>3.1.2</b> <code>storms</code> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="storms.html"><a href="storms.html#general-inspection"><i class="fa fa-check"></i><b>3.2</b> General Inspection</a></li>
+</ul></li>
+<li class="part"><span><b>II Getting Started with Tidy Tools</b></span></li>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with <code>"ggplot2"</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#sample-data"><i class="fa fa-check"></i><b>4.1</b> Sample Data</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>4.2</b> Basics of <code>"ggplot2"</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#some-terminology"><i class="fa fa-check"></i><b>4.2.1</b> Some Terminology</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#basic-scatterplot"><i class="fa fa-check"></i><b>4.3</b> Basic Scatterplot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#storing-a-ggplot-object"><i class="fa fa-check"></i><b>4.3.1</b> Storing a <code>ggplot</code> object</a></li>
+<li class="chapter" data-level="4.3.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-mappings"><i class="fa fa-check"></i><b>4.3.2</b> More Mappings</a></li>
+<li class="chapter" data-level="4.3.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#setting-values"><i class="fa fa-check"></i><b>4.3.3</b> Setting Values</a></li>
+<li class="chapter" data-level="4.3.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#customizing-scales"><i class="fa fa-check"></i><b>4.3.4</b> Customizing Scales</a></li>
+<li class="chapter" data-level="4.3.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-annotations-etc"><i class="fa fa-check"></i><b>4.3.5</b> Themes, Annotations, etc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with <code>"dplyr"</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#basic-dplyr-verbs"><i class="fa fa-check"></i><b>5.1</b> Basic <code>"dplyr"</code> verbs</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.1.1</b> Filter</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slice"><i class="fa fa-check"></i><b>5.1.2</b> Slice</a></li>
+<li class="chapter" data-level="5.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1.3</b> Select</a></li>
+<li class="chapter" data-level="5.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.1.4</b> Mutate</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#reordering-rows-arrange"><i class="fa fa-check"></i><b>5.2</b> Reordering rows: <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-values-with-summarise"><i class="fa fa-check"></i><b>5.3</b> Summarizing values with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>5.4</b> Grouped operations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="piper.html"><a href="piper.html"><i class="fa fa-check"></i><b>6</b> The Pipe Operators</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="piper.html"><a href="piper.html#piping"><i class="fa fa-check"></i><b>6.1</b> Piping</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="piper.html"><a href="piper.html#the-pipe-operator"><i class="fa fa-check"></i><b>6.1.1</b> The pipe operator</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Analyzing Storms in 1975</b></span></li>
+<li class="chapter" data-level="7" data-path="single-columns.html"><a href="single-columns.html"><i class="fa fa-check"></i><b>7</b> Inspecting Single Columns</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-year"><i class="fa fa-check"></i><b>7.1</b> Basic Inspection of Year</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="single-columns.html"><a href="single-columns.html#barplot-of-year-values"><i class="fa fa-check"></i><b>7.1.1</b> Barplot of <code>year</code> values</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="single-columns.html"><a href="single-columns.html#basic-inspection-of-month"><i class="fa fa-check"></i><b>7.2</b> Basic inspection of <code>month</code></a></li>
+<li class="chapter" data-level="7.3" data-path="single-columns.html"><a href="single-columns.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="storms-in-1975.html"><a href="storms-in-1975.html"><i class="fa fa-check"></i><b>8</b> Storms in 1975</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#visualizing-1975-data"><i class="fa fa-check"></i><b>8.1</b> Visualizing 1975 data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="storms-in-1975.html"><a href="storms-in-1975.html#histograms"><i class="fa fa-check"></i><b>8.1.1</b> Histograms</a></li>
+<li class="chapter" data-level="8.1.2" data-path="storms-in-1975.html"><a href="storms-in-1975.html#boxplots"><i class="fa fa-check"></i><b>8.1.2</b> Boxplots</a></li>
+<li class="chapter" data-level="8.1.3" data-path="storms-in-1975.html"><a href="storms-in-1975.html#density-curves"><i class="fa fa-check"></i><b>8.1.3</b> Density Curves</a></li>
+<li class="chapter" data-level="8.1.4" data-path="storms-in-1975.html"><a href="storms-in-1975.html#facets"><i class="fa fa-check"></i><b>8.1.4</b> Facets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html"><i class="fa fa-check"></i><b>9</b> Storm Amy (1975)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-wind"><i class="fa fa-check"></i><b>9.1</b> Exploring <code>wind</code></a></li>
+<li class="chapter" data-level="9.2" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exploring-pressure"><i class="fa fa-check"></i><b>9.2</b> Exploring <code>pressure</code></a></li>
+<li class="chapter" data-level="9.3" data-path="storm-amy-1975.html"><a href="storm-amy-1975.html#exercises-1"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html"><i class="fa fa-check"></i><b>10</b> Summarizing 1975 Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#group-by-operations"><i class="fa fa-check"></i><b>10.1</b> Group-by Operations</a></li>
+<li class="chapter" data-level="10.2" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#arrange-operations"><i class="fa fa-check"></i><b>10.2</b> Arrange operations</a></li>
+<li class="chapter" data-level="10.3" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#further-inspection-of-1975-storm-amy"><i class="fa fa-check"></i><b>10.3</b> Further inspection of 1975 storm Amy</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="summarizing-1975-data.html"><a href="summarizing-1975-data.html#your-turn"><i class="fa fa-check"></i><b>10.3.1</b> Your Turn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>11</b> Summary</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="summary.html"><a href="summary.html#number-of-storms-per-year"><i class="fa fa-check"></i><b>11.1</b> Number of Storms per Year</a></li>
+<li class="chapter" data-level="11.2" data-path="summary.html"><a href="summary.html#your-turn-1"><i class="fa fa-check"></i><b>11.2</b> Your Turn</a></li>
+</ul></li>
+<li class="part"><span><b>IV Counting Storms 1975-2020</b></span></li>
+<li class="chapter" data-level="12" data-path="counting-tropical-systems.html"><a href="counting-tropical-systems.html"><i class="fa fa-check"></i><b>12</b> Counting Tropical Systems</a></li>
+<li class="chapter" data-level="13" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html"><i class="fa fa-check"></i><b>13</b> Visualizing Number of Systems</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barcharts"><i class="fa fa-check"></i><b>13.1</b> Barcharts</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_bar"><i class="fa fa-check"></i><b>13.1.1</b> Barchart with <code>geom_bar()</code></a></li>
+<li class="chapter" data-level="13.1.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#barchart-with-geom_col"><i class="fa fa-check"></i><b>13.1.2</b> Barchart with <code>geom_col()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#customizing-a-barchart"><i class="fa fa-check"></i><b>13.2</b> Customizing a Barchart</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="visualizing-number-of-systems.html"><a href="visualizing-number-of-systems.html#global-versus-local-aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Global versus Local Aesthetic Mappings</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="counting-more-systems.html"><a href="counting-more-systems.html"><i class="fa fa-check"></i><b>14</b> Counting More Systems</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-kinds-of-storms"><i class="fa fa-check"></i><b>14.1</b> Counting Kinds of Storms</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-depressions"><i class="fa fa-check"></i><b>14.1.1</b> Counting Tropical Depressions</a></li>
+<li class="chapter" data-level="14.1.2" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counts-based-on-maximum-wind-speed"><i class="fa fa-check"></i><b>14.1.2</b> Counts Based on Maximum Wind Speed</a></li>
+<li class="chapter" data-level="14.1.3" data-path="counting-more-systems.html"><a href="counting-more-systems.html#counting-tropical-storms"><i class="fa fa-check"></i><b>14.1.3</b> Counting Tropical Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html"><i class="fa fa-check"></i><b>15</b> Counting All Types of Systems</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="counting-all-types-of-systems.html"><a href="counting-all-types-of-systems.html#handling-various-conditions"><i class="fa fa-check"></i><b>15.1</b> Handling Various Conditions</a></li>
+</ul></li>
+<li class="part"><span><b>V Maps</b></span></li>
+<li class="chapter" data-level="16" data-path="maps-intro.html"><a href="maps-intro.html"><i class="fa fa-check"></i><b>16</b> Introduction to Maps</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="maps-intro.html"><a href="maps-intro.html#some-words-about-maps-in-r"><i class="fa fa-check"></i><b>16.1</b> Some Words about Maps in R</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="maps-ggplot.html"><a href="maps-ggplot.html"><i class="fa fa-check"></i><b>17</b> Basic Maps</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#graphing-maps"><i class="fa fa-check"></i><b>17.1</b> Graphing Maps</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="maps-ggplot.html"><a href="maps-ggplot.html#plotting-location-of-storm-records"><i class="fa fa-check"></i><b>17.1.1</b> Plotting location of storm records</a></li>
+<li class="chapter" data-level="17.1.2" data-path="maps-ggplot.html"><a href="maps-ggplot.html#basic-world-map"><i class="fa fa-check"></i><b>17.1.2</b> Basic World Map</a></li>
+<li class="chapter" data-level="17.1.3" data-path="maps-ggplot.html"><a href="maps-ggplot.html#mapping-1975-storms"><i class="fa fa-check"></i><b>17.1.3</b> Mapping 1975 Storms</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="maps-sf.html"><a href="maps-sf.html"><i class="fa fa-check"></i><b>18</b> Simple Features Maps</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="maps-sf.html"><a href="maps-sf.html#basic-world-map-1"><i class="fa fa-check"></i><b>18.1</b> Basic World Map</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="maps-sf.html"><a href="maps-sf.html#world-coastline-map"><i class="fa fa-check"></i><b>18.1.1</b> World Coastline Map</a></li>
+<li class="chapter" data-level="18.1.2" data-path="maps-sf.html"><a href="maps-sf.html#world-countries-map"><i class="fa fa-check"></i><b>18.1.2</b> World Countries Map</a></li>
+<li class="chapter" data-level="18.1.3" data-path="maps-sf.html"><a href="maps-sf.html#north-america-map"><i class="fa fa-check"></i><b>18.1.3</b> North America Map</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="maps-sf.html"><a href="maps-sf.html#plotting-storms"><i class="fa fa-check"></i><b>18.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="maps-sf.html"><a href="maps-sf.html#hurricanes-in-1975"><i class="fa fa-check"></i><b>18.2.1</b> Hurricanes in 1975</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="maps-sf.html"><a href="maps-sf.html#more-maps"><i class="fa fa-check"></i><b>18.3</b> More Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="maps-leaflet.html"><a href="maps-leaflet.html"><i class="fa fa-check"></i><b>19</b> Leaflet Maps</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#introduction"><i class="fa fa-check"></i><b>19.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#a-basic-interactive-map-of-the-world"><i class="fa fa-check"></i><b>19.1.1</b> A Basic Interactive Map of the World</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="maps-leaflet.html"><a href="maps-leaflet.html#plotting-storms-1"><i class="fa fa-check"></i><b>19.2</b> Plotting Storms</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="maps-leaflet.html"><a href="maps-leaflet.html#customizing-color-palette"><i class="fa fa-check"></i><b>19.2.1</b> Customizing color palette</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="maps-tmap.html"><a href="maps-tmap.html"><i class="fa fa-check"></i><b>20</b> Thematic Maps</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="maps-tmap.html"><a href="maps-tmap.html#basic-world-map-2"><i class="fa fa-check"></i><b>20.1</b> Basic World Map</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="maps-tmap.html"><a href="maps-tmap.html#tmaps-with-sf-objects"><i class="fa fa-check"></i><b>20.1.1</b> tmaps with <code>sf</code> objects</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-storms-in-2010"><i class="fa fa-check"></i><b>20.2</b> Adding Storms in 2010</a></li>
+<li class="chapter" data-level="20.3" data-path="maps-tmap.html"><a href="maps-tmap.html#adding-hurricanes-in-2010"><i class="fa fa-check"></i><b>20.3</b> Adding Hurricanes in 2010</a></li>
+<li class="chapter" data-level="20.4" data-path="maps-tmap.html"><a href="maps-tmap.html#interactive-map"><i class="fa fa-check"></i><b>20.4</b> Interactive Map</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.gastonsanchez.com" target="blank">gastonsanchez.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidy Hurricanes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="maps-ggplot" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">17</span> Basic Maps<a href="maps-ggplot.html#maps-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter you will need the following packages:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="maps-ggplot.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)      <span class="co"># for syntactic manipulation of tables</span></span>
+<span id="cb220-2"><a href="maps-ggplot.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)           <span class="co"># for drawing basic geographical maps</span></span></code></pre></div>
+<p>and the following objects:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="maps-ggplot.html#cb221-1" aria-hidden="true" tabindex="-1"></a>storms75 <span class="ot">&lt;-</span> <span class="fu">filter</span>(storms, year <span class="sc">==</span> <span class="dv">1975</span>)</span></code></pre></div>
+<div id="graphing-maps" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Graphing Maps<a href="maps-ggplot.html#graphing-maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this part, we give a basic exposure to plotting maps with <code>"ggplot2"</code>
+and <code>"maps"</code>.</p>
+<div id="plotting-location-of-storm-records" class="section level3 hasAnchor" number="17.1.1">
+<h3><span class="header-section-number">17.1.1</span> Plotting location of storm records<a href="maps-ggplot.html#plotting-location-of-storm-records" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For illustration purposes, we continue using the data frame <code>storms75</code>. Having
+latitude and longitude, we can make a scatter plot to see the location of
+the storm records. Recall that the <code>ggplot</code> function to do this is
+<code>geom_point()</code>. To distinguish each storm, we can color the dots by taking into
+account the different storm names. This involves <em>mapping</em> the column <code>name</code>
+to the <code>color</code> attribute:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="maps-ggplot.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms75, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span> </span>
+<span id="cb222-2"><a href="maps-ggplot.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb222-3"><a href="maps-ggplot.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Location of Tropical Cyclones in North Atlantic&quot;</span>,</span>
+<span id="cb222-4"><a href="maps-ggplot.html#cb222-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;1975 Season&quot;</span>)</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map0-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Keep in mind that the previous command can also be written as:</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="maps-ggplot.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative ways to write equivalent commands</span></span>
+<span id="cb223-2"><a href="maps-ggplot.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> storms75) <span class="sc">+</span>  </span>
+<span id="cb223-3"><a href="maps-ggplot.html#cb223-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span></span>
+<span id="cb223-4"><a href="maps-ggplot.html#cb223-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Location of Tropical Cyclones in North Atlantic&quot;</span>,</span>
+<span id="cb223-5"><a href="maps-ggplot.html#cb223-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;1975 Season&quot;</span>)</span>
+<span id="cb223-6"><a href="maps-ggplot.html#cb223-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-7"><a href="maps-ggplot.html#cb223-7" aria-hidden="true" tabindex="-1"></a><span class="co"># similarly</span></span>
+<span id="cb223-8"><a href="maps-ggplot.html#cb223-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span>  </span>
+<span id="cb223-9"><a href="maps-ggplot.html#cb223-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span></span>
+<span id="cb223-10"><a href="maps-ggplot.html#cb223-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Location of Tropical Cyclones in North Atlantic&quot;</span>,</span>
+<span id="cb223-11"><a href="maps-ggplot.html#cb223-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;1975 Season&quot;</span>)</span></code></pre></div>
+<p>The above scatter plot is a good starting point to visualize the location of the
+storm records, but it would be nice to have an actual image of a map. Let’s
+see how to do this in the following subsections.</p>
+</div>
+<div id="basic-world-map" class="section level3 hasAnchor" number="17.1.2">
+<h3><span class="header-section-number">17.1.2</span> Basic World Map<a href="maps-ggplot.html#basic-world-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the oldest ways to plot maps in R is with the package <code>"maps"</code>. This
+package comes with various functions that allow you to create maps, without
+the need to use <code>"ggplot2"</code> or any other tidyverse tool. <code>"maps"</code>also contains
+data sets of maps that can be used by <code>"ggplot2"</code> to visualize geospatial data.</p>
+<p>In order to use <code>ggplot()</code> with one of the data sets in <code>"maps"</code>, the first
+step involves creating a data frame via the function <code>map_data()</code>. This function
+turns data from the <code>"maps"</code> package into a table suitable for plotting with
+<code>"ggplot2"</code>. For instance, to graph a map of the world—based on the <code>"world"</code>
+map—we first create a data frame:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="maps-ggplot.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># world map data</span></span>
+<span id="cb224-2"><a href="maps-ggplot.html#cb224-2" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;world&quot;</span>)</span>
+<span id="cb224-3"><a href="maps-ggplot.html#cb224-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-4"><a href="maps-ggplot.html#cb224-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(world_map)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>Once we have this data, we can use it with <code>ggplot()</code> and a <code>geom_polygon()</code>
+layer like this:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="maps-ggplot.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a default world map</span></span>
+<span id="cb226-2"><a href="maps-ggplot.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb226-3"><a href="maps-ggplot.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world_map, </span>
+<span id="cb226-4"><a href="maps-ggplot.html#cb226-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map1-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>In the above command, notice how we specify the <code>data</code> argument inside
+<code>geom_polygon()</code> instead of inside <code>ggplot()</code>. We do this because the data
+frame <code>world_map</code> is used to graph the layer of the map. We still need to add
+another layer—via <code>geom_point()</code>—for the coordinates indicating the
+positions of each storm.</p>
+<p>To handle the code more easily, let’s modify the map, and create a <code>"ggplot"</code>
+object called <code>gg_world</code>. We’ll use this object as our “canvas” for plotting
+the storm locations:</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="maps-ggplot.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># map &quot;canvas&quot; stored as gg_world</span></span>
+<span id="cb227-2"><a href="maps-ggplot.html#cb227-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb227-3"><a href="maps-ggplot.html#cb227-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> world_map, </span>
+<span id="cb227-4"><a href="maps-ggplot.html#cb227-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
+<span id="cb227-5"><a href="maps-ggplot.html#cb227-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;gray95&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;gray70&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb227-6"><a href="maps-ggplot.html#cb227-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb227-7"><a href="maps-ggplot.html#cb227-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-8"><a href="maps-ggplot.html#cb227-8" aria-hidden="true" tabindex="-1"></a>gg_world</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map2-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mapping-1975-storms" class="section level3 hasAnchor" number="17.1.3">
+<h3><span class="header-section-number">17.1.3</span> Mapping 1975 Storms<a href="maps-ggplot.html#mapping-1975-storms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we know how to plot a map with <code>ggplot()</code>, we can add the points of
+the storm records. This is done with <code>geom_point()</code>, and specifying <code>storms75</code>
+as the <code>data</code> argument inside this function. In other words, we are using two
+separate data frames. One is <code>world_map</code> to draw the polygons of the map;
+the other one is <code>stomrs75</code> to graph the dots of each storm. Notice also that
+there are no inputs provided to the function <code>ggplot()</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="maps-ggplot.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># world map, adding storms in 1975</span></span>
+<span id="cb228-2"><a href="maps-ggplot.html#cb228-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb228-3"><a href="maps-ggplot.html#cb228-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb228-4"><a href="maps-ggplot.html#cb228-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map3-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Because the analyzed hurricanes occurred in the North Atlantic basin, we can
+focus on that region by modifying the x-and-y axis limits:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="maps-ggplot.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zoom-in</span></span>
+<span id="cb229-2"><a href="maps-ggplot.html#cb229-2" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb229-3"><a href="maps-ggplot.html#cb229-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb229-4"><a href="maps-ggplot.html#cb229-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name)) <span class="sc">+</span></span>
+<span id="cb229-5"><a href="maps-ggplot.html#cb229-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb229-6"><a href="maps-ggplot.html#cb229-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map4-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>It’s worth mentioning that this zoom-in has a secondary effect of distorting
+some of the polygons. For example, Alaska seems to get cut in half. Also the
+polygon of Colombia is incomplete. Ignoring these distortions for now, we can
+continue exploring things by taking into account more variables. For instance,
+let’s map the <code>wind</code> speed to the <code>size</code> argument of points.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="maps-ggplot.html#cb230-1" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb230-2"><a href="maps-ggplot.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb230-3"><a href="maps-ggplot.html#cb230-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name, <span class="at">size =</span> wind),</span>
+<span id="cb230-4"><a href="maps-ggplot.html#cb230-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb230-5"><a href="maps-ggplot.html#cb230-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb230-6"><a href="maps-ggplot.html#cb230-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map5-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>A very similar appearance can be achieved by replacing <code>geom_point()</code> with
+<code>geom_path()</code>:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="maps-ggplot.html#cb231-1" aria-hidden="true" tabindex="-1"></a>gg_world <span class="sc">+</span></span>
+<span id="cb231-2"><a href="maps-ggplot.html#cb231-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> storms75,</span>
+<span id="cb231-3"><a href="maps-ggplot.html#cb231-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">color =</span> name, <span class="at">linewidth =</span> wind),</span>
+<span id="cb231-4"><a href="maps-ggplot.html#cb231-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">lineend =</span> <span class="st">&quot;round&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb231-5"><a href="maps-ggplot.html#cb231-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">150</span>, <span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb231-6"><a href="maps-ggplot.html#cb231-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="R-tidy-hurricanes_files/figure-html/plot-map6-storms75-1.png" width="80%" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="maps-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="maps-sf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R-tidy-hurricanes.pdf", "R-tidy-hurricanes.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
