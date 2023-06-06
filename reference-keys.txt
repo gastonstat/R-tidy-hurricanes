@@ -104,3 +104,4 @@ adding-storms-in-2010
 adding-hurricanes-in-2010
 interactive-map
 basic-world-map-3
+adding-a-legend
