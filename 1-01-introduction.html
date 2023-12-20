@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Gaston Sanchez">
 
-<title>Tidy Hurricanes</title>
+<title>Tidy Hurricanes - 1&nbsp; Tables and Tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -31,7 +93,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1-01-introduction.html" rel="next">
+<link href="./1-02-about-hurricanes.html" rel="next">
+<link href="./index.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +149,7 @@ ga('send', {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Tidy Hurricanes</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -111,7 +174,7 @@ ga('send', {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">About</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -124,7 +187,7 @@ ga('send', {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1-01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></a>
+  <a href="./1-01-introduction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,12 +336,9 @@ ga('send', {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a>
-  <ul class="collapse">
-  <li><a href="#my-series-of-r-tutorials" id="toc-my-series-of-r-tutorials" class="nav-link" data-scroll-target="#my-series-of-r-tutorials">My Series of R Tutorials</a></li>
-  <li><a href="#donation" id="toc-donation" class="nav-link" data-scroll-target="#donation">Donation</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
+  <li><a href="#installing-tidyverse" id="toc-installing-tidyverse" class="nav-link active" data-scroll-target="#installing-tidyverse">Installing Tidyverse</a></li>
+  <li><a href="#a-bit-about-tidyverse" id="toc-a-bit-about-tidyverse" class="nav-link" data-scroll-target="#a-bit-about-tidyverse">A bit about Tidyverse</a></li>
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">Note</a></li>
   </ul>
 </nav>
     </div>
@@ -287,20 +347,13 @@ ga('send', {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Tidy Hurricanes</h1>
-<p class="subtitle lead">Analyzing Tropical Storms with Tidyverse Tools</p>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://www.gastonsanchez.com" target="_blank"><b>Gaston Sanchez</b></a> </p>
-          </div>
-  </div>
     
     
   </div>
@@ -308,53 +361,49 @@ ga('send', {
 
 </header>
 
-<p>1st Edition: January 2023 <br> 2nd Edition: December 2023</p>
-<section id="about" class="level1 unnumbered">
-<h1 class="unnumbered">About</h1>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/R-tidy-hurricanes-cover.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
+<p>The overarching topic in this text involves working with tabular data (i.e.&nbsp;data arranged in rows and columns). The main reason to focus on tables is because tabular data is the most ubiquitous format in which data is handled for most types of analysis.</p>
+<blockquote class="blockquote">
+<p>Hey, what if my data is not in tabular format?</p>
+</blockquote>
+<p>While it is true that not all data sets are stored or organized in tables, in most data analysis projects—sooner or later—you will be handling data in some sort of rectangular structure. Because of this, I firmly believe that the best way to get you started learning about <em>data analysis with R</em> is by getting your hands dirty manipulating tables.</p>
+<p>Obviously there are limitations. Not everything that is done in data analysis can be done with tables. But having a solid foundation around data arranged in this format will pay off down your data analysis road.</p>
+<section id="installing-tidyverse" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="installing-tidyverse">Installing Tidyverse</h3>
+<p>Since this text focuses on <em>Tidyverse</em> tools, you will need to install the associated ecosystem of Tidyverse packages. This is very easy to do.</p>
+<p>Recall that there are a couple of different ways to install R packages. One common option is to invoke the <code>install.packages()</code> function in R’s console, specifying the name(s) of the package(s), within quotations, and separated by commas, to be installed. Like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the command below in the console</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (don't include this command in any Rmd or qmd file)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># don't worry too much if you get a warning message</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Another option to install a package in RStudio is to do it by using the <code>Packages</code> tab located in the pane that contains other tabs such as <code>Files</code>, <code>Plots</code>, <code>Help</code>, etc. In the <code>Packages</code> tab you can find the “Install” button, click it, and follow the steps to install <code>"tidyverse"</code>.</p>
+<p>Remember that you only need to install a package once! After a package has been installed in your machine, there is no need to call <code>install.packages()</code> again on the same package. What you should always invoke, in order to use the functions in a package, is the <code>library()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you should include this command in your source file(s)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>The goal of this text is to help you get started working with tabular data using the syntactic approach of so-called <strong>Tidyverse</strong> tools. More specifically, we describe various examples for how to use functions from Tidyverse packages to perform common operations around data tables by analyzing storms and hurricanes in the North Atlantic.</p>
-<section id="about-you" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="about-you">About You</h4>
-<p>I am assuming that you have both R or RStudio installed in your computer. If this is not the case, you can take a look at <strong>Breaking the Ice with R</strong></p>
-<p><a href="https://www.gastonsanchez.com/R-ice-breaker" target="_blank">https://www.gastonsanchez.com/R-ice-breaker</a></p>
+<p><strong>About loading packages:</strong> Another rule to keep in mind is to always load any required packages at the very top of your script files (e.g.&nbsp;<code>.R</code> or <code>.Rmd</code> or <code>.qmd</code> or <code>.Rnw</code> files). Avoid calling the <code>library()</code> function in the middle of a script. Instead, load all the packages before anything else.</p>
 </section>
-<section id="citation" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="citation">Citation</h4>
-<p>You can cite this work as:</p>
-<p>Sanchez, G. (2023) Analyzing Tropical Storms with Tidyverse Tools. <br> https://www.gastonsanchez.com/R-tidy-hurricanes</p>
-<hr>
-</section>
-<section id="my-series-of-r-tutorials" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="my-series-of-r-tutorials">My Series of R Tutorials</h3>
-<p>This manuscript is part of a series of texts that I’ve written about Programming and Data Analysis in R:</p>
+<section id="a-bit-about-tidyverse" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="a-bit-about-tidyverse">A bit about Tidyverse</h3>
+<p>Tidyverse is not a single package. Instead, it is a collection of packages. This means that when you install <code>"tidyverse"</code>, you are actually installing the following packages</p>
 <ul>
-<li><p><strong>Breaking the Ice with R: Getting Started with R and RStudio</strong> <br> <a href="https://www.gastonsanchez.com/R-ice-breaker" class="uri">https://www.gastonsanchez.com/R-ice-breaker</a></p></li>
-<li><p><strong>Tidy Hurricanes: Analyzing Tropical Storms with Tidyverse Tools</strong> <br> <a href="https://www.gastonsanchez.com/R-tidy-hurricanes" class="uri">https://www.gastonsanchez.com/R-tidy-hurricanes</a></p></li>
-<li><p><strong>R Coding Basics: An Introduction to the Basics of Coding in R</strong> <br> <a href="https://www.gastonsanchez.com/R-coding-basics" class="uri">https://www.gastonsanchez.com/R-coding-basics</a></p></li>
-<li><p><strong>Rolling Dice: Exploring Simulations in Games of Chance with R</strong> <br> <a href="https://www.gastonsanchez.com/R-rolling-dice" class="uri">https://www.gastonsanchez.com/R-rolling-dice</a></p></li>
-<li><p><strong>Web Technologies in R: A Short Introduction to Web Technologies in R</strong> <br> <a href="https://www.gastonsanchez.com/R-web-technologies" class="uri">https://www.gastonsanchez.com/R-web-technologies</a></p></li>
+<li><p><code>"ggplot2"</code>: for creating plots and graphics</p></li>
+<li><p><code>"dplyr"</code>: for manipulating tables</p></li>
+<li><p><code>"tidyr"</code>: to tidying-up your data</p></li>
+<li><p><code>"readr"</code>: for importing rectangular data</p></li>
+<li><p><code>"tibble"</code>: provides “improved” R data frames</p></li>
+<li><p><code>"stringr"</code>: for string manipulation</p></li>
+<li><p><code>"forcats"</code>: for working with R factors</p></li>
+<li><p><code>"purrr"</code>: for functional programming in R</p></li>
 </ul>
-<hr>
+<p>To learn more about other tidyverse details, visit:</p>
+<p><a href="https://tidyverse.tidyverse.org/" class="uri">https://tidyverse.tidyverse.org/</a></p>
 </section>
-<section id="donation" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="donation">Donation</h3>
-<p>As a Data Science and Statistics educator, I love to share the work I do. Each month I spend dozens of hours curating learning materials like this resource. If you find any value and usefulness in it, please consider making a <a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank">one-time donation—via paypal—in any amount</a> (e.g.&nbsp;the amount you would spend inviting me a cup of coffee or any other drink). Your support really matters.</p>
-<p><a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank"><img src="https://www.gastonsanchez.com/images/donate.png" width="140" height="60"></a></p>
-</section>
-<section id="license" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="license">License</h3>
-<p><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<section id="note" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="note">Note</h3>
+<p>We won’t cover all the functionality provided by Tidyverse. Instead, we will focus on <code>"dplyr"</code> and <code>"ggplot2"</code>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -456,13 +505,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1-01-introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./1-02-about-hurricanes.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tropical Storms and Hurricanes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

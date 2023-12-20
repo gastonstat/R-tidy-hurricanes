@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Gaston Sanchez">
 
-<title>Tidy Hurricanes</title>
+<title>Tidy Hurricanes - 16&nbsp; Introduction to Maps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1-01-introduction.html" rel="next">
+<link href="./5-02-maps-1975.html" rel="next">
+<link href="./4-04-counting-all-systems.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +86,7 @@ ga('send', {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Tidy Hurricanes</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Maps</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -111,7 +111,7 @@ ga('send', {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">About</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -239,7 +239,7 @@ ga('send', {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5-01-maps-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Maps</span></a>
+  <a href="./5-01-maps-intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Maps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,12 +273,7 @@ ga('send', {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a>
-  <ul class="collapse">
-  <li><a href="#my-series-of-r-tutorials" id="toc-my-series-of-r-tutorials" class="nav-link" data-scroll-target="#my-series-of-r-tutorials">My Series of R Tutorials</a></li>
-  <li><a href="#donation" id="toc-donation" class="nav-link" data-scroll-target="#donation">Donation</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
+  <li><a href="#some-words-about-maps-in-r" id="toc-some-words-about-maps-in-r" class="nav-link active" data-scroll-target="#some-words-about-maps-in-r"><span class="toc-section-number">16.1</span>  Some Words about Maps in R</a></li>
   </ul>
 </nav>
     </div>
@@ -287,20 +282,13 @@ ga('send', {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Tidy Hurricanes</h1>
-<p class="subtitle lead">Analyzing Tropical Storms with Tidyverse Tools</p>
+<h1 class="title"><span id="maps-intro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Maps</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://www.gastonsanchez.com" target="_blank"><b>Gaston Sanchez</b></a> </p>
-          </div>
-  </div>
     
     
   </div>
@@ -308,53 +296,38 @@ ga('send', {
 
 </header>
 
-<p>1st Edition: January 2023 <br> 2nd Edition: December 2023</p>
-<section id="about" class="level1 unnumbered">
-<h1 class="unnumbered">About</h1>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/R-tidy-hurricanes-cover.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The goal of this text is to help you get started working with tabular data using the syntactic approach of so-called <strong>Tidyverse</strong> tools. More specifically, we describe various examples for how to use functions from Tidyverse packages to perform common operations around data tables by analyzing storms and hurricanes in the North Atlantic.</p>
-<section id="about-you" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="about-you">About You</h4>
-<p>I am assuming that you have both R or RStudio installed in your computer. If this is not the case, you can take a look at <strong>Breaking the Ice with R</strong></p>
-<p><a href="https://www.gastonsanchez.com/R-ice-breaker" target="_blank">https://www.gastonsanchez.com/R-ice-breaker</a></p>
-</section>
-<section id="citation" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="citation">Citation</h4>
-<p>You can cite this work as:</p>
-<p>Sanchez, G. (2023) Analyzing Tropical Storms with Tidyverse Tools. <br> https://www.gastonsanchez.com/R-tidy-hurricanes</p>
-<hr>
-</section>
-<section id="my-series-of-r-tutorials" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="my-series-of-r-tutorials">My Series of R Tutorials</h3>
-<p>This manuscript is part of a series of texts that I’ve written about Programming and Data Analysis in R:</p>
+<p>In the previous chapters, you were introduced to the basics of <code>"dplyr"</code> and <code>"ggplot2"</code>, which we then used to perform various operations on the data <code>storms</code> to obtain a wide array of visualizations as well as derived tables and summary statistics. Because <code>storms</code> contains geographical information such as longitude and latitude, in this part we take a further step to learn about plotting basic, and not so basic, maps with <code>"ggplot2"</code> as well as with some dedicated packages to create maps in R.</p>
+<section id="some-words-about-maps-in-r" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="some-words-about-maps-in-r"><span class="header-section-number">16.1</span> Some Words about Maps in R</h2>
+<p>Keep in mind that there is a wide array of packages for graphing all sorts of maps, and geospatial information. Good resources to look at are:</p>
 <ul>
-<li><p><strong>Breaking the Ice with R: Getting Started with R and RStudio</strong> <br> <a href="https://www.gastonsanchez.com/R-ice-breaker" class="uri">https://www.gastonsanchez.com/R-ice-breaker</a></p></li>
-<li><p><strong>Tidy Hurricanes: Analyzing Tropical Storms with Tidyverse Tools</strong> <br> <a href="https://www.gastonsanchez.com/R-tidy-hurricanes" class="uri">https://www.gastonsanchez.com/R-tidy-hurricanes</a></p></li>
-<li><p><strong>R Coding Basics: An Introduction to the Basics of Coding in R</strong> <br> <a href="https://www.gastonsanchez.com/R-coding-basics" class="uri">https://www.gastonsanchez.com/R-coding-basics</a></p></li>
-<li><p><strong>Rolling Dice: Exploring Simulations in Games of Chance with R</strong> <br> <a href="https://www.gastonsanchez.com/R-rolling-dice" class="uri">https://www.gastonsanchez.com/R-rolling-dice</a></p></li>
-<li><p><strong>Web Technologies in R: A Short Introduction to Web Technologies in R</strong> <br> <a href="https://www.gastonsanchez.com/R-web-technologies" class="uri">https://www.gastonsanchez.com/R-web-technologies</a></p></li>
+<li><p><em>Drawing beautiful maps programmatically with R, sf and ggplot2</em> by Mel Moreno and Mathieu Basille; <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html" class="uri">https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html</a></p></li>
+<li><p><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow; <a href="https://r.geocompx.org/t" class="uri">https://r.geocompx.org/t</a></p></li>
+<li><p><em>Making Maps with R</em> by Eric C. Anderson; <a href="https://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html" class="uri">https://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html</a></p></li>
 </ul>
-<hr>
-</section>
-<section id="donation" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="donation">Donation</h3>
-<p>As a Data Science and Statistics educator, I love to share the work I do. Each month I spend dozens of hours curating learning materials like this resource. If you find any value and usefulness in it, please consider making a <a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank">one-time donation—via paypal—in any amount</a> (e.g.&nbsp;the amount you would spend inviting me a cup of coffee or any other drink). Your support really matters.</p>
-<p><a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank"><img src="https://www.gastonsanchez.com/images/donate.png" width="140" height="60"></a></p>
-</section>
-<section id="license" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="license">License</h3>
-<p><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<p><strong>From: Geocomputation with R</strong></p>
+<p>“There are many ways to handle geographic data in R, with dozens of packages in the area.”</p>
+<p>R’s spatial ecosystem has evolved and keeps evolving at a fast pace.</p>
+<p>An inflection point in the development of R’s geospatial tools was the project <em>Simple Features</em>, an open-source standard and model to store and access vector geometries. This resulted in the <code>sf</code> package</p>
+<p>I’m going to focus on the following packages. Please keep in mind that the packages listed below are by no means a comprehensive set of tools for making maps in R.</p>
+<ul>
+<li><p><code>sf</code>: <em>Simple Features</em> provides classes and functions for vector data</p></li>
+<li><p><code>tmap</code>: <em>Thematic Maps</em> for static and interactive maps</p></li>
+<li><p><code>leaflet</code>: for interactive maps</p></li>
+<li><p><code>maps</code>: maps data sets</p></li>
+<li><p><code>rnaturalearth</code>: maps data sets</p></li>
+</ul>
+<p>As Lovelace, Nowosad and Muenchow state: “The vector data model represents the world using points, lines and polygons. These have discrete, well-defined borders, meaning that vector datasets usually have a high level of precision. The raster data model divides the surface up into cells of constant size. Raster datasets are the basis of background images used in web-mapping and have been a vital source of geographic data since the origins of aerial photography and satellite-based remote sensing devices.”</p>
+<p>From Lovelace, Nowosad and Muenchow: reasons for using <code>sf</code>:</p>
+<ul>
+<li><p>Fast reading and writing of data</p></li>
+<li><p>Enhanced plotting performance</p></li>
+<li><p><code>sf</code> objects can be treated as data frames in most operations</p></li>
+<li><p><code>sf</code> function names are relatively consistent and intuitive (all begin with <code>st_</code>)</p></li>
+<li><p><code>sf</code> functions can be combined with the <code>|&gt;</code> operator and works well with the tidyverse collection of R packages.</p></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -456,13 +429,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./4-04-counting-all-systems.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Counting All Types of Systems</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1-01-introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./5-02-maps-1975.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Basic Maps</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Gaston Sanchez">
 
-<title>Tidy Hurricanes</title>
+<title>Tidy Hurricanes - 2&nbsp; Tropical Storms and Hurricanes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1-01-introduction.html" rel="next">
+<link href="./1-03-storms-data.html" rel="next">
+<link href="./1-01-introduction.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +86,7 @@ ga('send', {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Tidy Hurricanes</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tropical Storms and Hurricanes</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -111,7 +111,7 @@ ga('send', {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">About</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -129,7 +129,7 @@ ga('send', {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1-02-about-hurricanes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tropical Storms and Hurricanes</span></a>
+  <a href="./1-02-about-hurricanes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tropical Storms and Hurricanes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,11 +273,13 @@ ga('send', {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a>
+  <li><a href="#a-little-bit-about-hurricanes" id="toc-a-little-bit-about-hurricanes" class="nav-link active" data-scroll-target="#a-little-bit-about-hurricanes"><span class="toc-section-number">2.1</span>  A little bit about Hurricanes</a>
   <ul class="collapse">
-  <li><a href="#my-series-of-r-tutorials" id="toc-my-series-of-r-tutorials" class="nav-link" data-scroll-target="#my-series-of-r-tutorials">My Series of R Tutorials</a></li>
-  <li><a href="#donation" id="toc-donation" class="nav-link" data-scroll-target="#donation">Donation</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#tropical-cyclones" id="toc-tropical-cyclones" class="nav-link" data-scroll-target="#tropical-cyclones"><span class="toc-section-number">2.1.1</span>  Tropical Cyclones</a></li>
+  <li><a href="#storm-classification" id="toc-storm-classification" class="nav-link" data-scroll-target="#storm-classification"><span class="toc-section-number">2.1.2</span>  Storm Classification</a></li>
+  <li><a href="#naming-storms" id="toc-naming-storms" class="nav-link" data-scroll-target="#naming-storms"><span class="toc-section-number">2.1.3</span>  Naming Storms</a></li>
+  <li><a href="#atlantic-hurricane-season" id="toc-atlantic-hurricane-season" class="nav-link" data-scroll-target="#atlantic-hurricane-season"><span class="toc-section-number">2.1.4</span>  Atlantic Hurricane Season</a></li>
+  <li><a href="#storm-formation" id="toc-storm-formation" class="nav-link" data-scroll-target="#storm-formation"><span class="toc-section-number">2.1.5</span>  Storm Formation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -287,20 +289,13 @@ ga('send', {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Tidy Hurricanes</h1>
-<p class="subtitle lead">Analyzing Tropical Storms with Tidyverse Tools</p>
+<h1 class="title"><span id="tropical-storms" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tropical Storms and Hurricanes</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://www.gastonsanchez.com" target="_blank"><b>Gaston Sanchez</b></a> </p>
-          </div>
-  </div>
     
     
   </div>
@@ -308,50 +303,115 @@ ga('send', {
 
 </header>
 
-<p>1st Edition: January 2023 <br> 2nd Edition: December 2023</p>
-<section id="about" class="level1 unnumbered">
-<h1 class="unnumbered">About</h1>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/R-tidy-hurricanes-cover.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<p><img src="images/sandy-hurricane.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">NASA satellite image of hurricane Sandy, 2012 (source: wikimedia commons)</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The goal of this text is to help you get started working with tabular data using the syntactic approach of so-called <strong>Tidyverse</strong> tools. More specifically, we describe various examples for how to use functions from Tidyverse packages to perform common operations around data tables by analyzing storms and hurricanes in the North Atlantic.</p>
-<section id="about-you" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="about-you">About You</h4>
-<p>I am assuming that you have both R or RStudio installed in your computer. If this is not the case, you can take a look at <strong>Breaking the Ice with R</strong></p>
-<p><a href="https://www.gastonsanchez.com/R-ice-breaker" target="_blank">https://www.gastonsanchez.com/R-ice-breaker</a></p>
-</section>
-<section id="citation" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="citation">Citation</h4>
-<p>You can cite this work as:</p>
-<p>Sanchez, G. (2023) Analyzing Tropical Storms with Tidyverse Tools. <br> https://www.gastonsanchez.com/R-tidy-hurricanes</p>
-<hr>
-</section>
-<section id="my-series-of-r-tutorials" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="my-series-of-r-tutorials">My Series of R Tutorials</h3>
-<p>This manuscript is part of a series of texts that I’ve written about Programming and Data Analysis in R:</p>
+<blockquote class="blockquote">
+<p>“Hurricane Sandy (unofficially referred to as Superstorm Sandy) was the deadliest and most destructive, as well as the strongest, hurricane of the 2012 Atlantic hurricane season. Inflicting nearly $70 billion (2012 USD) in damage, it was the second-costliest hurricane on record in the United States until surpassed by Hurricanes Harvey and Maria in 2017.</p>
+</blockquote>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Hurricane_Sandy" class="uri">https://en.wikipedia.org/wiki/Hurricane_Sandy</a></p>
+<section id="a-little-bit-about-hurricanes" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="a-little-bit-about-hurricanes"><span class="header-section-number">2.1</span> A little bit about Hurricanes</h2>
+<p>I don’t remember very well when was the first time I got interested in Hurricanes. I did not grow up in hurricane country or anywhere near regions prone to be hit by this kind of storms. However, I do remember learning about clouds, meteorology, and how storms form over mountain ranges. I learned this when I was in my early 20s taking my first steps into the mountaineering world. Experiencing the force and dangers of several storms in the mountains and volcanoes of my homeland, sparked in me a general interest to know more about this type of weather phenomena.</p>
+<p>It is said that the word <em>hurricane</em> is derived from the Spanish word <em>huracán</em> which in turn comes from the Taino word <em>hurakán</em>, that was used by the indigenous people of the Caribbean and Central America to designate the “god of wind” or the “evil spirits of the wind”. Nowadays, the word hurricane is informally used to denote low-pressure systems with organized thunderstorm activity that form over tropical or subtropical waters. Among weather experts, though, the term hurricane is reserved for a specific class of tropical systems: those that reach wind speeds of at least 74 mph, and are exclusively formed over the Atlantic Ocean or eastern Pacific Ocean.</p>
+<p>Despite my longtime interest in storms and hurricanes, my level of expertise in these subjects is fairly limited. Because of this, I prefer to give you a curated list of some facts about hurricanes that I’ve collected from the following sources:</p>
 <ul>
-<li><p><strong>Breaking the Ice with R: Getting Started with R and RStudio</strong> <br> <a href="https://www.gastonsanchez.com/R-ice-breaker" class="uri">https://www.gastonsanchez.com/R-ice-breaker</a></p></li>
-<li><p><strong>Tidy Hurricanes: Analyzing Tropical Storms with Tidyverse Tools</strong> <br> <a href="https://www.gastonsanchez.com/R-tidy-hurricanes" class="uri">https://www.gastonsanchez.com/R-tidy-hurricanes</a></p></li>
-<li><p><strong>R Coding Basics: An Introduction to the Basics of Coding in R</strong> <br> <a href="https://www.gastonsanchez.com/R-coding-basics" class="uri">https://www.gastonsanchez.com/R-coding-basics</a></p></li>
-<li><p><strong>Rolling Dice: Exploring Simulations in Games of Chance with R</strong> <br> <a href="https://www.gastonsanchez.com/R-rolling-dice" class="uri">https://www.gastonsanchez.com/R-rolling-dice</a></p></li>
-<li><p><strong>Web Technologies in R: A Short Introduction to Web Technologies in R</strong> <br> <a href="https://www.gastonsanchez.com/R-web-technologies" class="uri">https://www.gastonsanchez.com/R-web-technologies</a></p></li>
+<li><p>National Oceanic and Atmospheric Administration (NOAA): <a href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes" class="uri">https://www.noaa.gov/education/resource-collections/weather-atmosphere/hurricanes</a></p></li>
+<li><p>SciJinks: It’s all about weather! <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p></li>
+<li><p>NASA Space Place: How Do Hurricanes Form? <a href="https://spaceplace.nasa.gov/hurricanes/en/" class="uri">https://spaceplace.nasa.gov/hurricanes/en/</a></p></li>
 </ul>
-<hr>
+<section id="tropical-cyclones" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="tropical-cyclones"><span class="header-section-number">2.1.1</span> Tropical Cyclones</h3>
+<ul>
+<li><p>Hurricanes are the most powerful and violent storms on Earth.</p></li>
+<li><p>They form near the equator over warm ocean waters.</p></li>
+<li><p>The scientific term for all these storms is <em>tropical cyclone</em>.</p></li>
+<li><p>A tropical cyclone is a rotating low-pressure weather system that produces strong winds, has organized thunderstorms, and comes with heavy rainfall.</p></li>
+<li><p>If it hits land, it typically creates storm surge flooding, tornadoes, and rip currents.</p></li>
+<li><p>People call these storms by other names, such as typhoons or cyclones, depending on where they occur.</p></li>
+<li><p>Only tropical cyclones that form over the Atlantic Ocean or eastern Pacific Ocean are called “hurricanes.”</p></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tropical-cyclones-map.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<p></p><figcaption class="figure-caption">Nomenclature of tropical cyclones around the world.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="donation" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="donation">Donation</h3>
-<p>As a Data Science and Statistics educator, I love to share the work I do. Each month I spend dozens of hours curating learning materials like this resource. If you find any value and usefulness in it, please consider making a <a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank">one-time donation—via paypal—in any amount</a> (e.g.&nbsp;the amount you would spend inviting me a cup of coffee or any other drink). Your support really matters.</p>
-<p><a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank"><img src="https://www.gastonsanchez.com/images/donate.png" width="140" height="60"></a></p>
+<section id="storm-classification" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="storm-classification"><span class="header-section-number">2.1.2</span> Storm Classification</h3>
+<ul>
+<li><p>Tropical cyclones are classified by their maximum wind speed:</p>
+<ul>
+<li>Winds less than 39 mph: <strong>Tropical depressions</strong></li>
+<li>Winds 39-73 mph: <strong>Tropical storms</strong></li>
+<li>Winds 74 mph or greater: <strong>Hurricanes</strong></li>
+</ul></li>
+<li><p>Scientifically speaking, Hurricanes are tropical cyclones whose sustained winds have reached 74 mph.</p></li>
+<li><p>At this point the hurricane reaches category 1 on the Saffir-Simpson Hurricane Wind Scale.</p></li>
+<li><p>The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 rating based on a hurricane’s sustained wind speed:</p>
+<ul>
+<li>category 1: 74-95 mph; 64-82 kt; 119-153 km/h</li>
+<li>category 2: 96-110 mph; 83-95 kt; 154-177 km/h</li>
+<li>category 3: 111-129 mph; 96-112 kt; 178-208 km/h</li>
+<li>category 4: 130-156 mph; 113-136 kt; 209-251 km/h</li>
+<li>category 5: 157 mph or higher; 137 kt or higher; 252 km/h or higher</li>
+</ul></li>
+<li><p><strong>Major hurricanes</strong> are defined as Category 3, 4, and 5 storms.</p></li>
+<li><p>The scale was created by wind engineer Herb Saffir and meteorologist Bob Simpson to help explain damage that buildings will sustain under different wind speeds.</p></li>
+<li><p>Note that the Saffir-Simpson scale does not include hazards from rain, flooding, or storm surge.</p></li>
+</ul>
 </section>
-<section id="license" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="license">License</h3>
-<p><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<section id="naming-storms" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="naming-storms"><span class="header-section-number">2.1.3</span> Naming Storms</h3>
+<ul>
+<li><p>Once a system escalates to tropical storm-level winds (39 mph or more), it is given a name.</p></li>
+<li><p>The names are chosen by an international committee of the World Meteorological Organization (WMO).</p></li>
+<li><p>The list of names is available at: <a href="https://www.nhc.noaa.gov/aboutnames.shtml" class="uri">https://www.nhc.noaa.gov/aboutnames.shtml</a></p></li>
+<li><p>The Atlantic Ocean hurricane-naming system has been around since 1953.</p></li>
+<li><p>For the first twenty-five or so years, hurricanes and tropical storms were exclusively given female names.</p></li>
+<li><p>In 1979, the names began alternating between masculine and feminine.</p></li>
+<li><p>The names proceed in alphabetical order, omitting the “difficult” letters Q, U, X, Y, and Z.</p></li>
+<li><p>Names are reused every six years, although the WMO may retire the name of a particularly deadly or costly storm.</p></li>
+<li><p>In the event that more than 21 named tropical cyclones occur in the Atlantic basin in a season, or more than 24 named tropical cyclones in the eastern North Pacific basin, any additional storms will take names from an alternate list of names approved by the WMO for each basin.</p></li>
+</ul>
+</section>
+<section id="atlantic-hurricane-season" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="atlantic-hurricane-season"><span class="header-section-number">2.1.4</span> Atlantic Hurricane Season</h3>
+<ul>
+<li><p>The official Atlantic hurricane season runs from June through November, but occasionally storms form outside those months.</p></li>
+<li><p>September is the most active month (where most of the hurricanes occur), followed by August, and October (based on 1851 to 2015 data).</p></li>
+<li><p>A typical year has 12 named storms, including six hurricanes of which three become major hurricanes (category 3, 4, and 5).</p></li>
+<li><p>No hurricanes made U.S. landfall before June and after November during the period studied (1851 to 2015 data).</p></li>
+</ul>
+</section>
+<section id="storm-formation" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="storm-formation"><span class="header-section-number">2.1.5</span> Storm Formation</h3>
+<p>To close this chapter, take a look at the following diagram that beautifully describes and illustrates the formation of hurricanes.</p>
+<p>Source: <a href="https://scijinks.gov/hurricane/" class="uri">https://scijinks.gov/hurricane/</a></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hurricanes_poster_large.jpg" class="img-fluid figure-img" style="width:85.0%"></p>
+<p></p><figcaption class="figure-caption">How do hurricanes form? (source: SciJinks)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you want to know more about the formation of hurricanes, you can also watch the following video by NOAA SciJinks:</p>
+<p><a href="https://www.youtube.com/embed/wPDoIrGUrEc" class="uri">https://www.youtube.com/embed/wPDoIrGUrEc</a></p>
 
 
 </section>
@@ -459,10 +519,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./1-01-introduction.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1-01-introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./1-03-storms-data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Set <code>storms</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

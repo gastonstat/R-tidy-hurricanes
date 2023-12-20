@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Gaston Sanchez">
 
-<title>Tidy Hurricanes</title>
+<title>Tidy Hurricanes - 12&nbsp; Counting Tropical Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -31,7 +93,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1-01-introduction.html" rel="next">
+<link href="./4-02-barcharts.html" rel="next">
+<link href="./3-05-eda-1975.html" rel="prev">
 <link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +149,7 @@ ga('send', {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Tidy Hurricanes</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Counting Tropical Systems</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -111,7 +174,7 @@ ga('send', {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">About</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -209,7 +272,7 @@ ga('send', {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4-01-counting-storms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Counting Tropical Systems</span></a>
+  <a href="./4-01-counting-storms.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Counting Tropical Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,38 +332,20 @@ ga('send', {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a>
-  <ul class="collapse">
-  <li><a href="#my-series-of-r-tutorials" id="toc-my-series-of-r-tutorials" class="nav-link" data-scroll-target="#my-series-of-r-tutorials">My Series of R Tutorials</a></li>
-  <li><a href="#donation" id="toc-donation" class="nav-link" data-scroll-target="#donation">Donation</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Tidy Hurricanes</h1>
-<p class="subtitle lead">Analyzing Tropical Storms with Tidyverse Tools</p>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Counting Tropical Systems</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://www.gastonsanchez.com" target="_blank"><b>Gaston Sanchez</b></a> </p>
-          </div>
-  </div>
     
     
   </div>
@@ -308,53 +353,192 @@ ga('send', {
 
 </header>
 
-<p>1st Edition: January 2023 <br> 2nd Edition: December 2023</p>
-<section id="about" class="level1 unnumbered">
-<h1 class="unnumbered">About</h1>
-<div class="cell" data-layout-align="center">
+<div class="cell">
+
+</div>
+<p>In chapter <a href="3-05-eda-1975.html">Summary</a> we quickly explored the values in column <code>year</code>, discovering the 47-year period of recorded data from 1975 to 2021. We can take a further step and ask:</p>
+<blockquote class="blockquote">
+<p>How many storms are there in each year?</p>
+</blockquote>
+<div class="cell">
+
+</div>
+<p>To answer this question, we need to do some data manipulation. My general recommendation when working with <code>"dplyr"</code>’s functions, especially when you are learning about them, is to do computations step by step, deciding which columns you need to use, which rows to consider, which functions to call, and so on.</p>
+<section id="attempt-number-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="attempt-number-1">Attempt Number 1</h4>
+<p>To find the number of storms per year, think about the columns that you need to select. Also think about the operations that seem to be required to get such count. You obviously need to select <code>year</code>; and you need to <code>count()</code>. With this initial setting, you could assemble the following pipeline of commands:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first attempt</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1 19066</code></pre>
+</div>
+</div>
+<p>Okay. This count is not what we are looking for. But before trying other ideas, spend some time reflecting on what the preceding command is doing.</p>
+</section>
+<section id="attempt-number-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="attempt-number-2">Attempt Number 2</h4>
+<p>Perhaps we could add a <code>group_by(year)</code> operation before invoking <code>count()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># second attempt</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 × 2
+# Groups:   year [47]
+    year     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1  1975   238
+ 2  1976   126
+ 3  1977    92
+ 4  1978   152
+ 5  1979   324
+ 6  1980   335
+ 7  1981   311
+ 8  1982   111
+ 9  1983    88
+10  1984   342
+# ℹ 37 more rows</code></pre>
+</div>
+</div>
+<p>This result looks more interesting. The returned output is a table with two columns: <code>year</code> and <code>n</code>. But after careful inspection, you should notice something awkward. While the first column makes complete sense, the second column <code>n</code> does not seem to be very helpful. Are there really 86 tropical systems in 1975? Are there 52 systems in 1976? And so on, and so forth? Of course not; 1975 did not have 86 systems. The numeric values under column <code>n</code> simply refer to the number of entries (i.e.&nbsp;rows) associated to each year.</p>
+<p>You may not know this, but the previous table of counts can be obtained using a more compact command without the need to use <code>select()</code> and <code>group_by()</code>; you can just simply invoke <code>count(year)</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same output of preceding command, only using count()</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">|&gt;</span> <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 × 2
+    year     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1  1975   238
+ 2  1976   126
+ 3  1977    92
+ 4  1978   152
+ 5  1979   324
+ 6  1980   335
+ 7  1981   311
+ 8  1982   111
+ 9  1983    88
+10  1984   342
+# ℹ 37 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="attempt-number-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="attempt-number-3">Attempt Number 3</h4>
+<p>What if instead of counting <code>year</code> we count based on column <code>name</code>? For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third attempt</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">|&gt;</span> <span class="fu">count</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 258 × 2
+   name         n
+   &lt;chr&gt;    &lt;int&gt;
+ 1 AL011993    11
+ 2 AL012000     4
+ 3 AL021992     5
+ 4 AL021994     6
+ 5 AL021999     4
+ 6 AL022000    12
+ 7 AL022001     5
+ 8 AL022003     4
+ 9 AL022006    13
+10 AL031987    32
+# ℹ 248 more rows</code></pre>
+</div>
+</div>
+<p>Mmm. Again, not the count that we are looking for. On a side note, observe the values displayed in the first rows of the returned table: e.g.&nbsp;<code>AL011993</code>, <code>AL012000</code>. These alphanumeric names correspond to names of tropical depressions that never reached <em>tropical storm</em> status. In other words, those system were not strong enough to be given a name, e.g.&nbsp;<code>Amy</code>, <code>Caroline</code>, <code>Doris</code>, etc.</p>
+</section>
+<section id="attempt-number-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="attempt-number-4">Attempt Number 4</h4>
+<p>So far we’ve tried—unsuccessfully—counting based on column <code>year</code> alone, and also on column <code>name</code> alone. None of these columns, in and of itself, is enough because for any given storm or any given year we have multiple entries with duplicated values.</p>
+<p>Again, the following suggestion may not seem obvious, but you can also try counting by taking into account both <code>year</code> and <code>name</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth attempt</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">|&gt;</span> <span class="fu">count</span>(year, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 639 × 3
+    year name         n
+   &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+ 1  1975 Amy         31
+ 2  1975 Blanche     20
+ 3  1975 Caroline    33
+ 4  1975 Doris       29
+ 5  1975 Eloise      46
+ 6  1975 Faye        19
+ 7  1975 Gladys      46
+ 8  1975 Hallie      14
+ 9  1976 Belle       18
+10  1976 Candice     11
+# ℹ 629 more rows</code></pre>
+</div>
+</div>
+<p>Compared to the previous attempts, this output looks more promising. Finally, we can see that there were three (named) storms in 1975, two in 1976, three more in 1977, etc. However, we still don’t have those specific counts: 3, 2, 3, etc. But at least we are making some progress in what it seems to be the right direction.</p>
+</section>
+<section id="attempt-number-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="attempt-number-5">Attempt Number 5</h4>
+<p>Why not taking the preceding command, and adding an extra <code>count()</code> but only considering <code>year</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fifth attempt</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>storms <span class="sc">|&gt;</span> <span class="fu">count</span>(year, name) <span class="sc">|&gt;</span> <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 × 2
+    year     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1  1975     8
+ 2  1976     7
+ 3  1977     6
+ 4  1978    11
+ 5  1979     8
+ 6  1980    11
+ 7  1981    11
+ 8  1982     5
+ 9  1983     4
+10  1984    12
+# ℹ 37 more rows</code></pre>
+</div>
+</div>
+<p>Voila! Now we are talking. This table contains precisely the counts that we are looking for: number of systems in each year.</p>
+<p>For convenience purposes, let’s assign this table into its own object, which we can call <code>system_counts_per_year</code>, or some other meaningful name that you might prefer to use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>system_counts_per_year <span class="ot">&lt;-</span> storms <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, name) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>system_counts_per_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 × 2
+    year     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1  1975     8
+ 2  1976     7
+ 3  1977     6
+ 4  1978    11
+ 5  1979     8
+ 6  1980    11
+ 7  1981    11
+ 8  1982     5
+ 9  1983     4
+10  1984    12
+# ℹ 37 more rows</code></pre>
+</div>
+</div>
+<p>Now that we have the counts or frequencies, it would be nice to visualize them with a barchart, like the following one:</p>
+<div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/R-tidy-hurricanes-cover.png" class="img-fluid figure-img" style="width:40.0%"></p>
-</figure>
+<p><img src="4-01-counting-storms_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</div>
-<p>The goal of this text is to help you get started working with tabular data using the syntactic approach of so-called <strong>Tidyverse</strong> tools. More specifically, we describe various examples for how to use functions from Tidyverse packages to perform common operations around data tables by analyzing storms and hurricanes in the North Atlantic.</p>
-<section id="about-you" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="about-you">About You</h4>
-<p>I am assuming that you have both R or RStudio installed in your computer. If this is not the case, you can take a look at <strong>Breaking the Ice with R</strong></p>
-<p><a href="https://www.gastonsanchez.com/R-ice-breaker" target="_blank">https://www.gastonsanchez.com/R-ice-breaker</a></p>
-</section>
-<section id="citation" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="citation">Citation</h4>
-<p>You can cite this work as:</p>
-<p>Sanchez, G. (2023) Analyzing Tropical Storms with Tidyverse Tools. <br> https://www.gastonsanchez.com/R-tidy-hurricanes</p>
-<hr>
-</section>
-<section id="my-series-of-r-tutorials" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="my-series-of-r-tutorials">My Series of R Tutorials</h3>
-<p>This manuscript is part of a series of texts that I’ve written about Programming and Data Analysis in R:</p>
-<ul>
-<li><p><strong>Breaking the Ice with R: Getting Started with R and RStudio</strong> <br> <a href="https://www.gastonsanchez.com/R-ice-breaker" class="uri">https://www.gastonsanchez.com/R-ice-breaker</a></p></li>
-<li><p><strong>Tidy Hurricanes: Analyzing Tropical Storms with Tidyverse Tools</strong> <br> <a href="https://www.gastonsanchez.com/R-tidy-hurricanes" class="uri">https://www.gastonsanchez.com/R-tidy-hurricanes</a></p></li>
-<li><p><strong>R Coding Basics: An Introduction to the Basics of Coding in R</strong> <br> <a href="https://www.gastonsanchez.com/R-coding-basics" class="uri">https://www.gastonsanchez.com/R-coding-basics</a></p></li>
-<li><p><strong>Rolling Dice: Exploring Simulations in Games of Chance with R</strong> <br> <a href="https://www.gastonsanchez.com/R-rolling-dice" class="uri">https://www.gastonsanchez.com/R-rolling-dice</a></p></li>
-<li><p><strong>Web Technologies in R: A Short Introduction to Web Technologies in R</strong> <br> <a href="https://www.gastonsanchez.com/R-web-technologies" class="uri">https://www.gastonsanchez.com/R-web-technologies</a></p></li>
-</ul>
-<hr>
-</section>
-<section id="donation" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="donation">Donation</h3>
-<p>As a Data Science and Statistics educator, I love to share the work I do. Each month I spend dozens of hours curating learning materials like this resource. If you find any value and usefulness in it, please consider making a <a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank">one-time donation—via paypal—in any amount</a> (e.g.&nbsp;the amount you would spend inviting me a cup of coffee or any other drink). Your support really matters.</p>
-<p><a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank"><img src="https://www.gastonsanchez.com/images/donate.png" width="140" height="60"></a></p>
-</section>
-<section id="license" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="license">License</h3>
-<p><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<p>Let’s discuss how to obtain this kind of graphic in the next chapter.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -456,13 +640,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./3-05-eda-1975.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1-01-introduction.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./4-02-barcharts.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Number of Systems</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

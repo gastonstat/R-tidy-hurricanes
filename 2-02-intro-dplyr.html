@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tidy Hurricanes - 5&nbsp; Data Manipulation with "dplyr"</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./2-03-intro-pipes.html" rel="next">
+<link href="./2-01-intro-ggplot.html" rel="prev">
+<link href="./images/favicon.ico" rel="icon">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-46765288', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Manipulation with <code>"dplyr"</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Tidy Hurricanes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Introduction</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-01-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Tables and Tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-02-about-hurricanes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tropical Storms and Hurricanes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-03-storms-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Set <code>storms</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Starting with Tidy Tools</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-01-intro-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphics with <code>"ggplot2"</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-02-intro-dplyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Manipulation with <code>"dplyr"</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-03-intro-pipes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Pipe Operators</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Analyzing Storms in 1975</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-01-storms-year.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inspecting Single Columns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-02-storms-1975.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Storms in 1975</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-03-amy-1975.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Storm Amy (1975)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-04-summary-1975.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summarizing 1975 Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-05-eda-1975.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Counting Storms 1975-2020</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-01-counting-storms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Counting Tropical Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-02-barcharts.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Number of Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-03-counting-more-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Counting More Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-04-counting-all-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Counting All Types of Systems</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Maps</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-01-maps-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-02-maps-1975.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Basic Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-03-maps-sf.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Simple Features Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-04-maps-leaflet.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Leaflet Maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-05-maps-tmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Thematic Maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#basic-dplyr-verbs" id="toc-basic-dplyr-verbs" class="nav-link active" data-scroll-target="#basic-dplyr-verbs"><span class="toc-section-number">5.1</span>  Basic <code>"dplyr"</code> verbs</a>
+  <ul class="collapse">
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="toc-section-number">5.1.1</span>  Filter</a></li>
+  <li><a href="#slice" id="toc-slice" class="nav-link" data-scroll-target="#slice"><span class="toc-section-number">5.1.2</span>  Slice</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="toc-section-number">5.1.3</span>  Select</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="toc-section-number">5.1.4</span>  Mutate</a></li>
+  </ul></li>
+  <li><a href="#reordering-rows-arrange" id="toc-reordering-rows-arrange" class="nav-link" data-scroll-target="#reordering-rows-arrange"><span class="toc-section-number">5.2</span>  Reordering rows: <code>arrange()</code></a></li>
+  <li><a href="#summarizing-values-with-summarise" id="toc-summarizing-values-with-summarise" class="nav-link" data-scroll-target="#summarizing-values-with-summarise"><span class="toc-section-number">5.3</span>  Summarizing values with <code>summarise()</code></a></li>
+  <li><a href="#grouped-operations" id="toc-grouped-operations" class="nav-link" data-scroll-target="#grouped-operations"><span class="toc-section-number">5.4</span>  Grouped operations</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="intro-dplyr" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Manipulation with <code>"dplyr"</code></span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>In the preceding chapter, we introduced some of the key ideas behind the Grammar of Graphics and their implementation through <code>"ggplot2"</code>. In this chapter we move on with some of the basic notions behind <code>"dplyr"</code>, specifically we introduce the set of functions commonly referred to as the <em>basic dplyr verbs</em>.</p>
+<p>To continue the discussion, we use the sample data for tropical cyclones that formed during the month of September 2010 in the North Atlantic:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sep2010 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">'Gaston'</span>, <span class="st">'Hermine'</span>, <span class="st">'Igor'</span>, <span class="st">'Julia'</span>, <span class="st">'Karl'</span>, <span class="st">'Lisa'</span>, <span class="st">'Matthew'</span>, <span class="st">'Nicole'</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">135</span>, <span class="dv">120</span>, <span class="dv">110</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">40</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pressure =</span> <span class="fu">c</span>(<span class="dv">1005</span>, <span class="dv">989</span>, <span class="dv">924</span>, <span class="dv">948</span>, <span class="dv">956</span>, <span class="dv">982</span>, <span class="dv">998</span>, <span class="dv">994</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">'ts'</span>, <span class="st">'ts'</span>, <span class="st">'cat4'</span>, <span class="st">'cat4'</span>, <span class="st">'cat3'</span>, <span class="st">'cat1'</span>, <span class="st">'ts'</span>, <span class="st">'ts'</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">days =</span> <span class="fu">c</span>(1L, 4L, 13L, 8L, 4L, 6L, 3L, 1L)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sep2010</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston     35     1005 ts           1
+2 Hermine    60      989 ts           4
+3 Igor      135      924 cat4        13
+4 Julia     120      948 cat4         8
+5 Karl      110      956 cat3         4
+6 Lisa       75      982 cat1         6
+7 Matthew    50      998 ts           3
+8 Nicole     40      994 ts           1</code></pre>
+</div>
+</div>
+<section id="basic-dplyr-verbs" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="basic-dplyr-verbs"><span class="header-section-number">5.1</span> Basic <code>"dplyr"</code> verbs</h2>
+<p>In no particular order of importance, let’s start with the set of elementary <code>"dplyr"</code> functions known as the <em>basic dplyr verbs</em>:</p>
+<ul>
+<li><p><code>filter()</code>: select (i.e.&nbsp;keeping) rows that match a condition</p></li>
+<li><p><code>slice()</code>: subset rows using their positions</p></li>
+<li><p><code>select()</code>: keep or drop columns using their names and types</p></li>
+<li><p><code>mutate()</code>: modify existing variables, or add new variables</p></li>
+<li><p><code>arrange()</code>: reorder rows using column names</p></li>
+<li><p><code>summarise()</code>: reduce variables to values</p></li>
+<li><p><code>group_by()</code>: grouped (aggregated) operations</p></li>
+</ul>
+<section id="filter" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="filter"><span class="header-section-number">5.1.1</span> Filter</h3>
+<p><code>filter()</code> allows you to select rows by defining a condition (which could be simple or compound). For example, we can filter <code>sep2010</code> by selecting those tropical cyclones of category tropical storm (<code>ts</code>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using a single condition</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sep2010, category <span class="sc">==</span> <span class="st">"ts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston     35     1005 ts           1
+2 Hermine    60      989 ts           4
+3 Matthew    50      998 ts           3
+4 Nicole     40      994 ts           1</code></pre>
+</div>
+</div>
+<p>We can also use a compound logical condition: tropical storms having a wind speed greater than 40 knots</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sep2010, category <span class="sc">==</span> <span class="st">"ts"</span> <span class="sc">&amp;</span> wind <span class="sc">&gt;</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Hermine    60      989 ts           4
+2 Matthew    50      998 ts           3</code></pre>
+</div>
+</div>
+</section>
+<section id="slice" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="slice"><span class="header-section-number">5.1.2</span> Slice</h3>
+<p><code>slice()</code> allows you to subset rows using their positions, for example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first row</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  name    wind pressure category  days
+  &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston    35     1005 ts           1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># third row</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  name   wind pressure category  days
+  &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Igor    135      924 cat4        13</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first three rows</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>three_rows <span class="ot">=</span> <span class="fu">slice</span>(sep2010, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>three_rows</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston     35     1005 ts           1
+2 Hermine    60      989 ts           4
+3 Igor      135      924 cat4        13</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a negative position</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(sep2010, <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Hermine    60      989 ts           4
+2 Igor      135      924 cat4        13
+3 Julia     120      948 cat4         8
+4 Karl      110      956 cat3         4
+5 Lisa       75      982 cat1         6
+6 Matthew    50      998 ts           3
+7 Nicole     40      994 ts           1</code></pre>
+</div>
+</div>
+<p>We should note that <code>slice()</code> comes with a set of sibling functions such as:</p>
+<ul>
+<li><p><code>slice_head()</code> to subset the first rows</p></li>
+<li><p><code>slice_tail()</code> to subset the last rows</p></li>
+<li><p><code>slice_min()</code> to subset rows with lowest values of a variable</p></li>
+<li><p><code>slice_max()</code> to subset rows with highest values of a variable</p></li>
+<li><p><code>slice_sample()</code> to randomly subset rows</p></li>
+</ul>
+</section>
+<section id="select" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="select"><span class="header-section-number">5.1.3</span> Select</h3>
+<p><code>select()</code> allows you to select one or more columns by name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, name, wind, pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+  name     wind pressure
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 Gaston     35     1005
+2 Hermine    60      989
+3 Igor      135      924
+4 Julia     120      948
+5 Karl      110      956
+6 Lisa       75      982
+7 Matthew    50      998
+8 Nicole     40      994</code></pre>
+</div>
+</div>
+<p><code>select()</code> also allows you to specify a range of consecutive columns via the <code>:</code> operator</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># consecutive columns</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, name<span class="sc">:</span>pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+  name     wind pressure
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 Gaston     35     1005
+2 Hermine    60      989
+3 Igor      135      924
+4 Julia     120      948
+5 Karl      110      956
+6 Lisa       75      982
+7 Matthew    50      998
+8 Nicole     40      994</code></pre>
+</div>
+</div>
+<p><code>select()</code> also allows you to exclude one or more columns by negating their names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># exclude columns by name</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, <span class="sc">-</span>(wind<span class="sc">:</span>category))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  name     days
+  &lt;chr&gt;   &lt;int&gt;
+1 Gaston      1
+2 Hermine     4
+3 Igor       13
+4 Julia       8
+5 Karl        4
+6 Lisa        6
+7 Matthew     3
+8 Nicole      1</code></pre>
+</div>
+</div>
+<p>Interestingly, you can also <code>select()</code> columns by their position</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># columns by position</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(sep2010, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+  name     wind pressure
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 Gaston     35     1005
+2 Hermine    60      989
+3 Igor      135      924
+4 Julia     120      948
+5 Karl      110      956
+6 Lisa       75      982
+7 Matthew    50      998
+8 Nicole     40      994</code></pre>
+</div>
+</div>
+</section>
+<section id="mutate" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="mutate"><span class="header-section-number">5.1.4</span> Mutate</h3>
+<p>Another basic verb is <code>mutate()</code> which allows you to: 1) transform existing variables, but also 2) add new variables.</p>
+<p>Wind speed values—column <code>wind</code>—are expressed in knots. But what if we are interested in having wind speed expressed in miles per hour? Enter <code>mutate()</code>. Here is how to add a new column <code>wind_mph</code> (1 knot = 1.15078 mph)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(sep2010, <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 6
+  name     wind pressure category  days wind_mph
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;
+1 Gaston     35     1005 ts           1     40.3
+2 Hermine    60      989 ts           4     69.0
+3 Igor      135      924 cat4        13    155. 
+4 Julia     120      948 cat4         8    138. 
+5 Karl      110      956 cat3         4    127. 
+6 Lisa       75      982 cat1         6     86.3
+7 Matthew    50      998 ts           3     57.5
+8 Nicole     40      994 ts           1     46.0</code></pre>
+</div>
+</div>
+<p>If we just want to transform the existing values in column <code>wind</code> so that it is expressed in mph, then we simply <code>mutate()</code> it using the same variable name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(sep2010, <span class="at">wind =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston   40.3     1005 ts           1
+2 Hermine  69.0      989 ts           4
+3 Igor    155.       924 cat4        13
+4 Julia   138.       948 cat4         8
+5 Karl    127.       956 cat3         4
+6 Lisa     86.3      982 cat1         6
+7 Matthew  57.5      998 ts           3
+8 Nicole   46.0      994 ts           1</code></pre>
+</div>
+</div>
+<p>Recall that, in order to permanently change the data, you need to assign the changes to an object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sep2010b <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sep2010, <span class="at">wind_mph =</span> wind <span class="sc">*</span> <span class="fl">1.15078</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sep2010b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 6
+  name     wind pressure category  days wind_mph
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;    &lt;dbl&gt;
+1 Gaston     35     1005 ts           1     40.3
+2 Hermine    60      989 ts           4     69.0
+3 Igor      135      924 cat4        13    155. 
+4 Julia     120      948 cat4         8    138. 
+5 Karl      110      956 cat3         4    127. 
+6 Lisa       75      982 cat1         6     86.3
+7 Matthew    50      998 ts           3     57.5
+8 Nicole     40      994 ts           1     46.0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="reordering-rows-arrange" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="reordering-rows-arrange"><span class="header-section-number">5.2</span> Reordering rows: <code>arrange()</code></h2>
+<p>The next basic verb of <code>"dplyr"</code> is <code>arrange()</code> which allows you to reorder rows. For example, here’s how to arrange the rows of <code>sep2010</code> by <code>wind</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by wind (increasingly)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(sep2010, wind)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Gaston     35     1005 ts           1
+2 Nicole     40      994 ts           1
+3 Matthew    50      998 ts           3
+4 Hermine    60      989 ts           4
+5 Lisa       75      982 cat1         6
+6 Karl      110      956 cat3         4
+7 Julia     120      948 cat4         8
+8 Igor      135      924 cat4        13</code></pre>
+</div>
+</div>
+<p>By default <code>arrange()</code> sorts rows in increasing order. To arrange rows in descending order you need to use the auxiliary function <code>desc()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by wind (decreasingly)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(sep2010, <span class="fu">desc</span>(wind))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Igor      135      924 cat4        13
+2 Julia     120      948 cat4         8
+3 Karl      110      956 cat3         4
+4 Lisa       75      982 cat1         6
+5 Hermine    60      989 ts           4
+6 Matthew    50      998 ts           3
+7 Nicole     40      994 ts           1
+8 Gaston     35     1005 ts           1</code></pre>
+</div>
+</div>
+<p>Last but not least, you can also pass more than one column for arranging purposes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by days, and then pressure</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(sep2010, days, pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  name     wind pressure category  days
+  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
+1 Nicole     40      994 ts           1
+2 Gaston     35     1005 ts           1
+3 Matthew    50      998 ts           3
+4 Karl      110      956 cat3         4
+5 Hermine    60      989 ts           4
+6 Lisa       75      982 cat1         6
+7 Julia     120      948 cat4         8
+8 Igor      135      924 cat4        13</code></pre>
+</div>
+</div>
+</section>
+<section id="summarizing-values-with-summarise" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="summarizing-values-with-summarise"><span class="header-section-number">5.3</span> Summarizing values with <code>summarise()</code></h2>
+<p>The next verb is <code>summarise()</code>, which is also available as <code>summarize()</code>. Conceptually, this involves applying a function on one or more columns, in order to summarize values. This is probably easier to understand with one example.</p>
+<p>Say you are interested in calculating the average duration of all storms To do this <em>“a la dplyr”</em> you use <code>summarise()</code> as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average duration</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(sep2010, <span class="at">avg_days =</span> <span class="fu">mean</span>(days))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_days
+     &lt;dbl&gt;
+1        5</code></pre>
+</div>
+</div>
+<p>What if you want to calculate some summary statistics for <code>days</code>: min, median, mean, and max?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some stats for days (dplyr)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  sep2010, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">min =</span> <span class="fu">min</span>(days),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">median =</span> <span class="fu">median</span>(days),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg =</span> <span class="fu">mean</span>(days),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">max =</span> <span class="fu">max</span>(days)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+    min median   avg   max
+  &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+1     1      4     5    13</code></pre>
+</div>
+</div>
+</section>
+<section id="grouped-operations" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="grouped-operations"><span class="header-section-number">5.4</span> Grouped operations</h2>
+<p>To better appreciate the power of <code>summarise()</code>, we need to introduce another major <code>"dplyr"</code> basic verb: <code>group_by()</code>. This is the function that allows you to perform data aggregations, or <em>grouped operations</em>.</p>
+<p>Let’s see the combination of <code>summarise()</code> and <code>group_by()</code> to calculate the average number of days by category:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average days, grouped by category</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sep2010, category),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">avg_days =</span> <span class="fu">mean</span>(days)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here’s a less simpler example: average days, by category, displayed in descending order by average days:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sep2010, category),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_days =</span> <span class="fu">mean</span>(days)),</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">desc</span>(avg_days)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2-01-intro-ggplot.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphics with <code>"ggplot2"</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./2-03-intro-pipes.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Pipe Operators</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2023, <a href="https://www.gastonsanchez.com">Gaston Sanchez</a></div>   
+    <div class="nav-footer-right"><a href="https://www.paypal.com/donate?business=ZF6U7K5MW25W2&amp;currency_code=USD" target="_blank">Donate via PayPal</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
