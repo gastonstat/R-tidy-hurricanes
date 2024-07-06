@@ -2,86 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/index.html</loc>
-    <lastmod>2024-01-02T15:30:54.389Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.361Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/1-01-introduction.html</loc>
-    <lastmod>2024-01-02T15:30:54.390Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.362Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/1-02-about-hurricanes.html</loc>
-    <lastmod>2024-01-02T15:30:54.408Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.363Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/1-03-storms-data.html</loc>
-    <lastmod>2024-01-02T15:30:54.409Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.381Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/2-01-intro-ggplot.html</loc>
-    <lastmod>2024-01-02T15:30:54.428Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.383Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/2-02-intro-dplyr.html</loc>
-    <lastmod>2024-01-02T15:30:54.429Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.402Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/2-03-intro-pipes.html</loc>
-    <lastmod>2024-01-02T15:30:54.448Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.403Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/3-01-storms-year.html</loc>
-    <lastmod>2024-01-02T15:30:54.449Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.422Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/3-02-storms-1975.html</loc>
-    <lastmod>2024-01-02T15:30:54.468Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.423Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/3-03-amy-1975.html</loc>
-    <lastmod>2024-01-02T15:30:54.470Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.425Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/3-04-summary-1975.html</loc>
-    <lastmod>2024-01-02T15:30:54.489Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.461Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/3-05-eda-1975.html</loc>
-    <lastmod>2024-01-02T15:30:54.490Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.462Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/4-01-counting-storms.html</loc>
-    <lastmod>2024-01-02T15:30:54.509Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.463Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/4-02-barcharts.html</loc>
-    <lastmod>2024-01-02T15:30:54.511Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.465Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/4-03-counting-more-systems.html</loc>
-    <lastmod>2024-01-02T15:30:54.529Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.467Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/4-04-counting-all-systems.html</loc>
-    <lastmod>2024-01-02T15:30:54.550Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.485Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/5-01-maps-intro.html</loc>
-    <lastmod>2024-01-02T15:30:54.552Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.486Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/5-02-maps-1975.html</loc>
-    <lastmod>2024-01-02T15:30:54.572Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.505Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/5-03-maps-sf.html</loc>
-    <lastmod>2024-01-02T15:30:54.592Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.507Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/5-04-maps-leaflet.html</loc>
-    <lastmod>2024-01-02T15:30:54.613Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.510Z</lastmod>
   </url>
   <url>
     <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/5-05-maps-tmap.html</loc>
-    <lastmod>2024-01-02T15:30:54.652Z</lastmod>
+    <lastmod>2024-07-06T15:56:18.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.gastonsanchez.com/R-tidy-hurricanes/5-06-maps-shapefile.html</loc>
+    <lastmod>2024-07-06T15:56:18.514Z</lastmod>
   </url>
 </urlset>

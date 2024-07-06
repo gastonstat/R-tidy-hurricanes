@@ -262,6 +262,11 @@ ga('send', {
   <a href="./5-05-maps-tmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Thematic Maps</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-06-maps-shapefile.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Shapefile Data</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -273,7 +278,10 @@ ga('send', {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#some-words-about-maps-in-r" id="toc-some-words-about-maps-in-r" class="nav-link active" data-scroll-target="#some-words-about-maps-in-r"><span class="toc-section-number">16.1</span>  Some Words about Maps in R</a></li>
+  <li><a href="#some-words-about-maps-in-r" id="toc-some-words-about-maps-in-r" class="nav-link active" data-scroll-target="#some-words-about-maps-in-r"><span class="toc-section-number">16.1</span>  Some Words about Maps in R</a>
+  <ul class="collapse">
+  <li><a href="#a-few-resources-on-maps-in-r" id="toc-a-few-resources-on-maps-in-r" class="nav-link" data-scroll-target="#a-few-resources-on-maps-in-r"><span class="toc-section-number">16.1.1</span>  A Few Resources on Maps in R</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -299,35 +307,28 @@ ga('send', {
 <p>In the previous chapters, you were introduced to the basics of <code>"dplyr"</code> and <code>"ggplot2"</code>, which we then used to perform various operations on the data <code>storms</code> to obtain a wide array of visualizations as well as derived tables and summary statistics. Because <code>storms</code> contains geographical information such as longitude and latitude, in this part we take a further step to learn about plotting basic, and not so basic, maps with <code>"ggplot2"</code> as well as with some dedicated packages to create maps in R.</p>
 <section id="some-words-about-maps-in-r" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="some-words-about-maps-in-r"><span class="header-section-number">16.1</span> Some Words about Maps in R</h2>
-<p>Keep in mind that there is a wide array of packages for graphing all sorts of maps, and geospatial information. Good resources to look at are:</p>
+<p>For better or worse, there are various approaches to handle geographic data in R, with multiple packages for graphing all sorts of maps, and geospatial information.</p>
+<p>I should mention that the ecosystem of R packages to work with spatial data has evolved over more than two decades, and it keeps evolving as I write this.</p>
+<p>In recent years, one particular project has played a central role in the way geospatial data R can be handled: the so-called <em>Simple Features</em> project. Simply put, <em>Simple Features</em> is an open-source standard and model to store and access vector geometries. Its corresponding R package is <code>sf</code>.</p>
+<p>In the next chapters, I’m going to focus on the packages listed below. Please keep in mind that this list is by no means a comprehensive set of tools for making maps in R. It’s my opinionated list of the tools that I’m most familiar with when working with geographic data sets.</p>
+<ul>
+<li><p><code>maps</code>: classic R package with data sets of maps, and functions for drawing maps.</p></li>
+<li><p><code>rnaturalearth</code>: package to hold and facilitate interaction with map data from <a href="https://www.naturalearthdata.com">Natural Earth</a>, a public domain map dataset.</p></li>
+<li><p><code>sf</code>: <em>Simple Features</em> provides classes and functions for vector data.</p></li>
+<li><p><code>leaflet</code>: for making interactive maps.</p></li>
+<li><p><code>tmap</code>: <em>Thematic Maps</em> for making static and interactive maps.</p></li>
+</ul>
+<section id="a-few-resources-on-maps-in-r" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="a-few-resources-on-maps-in-r"><span class="header-section-number">16.1.1</span> A Few Resources on Maps in R</h3>
+<p>Additionally, here is a short list of good resources to look at are:</p>
 <ul>
 <li><p><em>Drawing beautiful maps programmatically with R, sf and ggplot2</em> by Mel Moreno and Mathieu Basille; <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html" class="uri">https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html</a></p></li>
 <li><p><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow; <a href="https://r.geocompx.org/t" class="uri">https://r.geocompx.org/t</a></p></li>
 <li><p><em>Making Maps with R</em> by Eric C. Anderson; <a href="https://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html" class="uri">https://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html</a></p></li>
 </ul>
-<p><strong>From: Geocomputation with R</strong></p>
-<p>“There are many ways to handle geographic data in R, with dozens of packages in the area.”</p>
-<p>R’s spatial ecosystem has evolved and keeps evolving at a fast pace.</p>
-<p>An inflection point in the development of R’s geospatial tools was the project <em>Simple Features</em>, an open-source standard and model to store and access vector geometries. This resulted in the <code>sf</code> package</p>
-<p>I’m going to focus on the following packages. Please keep in mind that the packages listed below are by no means a comprehensive set of tools for making maps in R.</p>
-<ul>
-<li><p><code>sf</code>: <em>Simple Features</em> provides classes and functions for vector data</p></li>
-<li><p><code>tmap</code>: <em>Thematic Maps</em> for static and interactive maps</p></li>
-<li><p><code>leaflet</code>: for interactive maps</p></li>
-<li><p><code>maps</code>: maps data sets</p></li>
-<li><p><code>rnaturalearth</code>: maps data sets</p></li>
-</ul>
-<p>As Lovelace, Nowosad and Muenchow state: “The vector data model represents the world using points, lines and polygons. These have discrete, well-defined borders, meaning that vector datasets usually have a high level of precision. The raster data model divides the surface up into cells of constant size. Raster datasets are the basis of background images used in web-mapping and have been a vital source of geographic data since the origins of aerial photography and satellite-based remote sensing devices.”</p>
-<p>From Lovelace, Nowosad and Muenchow: reasons for using <code>sf</code>:</p>
-<ul>
-<li><p>Fast reading and writing of data</p></li>
-<li><p>Enhanced plotting performance</p></li>
-<li><p><code>sf</code> objects can be treated as data frames in most operations</p></li>
-<li><p><code>sf</code> function names are relatively consistent and intuitive (all begin with <code>st_</code>)</p></li>
-<li><p><code>sf</code> functions can be combined with the <code>|&gt;</code> operator and works well with the tidyverse collection of R packages.</p></li>
-</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
